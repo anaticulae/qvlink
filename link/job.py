@@ -13,11 +13,12 @@ for the finished jobs. """
 from dataclasses import dataclass
 from os import listdir
 from os.path import exists
+from os.path import isdir
 from os.path import join
 
+import configo
 from utila import file_create
 from utila import file_read
-from utila import logging_error
 from yaml import SafeLoader
 from yaml import dump as yaml_dump
 from yaml import load as yaml_load
@@ -60,3 +61,29 @@ def load(path: str) -> JobInfo:
         index=config['index'],
     )
     return result
+
+
+def todo_count() -> int:
+    """Count folder in common `todo` folder
+
+    Returns:
+        count of valid todo folder in todo path
+    """
+    path = configo.todo()
+    dirs = [item for item in listdir(path) if valid_todo(join(path, item))]
+    return len(dirs)
+
+
+def valid_todo(path):
+    """Check that `path` is a valid todo folder with required files
+
+    Args:
+        path(str): path to possible todo folder
+    Returns:
+        True if folder is a valid todo folder else False
+    """
+    if not isdir(path):
+        return False
+    if not exists(join(path, FILE_NAME)):
+        return False
+    return True

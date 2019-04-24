@@ -8,11 +8,15 @@
 # =============================================================================
 
 import os
+from os.path import exists
 
 import configo
 import utila
 
+from link import create_todo
 from link import free_todo
+from tests import MINIMAL
+from tests import patch_todo
 
 
 def test_free_todo(tmpdir, monkeypatch):
@@ -36,3 +40,16 @@ def test_free_todo(tmpdir, monkeypatch):
 
         # test is already there, give me the next one
         assert free_todo() == 'ts'
+
+
+def test_create_todo(tmpdir, monkeypatch):
+    with patch_todo(tmpdir, monkeypatch):
+        with open(MINIMAL, mode='rb') as fp:
+
+            def patch(_):
+                pass
+
+            fp.save = patch
+            created = create_todo(fp, 'testfile.pdf')
+
+    assert exists(created), created

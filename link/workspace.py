@@ -8,14 +8,18 @@
 # =============================================================================
 
 from os import listdir
+from os import makedirs
 from os.path import exists
 from os.path import join
 
 import configo
 import utila
 from utila import logging_error
+from utila import today
 
 from link import JOB_FILE_NAME
+from link import JobInfo
+from link import job_dump
 from link import job_load
 
 
@@ -55,3 +59,25 @@ def free_todo():
     while exists(join(path, name)):
         name = utila.tempname()
     return name
+
+
+def create_todo(file, filename):
+    """Create working folder, add info.yaml and write `file` to todo dir"""
+    name = free_todo()
+    todo_path = configo.todo()
+
+    path = join(todo_path, name)
+    assert not exists(path)
+
+    makedirs(path)
+    file_path = join(path, name)
+    info_path = join(path, JOB_FILE_NAME)
+    # Copy provied file to todo location
+    file.save(file_path)
+
+    # filename = secure_filename(file.filename)
+    # Create job information
+    job = JobInfo(title=filename, date=today(), index=name)
+    job_dump(info_path, job)
+
+    return path

@@ -7,13 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from contextlib import contextmanager
 from os import makedirs
 from os.path import join
 
-from configo.share import COMMON
-from configo.share import READY
-from configo.share import TODO
 from pytest import fixture
 
 from link import JOB_FILE_NAME
@@ -21,6 +17,8 @@ from link import JobInfo
 from link import job_dump
 from link import job_load
 from link import scan
+from link import todo_count
+from tests import patch_todo
 
 
 def test_dump_and_load(tmpdir):
@@ -37,20 +35,6 @@ def test_dump_and_load(tmpdir):
     loaded = job_load(path)
 
     assert loaded == config
-
-
-@contextmanager
-def patch_todo(directory, monkeypatch):
-    import os
-    with monkeypatch.context() as context:
-        # Remove all environment vars
-        context.setattr(
-            os, 'environ', {
-                COMMON: directory,
-                TODO: join(directory, 'todo'),
-                READY: join(directory, 'ready'),
-            })
-        yield
 
 
 def test_common_folder(common, monkeypatch):
@@ -87,3 +71,8 @@ def common(tmpdir):
     makedirs(join(ready, 'also_broken'))
 
     return tmpdir
+
+
+def test_todo_count(common, monkeypatch):
+    with patch_todo(common, monkeypatch):
+        assert todo_count() == 3
