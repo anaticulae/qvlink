@@ -19,6 +19,6 @@ from link.workspace import create_todo
 from link.workspace import free_todo
 from link.workspace import scan
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
