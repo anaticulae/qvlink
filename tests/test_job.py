@@ -16,6 +16,7 @@ from link import JOB_FILE_NAME
 from link import JobInfo
 from link import job_dump
 from link import job_load
+from link import ready_count
 from link import scan
 from link import todo_count
 from tests import patch_todo
@@ -76,3 +77,6 @@ def common(tmpdir):
 def test_todo_count(common, monkeypatch):
     with patch_todo(common, monkeypatch):
         assert todo_count() == 3
+
+    with patch_todo(common, monkeypatch):
+        assert ready_count() == 2

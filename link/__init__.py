@@ -13,6 +13,7 @@ from link.job import FILE_NAME as JOB_FILE_NAME
 from link.job import JobInfo
 from link.job import dump as job_dump
 from link.job import load as job_load
+from link.job import ready_count
 from link.job import todo_count
 # Workspace
 from link.workspace import create_todo

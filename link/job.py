@@ -74,6 +74,17 @@ def todo_count() -> int:
     return len(dirs)
 
 
+def ready_count() -> int:
+    """Count folder in common `ready` folder
+
+    Returns:
+        count of valid ready folder in ready path
+    """
+    path = configo.ready()
+    dirs = [item for item in listdir(path) if valid_ready(join(path, item))]
+    return len(dirs)
+
+
 def valid_todo(path):
     """Check that `path` is a valid todo folder with required files
 
@@ -87,3 +98,8 @@ def valid_todo(path):
     if not exists(join(path, FILE_NAME)):
         return False
     return True
+
+
+def valid_ready(path: str):
+    #TODO: Special check for ready is required. E.g. result in percent
+    return valid_todo(path)
