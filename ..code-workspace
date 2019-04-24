@@ -1,0 +1,34 @@
+{
+  "folders": [
+    {
+      "name": "Connect viewo and queuemo",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.cache": true,
+      "**/.coverage": true,
+      "**/.git": true,
+      "**/.pytest_cache": true,
+      "**/.swn": true,
+      "**/.swo": true,
+      "**/.swp": true,
+      "**/.tmp": true,
+      "**/.virtual": true,
+      "**/.vscode": true,
+      "**/build": true,
+      "**/doctrees": true,
+      "**/html": true,
+      "**/log": true,
+      "**/nano.save": true,
+      "**/tmp": true,
+    },
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.pyTestArgs": [
+      "tests"
+    ],
+  }
+}
