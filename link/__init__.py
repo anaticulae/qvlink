@@ -17,6 +17,6 @@ from link.job import load as job_load
 from link.workspace import free_todo
 from link.workspace import scan
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
