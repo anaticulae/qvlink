@@ -8,6 +8,15 @@
 #==============================================================================
 import os
 
+# Job
+from link.job import FILE_NAME as JOB_FILE_NAME
+from link.job import JobInfo
+from link.job import dump as job_dump
+from link.job import load as job_load
+# Workspace
+from link.workspace import free_todo
+from link.workspace import scan
+
 __version__ = '0.0.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
