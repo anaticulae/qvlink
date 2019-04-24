@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.2
+
+### Feature
+
+* add method to count jobs which are ready (50d610e0d6bc)
+
 ## v0.1.1
 
 ### Feature
