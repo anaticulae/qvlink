@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.3
+
+### Fix
+
+* disable wrong pylint warnings (bbe933ee7530)
+
 ## v0.1.2
 
 ### Feature
