@@ -3,7 +3,7 @@
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
 # Copyright (c) 2019 by Helmut Konrad Fahrendholz. All rights reserved.
-# Tis file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
@@ -30,6 +30,7 @@ with open(join(ROOT, "requirements.txt"), mode='rt', encoding=UTF8) as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
+
 def datafiles():
     return [('.', [
         'BUGS.md',
@@ -38,6 +39,7 @@ def datafiles():
         'TODO.md',
         'requirements.txt',
     ])]
+
 
 if __name__ == "__main__":
     # allow setup.py to run from another directory
@@ -52,8 +54,6 @@ if __name__ == "__main__":
         long_description=README,
         name='link',
         platforms='any',
-        setup_requires=[],
-        tests_require=[],
         url='https://dev.package.checkitweg.de/link',
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!
@@ -64,7 +64,5 @@ if __name__ == "__main__":
         ],
         packages=[
             'link',
-            
         ],
-        
     )
