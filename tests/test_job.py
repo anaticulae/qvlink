@@ -38,7 +38,7 @@ def test_dump_and_load(tmpdir):
     assert loaded == config
 
 
-def test_common_folder(common, monkeypatch):
+def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
     with patch_todo(common, monkeypatch):
         jobs = scan(common)
 
@@ -74,7 +74,7 @@ def common(tmpdir):
     return tmpdir
 
 
-def test_todo_count(common, monkeypatch):
+def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
     with patch_todo(common, monkeypatch):
         assert todo_count() == 3
 
