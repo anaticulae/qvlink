@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.1.6
+
+### Fix
+
+* fix spelling error (63fb2276b407)
+
+### Documentation
+
+* extend basic readme (82c7924b89ef)
+
 ## v0.1.5
 
 ## v0.1.4
