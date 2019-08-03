@@ -32,7 +32,7 @@ def test_free_todo(tmpdir, monkeypatch):
         return tmpdir
 
     with monkeypatch.context() as context:
-        context.setattr(utila, 'tempname', random_foldername)
+        context.setattr(utila, 'tmpname', random_foldername)
         context.setattr(configo, 'todo', todo)
 
         # Create folder name, so the next call is already created

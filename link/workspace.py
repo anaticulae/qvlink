@@ -14,7 +14,7 @@ from os.path import join
 
 import configo
 import utila
-from utila import logging_error
+from utila import error
 from utila import today
 
 from link import JOB_FILE_NAME
@@ -37,7 +37,7 @@ def scan(path: str):
     for item in listdir(todo):
         current = join(todo, item, JOB_FILE_NAME)
         if not exists(current):
-            logging_error('Job does not exists: %s' % current)
+            error('Job does not exists: %s' % current)
             continue
         todos.append(job_load(current))
 
@@ -45,7 +45,7 @@ def scan(path: str):
     for item in listdir(ready):
         current = join(ready, item, JOB_FILE_NAME)
         if not exists(current):
-            logging_error('Job does not exists: %s' % current)
+            error('Job does not exists: %s' % current)
             continue
         readys.append(job_load(current))
 
@@ -55,9 +55,9 @@ def scan(path: str):
 def free_todo():
     """Generate file name which does not exists"""
     path = configo.todo()
-    name = utila.tempname()
+    name = utila.tmpname()
     while exists(join(path, name)):
-        name = utila.tempname()
+        name = utila.tmpname()
     return name
 
 
