@@ -11,9 +11,9 @@ from contextlib import contextmanager
 from os.path import exists
 from os.path import join
 
-from configo.share import COMMON
-from configo.share import READY
-from configo.share import TODO
+from configo.directory import COMMON
+from configo.directory import READY
+from configo.directory import TODO
 
 from link import ROOT
 
