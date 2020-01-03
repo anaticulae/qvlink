@@ -22,6 +22,6 @@ from link.workspace import free_todo
 from link.workspace import scan
 from link.workspace import sortable_date
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
