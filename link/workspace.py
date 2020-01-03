@@ -7,47 +7,39 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os import listdir
-from os import makedirs
-from os.path import exists
-from os.path import join
+import os
 
 import configo
 import utila
-from utila import error
-from utila import today
 
-from link import JOB_FILE_NAME
-from link import JobInfo
-from link import job_dump
-from link import job_load
+import link
 
 
 def scan(path: str):
     """Scan common space for jobs todo and done"""
-    assert exists(path), path
+    assert os.path.exists(path), path
 
     todo = configo.todo()
     ready = configo.ready()
 
-    assert exists(todo), todo
-    assert exists(ready), ready
+    assert os.path.exists(todo), todo
+    assert os.path.exists(ready), ready
 
     todos = []
-    for item in listdir(todo):
-        current = join(todo, item, JOB_FILE_NAME)
-        if not exists(current):
-            error('Job does not exists: %s' % current)
+    for item in os.listdir(todo):
+        current = os.path.join(todo, item, link.JOB_FILE_NAME)
+        if not os.path.exists(current):
+            utila.error('Job does not exists: %s' % current)
             continue
-        todos.append(job_load(current))
+        todos.append(link.job_load(current))
 
     readys = []
-    for item in listdir(ready):
-        current = join(ready, item, JOB_FILE_NAME)
-        if not exists(current):
-            error('Job does not exists: %s' % current)
+    for item in os.listdir(ready):
+        current = os.path.join(ready, item, link.JOB_FILE_NAME)
+        if not os.path.exists(current):
+            utila.error('Job does not exists: %s' % current)
             continue
-        readys.append(job_load(current))
+        readys.append(link.job_load(current))
 
     return todos, readys
 
@@ -56,7 +48,7 @@ def free_todo():
     """Generate file name which does not exists"""
     path = configo.todo()
     name = utila.tmpname()
-    while exists(join(path, name)):
+    while os.path.exists(os.path.join(path, name)):
         name = utila.tmpname()
     return name
 
@@ -66,18 +58,18 @@ def create_todo(file, filename):
     name = free_todo()
     todo_path = configo.todo()
 
-    path = join(todo_path, name)
-    assert not exists(path)
+    path = os.path.join(todo_path, name)
+    assert not os.path.exists(path)
 
-    makedirs(path)
-    file_path = join(path, name)
-    info_path = join(path, JOB_FILE_NAME)
+    os.makedirs(path)
+    file_path = os.path.join(path, name)
+    info_path = os.path.join(path, link.JOB_FILE_NAME)
     # Copy provied file to todo location
     file.save(file_path)
 
     # filename = secure_filename(file.filename)
     # Create job information
-    job = JobInfo(title=filename, date=today(), index=name)
-    job_dump(info_path, job)
+    job = link.JobInfo(title=filename, date=utila.today(), index=name)
+    link.job_dump(info_path, job)
 
     return path
