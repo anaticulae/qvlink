@@ -47,7 +47,7 @@ def test_create_todo(tmpdir, monkeypatch):
     with patch_todo(tmpdir, monkeypatch):
         with open(MINIMAL, mode='rb') as fp:
 
-            def patch(_):
+            def patch(_):  # pylint:disable=W0613
                 pass
 
             fp.save = patch

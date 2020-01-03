@@ -85,7 +85,7 @@ def ready_count() -> int:
     return len(dirs)
 
 
-def valid_todo(path):
+def valid_todo(path: str) -> bool:
     """Check that `path` is a valid todo folder with required files
 
     Args:
