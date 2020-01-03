@@ -44,21 +44,41 @@ def scan(path: str):
     return todos, readys
 
 
-def free_todo():
-    """Generate file name which does not exists"""
-    path = configo.todo()
+def free_todo(todopath: str = None) -> str:
+    """Generate file name which does not exists.
+
+    Args:
+        todopath(str): Path to location where todos are written. If None
+                   the todopath of `configo.todo()` is used.
+    Returns:
+        Name of process number/folder name which is not used yet.
+    Hint:
+        This method is not thread safe.
+    """
+    if todopath is None:
+        todopath = configo.todo()
     name = utila.tmpname()
-    while os.path.exists(os.path.join(path, name)):
+    while os.path.exists(os.path.join(todopath, name)):
         name = utila.tmpname()
     return name
 
 
-def create_todo(file, filename):
-    """Create working folder, add info.yaml and write `file` to todo dir"""
-    name = free_todo()
-    todo_path = configo.todo()
+def create_todo(file, filename, todopath: str = None) -> str:
+    """Create working folder, add info.yaml and write `file` to todo dir
 
-    path = os.path.join(todo_path, name)
+    Args:
+        file(str): path to source file
+        filename(str): name of saved pdf file - not very important
+        todopath(str): Path to location where todos are written. If None
+                       the todopath of `configo.todo()` is used.
+    Returns:
+        path to created todo with job content
+    """
+    name = free_todo(todopath)
+    if todopath is None:
+        todopath = configo.todo()
+
+    path = os.path.join(todopath, name)
     assert not os.path.exists(path)
 
     os.makedirs(path)
@@ -72,7 +92,6 @@ def create_todo(file, filename):
     date = current_date()
     job = link.JobInfo(title=filename, date=date, index=name)
     link.job_dump(info_path, job)
-
     return path
 
 
