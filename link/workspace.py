@@ -69,7 +69,31 @@ def create_todo(file, filename):
 
     # filename = secure_filename(file.filename)
     # Create job information
-    job = link.JobInfo(title=filename, date=utila.today(), index=name)
+    date = current_date()
+    job = link.JobInfo(title=filename, date=date, index=name)
     link.job_dump(info_path, job)
 
     return path
+
+
+def current_date() -> str:
+    """Determine current date and time
+
+    Format:
+        year:month:day hour:second
+    """
+    return f'{utila.today()} {utila.current()}'
+
+
+def sortable_date(date: str) -> str:
+    """Make date sortable due transform to alphabetical, sortable string.
+
+    Args:
+        date(str): year:month:day hour:second
+    Returns:
+        sortable str representation
+    """
+    # Sort by year, month, day, hour, second
+    date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:16]
+    assert len(date) == 12, date
+    return date

@@ -13,6 +13,7 @@ from os.path import exists
 import configo
 import utila
 
+import link.workspace
 from link import create_todo
 from link import free_todo
 from tests import MINIMAL
@@ -53,3 +54,35 @@ def test_create_todo(tmpdir, monkeypatch):
             created = create_todo(fp, 'testfile.pdf')
 
     assert exists(created), created
+
+
+def test_sortable_date():
+    # "%02d.%02d.%04d"
+    expected = [
+        '31.12.2019 05:10',
+        '31.11.2019 12:12',
+        '23.04.2019 05:11',
+        '23.04.2019 05:10',
+        '23.04.2019 04:10',
+        '20.04.2019 05:10',
+        '01.01.2019 05:10',
+        '10.02.2018 05:10',
+        '10.01.2018 05:10',
+        '01.01.2018 05:10',
+    ]
+
+    result = [
+        '10.01.2018 05:10',
+        '20.04.2019 05:10',
+        '10.02.2018 05:10',
+        '01.01.2018 05:10',
+        '31.12.2019 05:10',
+        '23.04.2019 04:10',
+        '23.04.2019 05:10',
+        '23.04.2019 05:11',
+        '01.01.2019 05:10',
+        '31.11.2019 12:12',
+    ]
+
+    result = sorted(result, key=link.workspace.sortable_date, reverse=True)
+    assert result == expected
