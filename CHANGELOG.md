@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* extend job date with hour and second (3ebf4524a9c6)
+
 ## v0.1.13
 
 ### Documentation
