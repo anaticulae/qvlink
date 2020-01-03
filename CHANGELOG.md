@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.2
+
+### Feature
+
+* add parameter to define where todo folder is located (92cb1b60f47e)
+
 ## v0.2.1
 
 ## v0.2.0
