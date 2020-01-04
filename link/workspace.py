@@ -90,21 +90,20 @@ def create_todo(
     assert not os.path.exists(path)
 
     os.makedirs(path)
-    file_path = os.path.join(path, todoname)
-    info_path = os.path.join(path, link.JOB_FILE_NAME)
+    filepath = os.path.join(path, todoname)
+    infopath = os.path.join(path, link.JOB_FILE_NAME)
     # Copy provied file to todo location
-
     try:
-        file.save(file_path)
+        file.save(filepath)
     except AttributeError:
         # Support path to file as input
-        utila.file_copy(file, file_path)
+        utila.file_copy(file, filepath)
 
     # filename = secure_filename(file.filename)
     # Create job information
     date = current_date()
     job = link.JobInfo(title=filename, date=date, index=todoname)
-    link.job_dump(info_path, job)
+    link.job_dump(infopath, job)
     return path
 
 
