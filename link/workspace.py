@@ -63,7 +63,12 @@ def free_todo(todopath: str = None) -> str:
     return name
 
 
-def create_todo(file, filename, todopath: str = None) -> str:
+def create_todo(
+        file,
+        filename: str = 'default.pdf',
+        todopath: str = None,
+        todoname: str = None,
+) -> str:
     """Create working folder, add info.yaml and write `file` to todo dir
 
     Args:
@@ -71,26 +76,34 @@ def create_todo(file, filename, todopath: str = None) -> str:
         filename(str): name of saved pdf file - not very important
         todopath(str): Path to location where todos are written. If None
                        the todopath of `configo.todo()` is used.
+        todoname(str): name of todo folder to save file in. If None
+                       todoname is automatically generated.
     Returns:
         path to created todo with job content
     """
-    name = free_todo(todopath)
+    if todoname is None:
+        todoname = free_todo(todopath)
     if todopath is None:
         todopath = configo.todo()
 
-    path = os.path.join(todopath, name)
+    path = os.path.join(todopath, todoname)
     assert not os.path.exists(path)
 
     os.makedirs(path)
-    file_path = os.path.join(path, name)
+    file_path = os.path.join(path, todoname)
     info_path = os.path.join(path, link.JOB_FILE_NAME)
     # Copy provied file to todo location
-    file.save(file_path)
+
+    try:
+        file.save(file_path)
+    except AttributeError:
+        # Support path to file as input
+        utila.file_copy(file, file_path)
 
     # filename = secure_filename(file.filename)
     # Create job information
     date = current_date()
-    job = link.JobInfo(title=filename, date=date, index=name)
+    job = link.JobInfo(title=filename, date=date, index=todoname)
     link.job_dump(info_path, job)
     return path
 

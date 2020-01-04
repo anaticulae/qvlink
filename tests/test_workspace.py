@@ -45,14 +45,19 @@ def test_free_todo(tmpdir, monkeypatch):
 
 def test_create_todo(tmpdir, monkeypatch):
     with patch_todo(tmpdir, monkeypatch):
-        with open(MINIMAL, mode='rb') as fp:
 
-            def patch(_):  # pylint:disable=W0613
+        class SaveMock:
+
+            def save(self, _):  # pylint:disable=W0613
                 pass
 
-            fp.save = patch
-            created = create_todo(fp, 'testfile.pdf')
+        created = create_todo(SaveMock(), 'testfile.pdf')
+    assert exists(created), created
 
+
+def test_create_todo_pathandname(testdir):
+    root = str(testdir)
+    created = create_todo(MINIMAL, 'testfile.pdf', root, 'helmut')
     assert exists(created), created
 
 
