@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.3
+
+### Feature
+
+* add support for file str path as file source (42867d25199e)
+
 ## v0.2.2
 
 ### Feature
