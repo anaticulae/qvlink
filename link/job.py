@@ -7,26 +7,22 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """A user uploads a document. While this process, the pdf document is uploaded
-and a folder in `common-todo` is created. This folder contains a JobInfo
-info.yaml with with a short work status. This info is shared, and also used
-for the finished jobs. """
-from dataclasses import dataclass
-from os import listdir
-from os.path import exists
-from os.path import isdir
-from os.path import join
+and a folder in `common-todo` is created. 
+
+This folder contains a JobInfo info.yaml with with a short work status.
+This info is shared, and also used for the finished jobs.
+"""
+import dataclasses
+import os
 
 import configo
-from utila import file_create
-from utila import file_read
-from yaml import SafeLoader
-from yaml import dump as yaml_dump
-from yaml import load as yaml_load
+import utila
+import yaml
 
 FILE_NAME = 'info.yaml'
 
 
-@dataclass
+@dataclasses.dataclass
 class JobInfo:
     """Short description for identifying the job"""
     title: str
@@ -43,16 +39,16 @@ def dump(path: str, info: JobInfo):
         'result': info.result,
         'index': info.index,
     }
-    dumped = yaml_dump(result)
-    file_create(path, dumped)
+    dumped = yaml.dump(result)
+    utila.file_create(path, dumped)
 
 
 def load(path: str) -> JobInfo:
     """Load `JobInfo` from given `path`"""
-    assert exists(path), path
+    assert os.path.exists(path), path
 
-    loaded = file_read(path)
-    config = yaml_load(loaded, SafeLoader)
+    loaded = utila.file_read(path)
+    config = yaml.load(loaded, yaml.SafeLoader)
 
     result = JobInfo(
         title=config['title'],
@@ -70,7 +66,10 @@ def todo_count() -> int:
         count of valid todo folder in todo path
     """
     path = configo.todo()
-    dirs = [item for item in listdir(path) if valid_todo(join(path, item))]
+    dirs = [
+        item for item in os.listdir(path)
+        if valid_todo(os.path.join(path, item))
+    ]
     return len(dirs)
 
 
@@ -81,7 +80,10 @@ def ready_count() -> int:
         count of valid ready folder in ready path
     """
     path = configo.ready()
-    dirs = [item for item in listdir(path) if valid_ready(join(path, item))]
+    dirs = [
+        item for item in os.listdir(path)
+        if valid_ready(os.path.join(path, item))
+    ]
     return len(dirs)
 
 
@@ -93,9 +95,9 @@ def valid_todo(path: str) -> bool:
     Returns:
         True if folder is a valid todo folder else False
     """
-    if not isdir(path):
+    if not os.path.isdir(path):
         return False
-    if not exists(join(path, FILE_NAME)):
+    if not os.path.exists(os.path.join(path, FILE_NAME)):
         return False
     return True
 
