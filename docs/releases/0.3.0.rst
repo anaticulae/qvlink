@@ -1,0 +1,32 @@
+.. _0_3_0:
+
+RP 0.3.0
+=========
+
+docs
+----
+
+* [x] introduce new general rst doc structure
+
+state
+-----
+
+* [ ] add statemachine to represent document live cycle
+
+* [ ] add methods to change current document state
+
+* [ ] add method to release todo document to ready state
+
+API
+---
+
+* [ ] refactor public API: load_job etc.
+
+before
+~~~~~~
+
+* Total coverage: 97.76%
+* Your code has been rated at 9.90/10
+
+after
+~~~~~

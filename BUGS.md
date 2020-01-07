@@ -1,5 +1,0 @@
-# BUGS
-
-## Open
-
-## Closed

@@ -1,21 +1,36 @@
-Welcome to Connect viewo and queuemo
-=================================
+We link the worlds
+==================
+
+General
+-------
 
 .. toctree::
   :maxdepth: 1
 
-  pages/readme
+  bugs
 
+Progress
+--------
+
+.. toctree::
+  :maxdepth: 1
+
+  releases/releases
+  releases/backlog
   pages/changelog
 
-  pages/bugs
+Developer
+---------
 
-  pages/todo
+.. toctree::
+  :maxdepth: 1
+
+  todo
 
 Modules
 --------------------
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 4
 
    .tmp/modules
 
