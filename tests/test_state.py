@@ -7,7 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import os
+
+import utila
 
 import link
 import tests
@@ -68,7 +71,8 @@ def test_state_verify_finish(example, monkeypatch):  # pylint:disable=W0621
     assert state == link.ProcessState.ANALYSED
 
 
-def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
+@contextlib.contextmanager
+def completed(example, monkeypatch):  # pylint:disable=W0621
     with tests.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -77,9 +81,35 @@ def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
         link.finish_resultview(DOCUMENT)
         link.publish(DOCUMENT)
         state = link.current(DOCUMENT)
-    assert state == link.ProcessState.PUBLISHED
+        assert state == link.ProcessState.PUBLISHED
+        yield
 
-    ready = os.path.join(example, 'ready/example')
-    assert os.path.join(ready), ready
-    for item in ['fastview', 'result', 'done', 'pdfinfo.json', 'info.yaml']:
-        assert os.path.exists(os.path.join(ready, item)), item
+
+def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
+    with completed(example, monkeypatch):
+        ready = os.path.join(example, 'ready/example')
+        assert os.path.join(ready), ready
+        for item in ['fastview', 'result', 'done', 'pdfinfo.json', 'info.yaml']:
+            assert os.path.exists(os.path.join(ready, item)), item
+
+
+def test_state_verify_result(example, monkeypatch):  # pylint:disable=W0621
+    """Ensure that path refer to copied `ready` result instead of `todo`
+    directory."""
+    with completed(example, monkeypatch):
+        fastview = link.fastview(DOCUMENT)
+        resultview = link.resultview(DOCUMENT)
+        fastview_done = link.fastview_done(DOCUMENT)
+        resultview_done = link.resultview_done(DOCUMENT)
+    for item in [fastview, resultview, fastview_done, resultview_done]:
+        assert os.path.exists(item), item
+
+    fastview = utila.forward_slash(str(fastview))
+    resultview = utila.forward_slash(str(resultview))
+    resultview_done = utila.forward_slash(str(resultview_done))
+    fastview_done = utila.forward_slash(str(fastview_done))
+
+    assert fastview.endswith('ready/example/fastview'), fastview
+    assert resultview.endswith('ready/example/result'), resultview
+    assert fastview_done.endswith('ready/example/fastview/done'), fastview_done
+    assert resultview_done.endswith('ready/example/result/done'), resultview_done # yapf:disable

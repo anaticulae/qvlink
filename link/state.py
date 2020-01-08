@@ -89,7 +89,6 @@ Path
 
 """
 import enum
-import json
 import os
 
 import configo
@@ -112,20 +111,17 @@ class ProcessState(enum.Enum):
 
 
 def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals
-    todo = os.path.join(configo.todo(), document)
-    ready = os.path.join(configo.ready(), document)
-
-    pdfinfo = os.path.join(todo, 'pdfinfo.json')
     inprogressed = os.path.exists(inprogress(document))
 
-    publish = os.path.exists(os.path.join(ready, 'done'))
+    publish = os.path.exists(os.path.join(ready(document), 'done'))
+    pdfinfopath = pdfinfo(document)
 
     new = all([
-        os.path.exists(todo),  # valid todo document folder
-        os.path.exists(os.path.join(todo, document)),  # valid document
-        os.path.exists(os.path.join(todo, link.job.FILE_NAME)),
-        not os.path.exists(ready),
-        not os.path.exists(pdfinfo),
+        os.path.exists(todo(document)),  # valid todo document folder
+        os.path.exists(os.path.join(todo(document), document)),  # pdf file
+        os.path.exists(os.path.join(todo(document), link.job.FILE_NAME)),
+        not os.path.exists(ready(document)),
+        not os.path.exists(pdfinfopath),
         not inprogressed,
     ])
     started = all([
@@ -133,11 +129,11 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     ])
     verified = all([
         started,
-        os.path.exists(pdfinfo) and json.loads(utila.file_read(pdfinfo)) != {},
+        os.path.exists(pdfinfopath) and utila.file_read(pdfinfopath) != '{}',
     ])
     invalid = all([
         started,
-        os.path.exists(pdfinfo) and json.loads(utila.file_read(pdfinfo)) == {},
+        os.path.exists(pdfinfopath) and utila.file_read(pdfinfopath) == '{}',
     ])
     analysis = all([
         verified,
@@ -170,22 +166,41 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     return ProcessState.UNDEFINED
 
 
+def todo(document: str) -> str:
+    result = os.path.join(configo.todo(), document)
+    return result
+
+
+def ready(document: str) -> str:
+    result = os.path.join(configo.ready(), document)
+    return result
+
+
+def pdfinfo(document: str) -> str:
+    source = todo(document)
+    if os.path.exists(done(document)):
+        source = ready(document)
+    result = os.path.join(source, 'pdfinfo.json')
+    return result
+
+
 def inprogress(document: str) -> str:
-    todo = os.path.join(configo.todo(), document)
-    result = os.path.join(todo, 'inprogress')
+    result = os.path.join(todo(document), 'inprogress')
     return result
 
 
 def fastview(document: str) -> str:
-    todo = os.path.join(configo.todo(), document)
-    result = os.path.join(todo, 'fastview')
-    return result
+    source = todo(document)
+    if os.path.exists(done(document)):
+        source = ready(document)
+    return os.path.join(source, 'fastview')
 
 
 def resultview(document: str) -> str:
-    todo = os.path.join(configo.todo(), document)
-    result = os.path.join(todo, 'result')
-    return result
+    source = todo(document)
+    if os.path.exists(done(document)):
+        source = ready(document)
+    return os.path.join(source, 'result')
 
 
 def fastview_done(document: str) -> str:
@@ -199,6 +214,5 @@ def resultview_done(document: str) -> str:
 
 
 def done(document: str) -> str:
-    ready = os.path.join(configo.ready(), document)
-    result = os.path.join(ready, 'done')
+    result = os.path.join(ready(document), 'done')
     return result
