@@ -1,0 +1,13 @@
+.. _0_4_0:
+
+RP 0.4.0
+=========
+
+before
+~~~~~~
+
+* Total coverage: 97.98%
+* Your code has been rated at 9.98/10
+
+after
+~~~~~
