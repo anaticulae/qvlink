@@ -7,30 +7,28 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import os
-from contextlib import contextmanager
-from os.path import exists
-from os.path import join
 
-from configo.directory import COMMON
+import configo
 from configo.directory import READY
 from configo.directory import TODO
 
-from link import ROOT
+import link
 
-TEST_DATA = join(ROOT, 'tests/data')
-assert exists(TEST_DATA), TEST_DATA
+TEST_DATA = os.path.join(link.ROOT, 'tests/data')
+assert os.path.exists(TEST_DATA), TEST_DATA
 
-MINIMAL = join(TEST_DATA, 'minimal.pdf')
-assert exists(MINIMAL), MINIMAL
+MINIMAL = os.path.join(TEST_DATA, 'minimal.pdf')
+assert os.path.exists(MINIMAL), MINIMAL
 
 
-@contextmanager
+@contextlib.contextmanager
 def patch_todo(directory, monkeypatch):
     environment = dict(os.environ)
-    environment[COMMON] = directory
-    environment[TODO] = join(directory, 'todo')
-    environment[READY] = join(directory, 'ready')
+    environment[configo.directory.COMMON] = directory
+    environment[configo.directory.TODO] = os.path.join(directory, 'todo')
+    environment[configo.directory.READY] = os.path.join(directory, 'ready')
 
     with monkeypatch.context() as context:
         context.setattr(os, 'environ', environment)
