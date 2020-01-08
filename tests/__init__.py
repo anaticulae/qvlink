@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
 from contextlib import contextmanager
 from os.path import exists
 from os.path import join
@@ -26,13 +27,11 @@ assert exists(MINIMAL), MINIMAL
 
 @contextmanager
 def patch_todo(directory, monkeypatch):
-    import os
+    environment = dict(os.environ)
+    environment[COMMON] = directory
+    environment[TODO] = join(directory, 'todo')
+    environment[READY] = join(directory, 'ready')
+
     with monkeypatch.context() as context:
-        # Remove all environment vars
-        context.setattr(
-            os, 'environ', {
-                COMMON: directory,
-                TODO: join(directory, 'todo'),
-                READY: join(directory, 'ready'),
-            })
+        context.setattr(os, 'environ', environment)
         yield
