@@ -60,7 +60,8 @@ def finish_resultview(document: str):
 
 
 def publish(document: str):
-    assert link.current(document) == link.ProcessState.ANALYSED
+    assert link.current(document) == link.ProcessState.ANALYSED or\
+                             link.current(document) == link.ProcessState.INVALID
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
     os.makedirs(destination)
@@ -69,15 +70,17 @@ def publish(document: str):
     utila.copy_content(source, destination, pattern='pdfinfo.json')
     utila.copy_content(source, destination, pattern='info.yaml')
 
-    utila.copy_content(
-        link.state.fastview(document),
-        os.path.join(destination, 'fastview'),
-    )
+    if utila.file_read(link.pdfinfo(document)) != '{}':
+        # publis content only for valid pdf files
+        utila.copy_content(
+            link.state.fastview(document),
+            os.path.join(destination, 'fastview'),
+        )
 
-    utila.copy_content(
-        link.state.resultview(document),
-        os.path.join(destination, 'result'),
-    )
+        utila.copy_content(
+            link.state.resultview(document),
+            os.path.join(destination, 'result'),
+        )
 
     utila.file_create(link.state.done(document))
     assert link.current(document) == link.ProcessState.PUBLISHED
