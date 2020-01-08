@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.1
+
+### Fix
+
+* remove outdated resources from setup (b1e76198398a)
+
 ## v0.3.0
 
 ### Feature
