@@ -30,10 +30,8 @@ def verify(document: str):
     workspace = os.path.join(todo, document)
     pdf = os.path.join(workspace, document)
 
-    completed = utila.run(f'pdfinfo -i {pdf} -o {workspace}')
-    if completed.returncode:
-        utila.error(completed.stderr + completed.stdout)
-    assert completed.returncode == 0
+    result = utila.run(f'pdfinfo -i {pdf} -o {workspace}')
+    assert result.returncode == utila.SUCCESS, (result.stderr + result.stdout)
     assert link.current(document) == link.ProcessState.VERIFIED or \
                             link.current(document) == link.ProcessState.INVALID
 
