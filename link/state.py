@@ -119,7 +119,7 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     new = all([
         os.path.exists(todo(document)),  # valid todo document folder
         os.path.exists(os.path.join(todo(document), document)),  # pdf file
-        os.path.exists(os.path.join(todo(document), link.job.FILE_NAME)),
+        os.path.exists(os.path.join(todo(document), link.job.JOB_FILE_NAME)),
         not os.path.exists(ready(document)),
         not os.path.exists(pdfinfopath),
         not inprogressed,

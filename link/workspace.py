@@ -15,7 +15,7 @@ import utila
 import link
 
 
-def scan(path: str):
+def collect_jobs(path: str):
     """Scan common space for jobs todo and done"""
     assert os.path.exists(path), path
 
@@ -31,7 +31,7 @@ def scan(path: str):
         if not os.path.exists(current):
             utila.error('Job does not exists: %s' % current)
             continue
-        todos.append(link.job_load(current))
+        todos.append(link.load_job(current))
 
     readys = []
     for item in os.listdir(ready):
@@ -39,12 +39,12 @@ def scan(path: str):
         if not os.path.exists(current):
             utila.error('Job does not exists: %s' % current)
             continue
-        readys.append(link.job_load(current))
+        readys.append(link.load_job(current))
 
     return todos, readys
 
 
-def free_todo(todopath: str = None) -> str:
+def find_free_todo(todopath: str = None) -> str:
     """Generate file name which does not exists.
 
     Args:
@@ -82,7 +82,7 @@ def create_todo(
         path to created todo with job content
     """
     if todoname is None:
-        todoname = free_todo(todopath)
+        todoname = find_free_todo(todopath)
     if todopath is None:
         todopath = configo.todo()
 
@@ -103,7 +103,7 @@ def create_todo(
     # Create job information
     date = current_date()
     job = link.JobInfo(title=filename, date=date, index=todoname)
-    link.job_dump(infopath, job)
+    link.dump_job(infopath, job)
     return path
 
 

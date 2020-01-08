@@ -19,7 +19,7 @@ import configo
 import utila
 import yaml
 
-FILE_NAME = 'info.yaml'
+JOB_FILE_NAME = 'info.yaml'
 
 
 @dataclasses.dataclass
@@ -31,7 +31,7 @@ class JobInfo:
     result: str = None
 
 
-def dump(path: str, info: JobInfo):
+def dump_job(path: str, info: JobInfo):
     """Save `info` to given `path`"""
     result = {
         'title': info.title,
@@ -43,7 +43,7 @@ def dump(path: str, info: JobInfo):
     utila.file_create(path, dumped)
 
 
-def load(path: str) -> JobInfo:
+def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path`"""
     assert os.path.exists(path), path
 
@@ -59,8 +59,8 @@ def load(path: str) -> JobInfo:
     return result
 
 
-def todo_count() -> int:
-    """Count folder in common `todo` folder
+def count_todo() -> int:
+    """Count folder in common `todo` folder.
 
     Returns:
         count of valid todo folder in todo path
@@ -68,13 +68,13 @@ def todo_count() -> int:
     path = configo.todo()
     dirs = [
         item for item in os.listdir(path)
-        if valid_todo(os.path.join(path, item))
+        if validate_todo(os.path.join(path, item))
     ]
     return len(dirs)
 
 
-def ready_count() -> int:
-    """Count folder in common `ready` folder
+def count_ready() -> int:
+    """Count folder in common `ready` folder.
 
     Returns:
         count of valid ready folder in ready path
@@ -82,13 +82,13 @@ def ready_count() -> int:
     path = configo.ready()
     dirs = [
         item for item in os.listdir(path)
-        if valid_ready(os.path.join(path, item))
+        if validate_ready(os.path.join(path, item))
     ]
     return len(dirs)
 
 
-def valid_todo(path: str) -> bool:
-    """Check that `path` is a valid todo folder with required files
+def validate_todo(path: str) -> bool:
+    """Check that `path` is a valid todo folder with required files.
 
     Args:
         path(str): path to possible todo folder
@@ -97,11 +97,11 @@ def valid_todo(path: str) -> bool:
     """
     if not os.path.isdir(path):
         return False
-    if not os.path.exists(os.path.join(path, FILE_NAME)):
+    if not os.path.exists(os.path.join(path, JOB_FILE_NAME)):
         return False
     return True
 
 
-def valid_ready(path: str):
+def validate_ready(path: str):
     #TODO: Special check for ready is required. E.g. result in percent
-    return valid_todo(path)
+    return validate_todo(path)

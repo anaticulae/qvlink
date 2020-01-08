@@ -20,7 +20,7 @@ state
 API
 ---
 
-* [ ] refactor public API: load_job etc.
+* [x] refactor public API: load_job etc.
 
 before
 ~~~~~~

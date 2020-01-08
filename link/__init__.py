@@ -16,12 +16,12 @@ from link.control import start_analysis
 from link.control import start_progress
 from link.control import verify
 # Job
-from link.job import FILE_NAME as JOB_FILE_NAME
+from link.job import JOB_FILE_NAME
 from link.job import JobInfo
-from link.job import dump as job_dump
-from link.job import load as job_load
-from link.job import ready_count
-from link.job import todo_count
+from link.job import count_ready
+from link.job import count_todo
+from link.job import dump_job
+from link.job import load_job
 # state
 from link.state import ProcessState
 from link.state import current
@@ -35,10 +35,10 @@ from link.state import resultview
 from link.state import resultview_done
 from link.state import todo
 # Workspace
+from link.workspace import collect_jobs
 from link.workspace import create_todo
 from link.workspace import current_date
-from link.workspace import free_todo
-from link.workspace import scan
+from link.workspace import find_free_todo
 from link.workspace import sortable_date
 
 __version__ = '0.2.3'

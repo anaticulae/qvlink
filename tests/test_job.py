@@ -14,11 +14,11 @@ from pytest import fixture
 
 from link import JOB_FILE_NAME
 from link import JobInfo
-from link import job_dump
-from link import job_load
-from link import ready_count
-from link import scan
-from link import todo_count
+from link import collect_jobs
+from link import count_ready
+from link import count_todo
+from link import dump_job
+from link import load_job
 from tests import patch_todo
 
 
@@ -32,15 +32,15 @@ def test_dump_and_load(tmpdir):
     )
 
     path = join(tmpdir, 'configuration.yaml')
-    job_dump(path, config)
-    loaded = job_load(path)
+    dump_job(path, config)
+    loaded = load_job(path)
 
     assert loaded == config
 
 
 def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
     with patch_todo(common, monkeypatch):
-        jobs = scan(common)
+        jobs = collect_jobs(common)
 
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
@@ -59,14 +59,14 @@ def common(tmpdir):
         makedirs(folder)
         output = join(folder, JOB_FILE_NAME)
         result = JobInfo('Super Duper Masterarbeit', '2019.04.01', None, item)
-        job_dump(output, result)
+        dump_job(output, result)
 
     for item in [3333, 5555]:
         folder = join(ready, '%d' % item)
         makedirs(folder)
         output = join(folder, JOB_FILE_NAME)
         result = JobInfo('Super Masterarbeit', '2019.04.05', '95%', item)
-        job_dump(output, result)
+        dump_job(output, result)
 
     makedirs(join(todo, 'broken'))
     makedirs(join(ready, 'also_broken'))
@@ -76,7 +76,7 @@ def common(tmpdir):
 
 def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
     with patch_todo(common, monkeypatch):
-        assert todo_count() == 3
+        assert count_todo() == 3
 
     with patch_todo(common, monkeypatch):
-        assert ready_count() == 2
+        assert count_ready() == 2

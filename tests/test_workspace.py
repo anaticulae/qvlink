@@ -15,7 +15,7 @@ import utila
 
 import link.workspace
 from link import create_todo
-from link import free_todo
+from link import find_free_todo
 from tests import MINIMAL
 from tests import patch_todo
 
@@ -37,10 +37,10 @@ def test_free_todo(tmpdir, monkeypatch):
         context.setattr(configo, 'todo', todo)
 
         # Create folder name, so the next call is already created
-        os.makedirs(os.path.join(tmpdir, free_todo()))
+        os.makedirs(os.path.join(tmpdir, find_free_todo()))
 
         # test is already there, give me the next one
-        assert free_todo() == 'ts'
+        assert find_free_todo() == 'ts'
 
 
 def test_create_todo(tmpdir, monkeypatch):
