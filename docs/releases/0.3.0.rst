@@ -11,11 +11,11 @@ docs
 state
 -----
 
-* [ ] add statemachine to represent document live cycle
+* [x] add statemachine to represent document live cycle
 
-* [ ] add methods to change current document state
+* [x] add methods to change current document state
 
-* [ ] add method to release todo document to ready state
+* [x] add method to release todo document to ready state
 
 API
 ---
