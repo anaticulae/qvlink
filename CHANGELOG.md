@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* add methods to determine more paths (8ac183c7a458)
+* support publish invalid pdf result (2f605eb8486b)
+* add state machine to manage document live cycle (c7f3fb6937fc)
+* override environment variables instead of creating all (3ba396c75ab9)
+
+### Documentation
+
+* add general doc structure (3f14c42ebd2a)
+
 ## v0.2.3
 
 ### Feature
