@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """A user uploads a document. While this process, the pdf document is uploaded
-and a folder in `common-todo` is created. 
+and a folder in `common-todo` is created.
 
 This folder contains a JobInfo info.yaml with with a short work status.
 This info is shared, and also used for the finished jobs.
