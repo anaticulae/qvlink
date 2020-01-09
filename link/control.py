@@ -18,50 +18,64 @@ PROGRESS_START = '000'
 
 
 def start_progress(document: str):
-    assert link.current(document) == link.ProcessState.NEW
+    assert_state(link.ProcessState.NEW, document)
+
     path = link.state.inprogress(document)
     utila.file_create(path, PROGRESS_START)
-    assert link.current(document) == link.ProcessState.STARTED
+
+    assert_state(link.ProcessState.STARTED, document)
 
 
 def verify(document: str):
-    assert link.current(document) == link.ProcessState.STARTED
+    assert_state(link.ProcessState.STARTED, document)
+
     todo = configo.todo()
     workspace = os.path.join(todo, document)
     pdf = os.path.join(workspace, document)
 
     result = utila.run(f'pdfinfo -i {pdf} -o {workspace}')
     assert result.returncode == utila.SUCCESS, (result.stderr + result.stdout)
-    assert link.current(document) == link.ProcessState.VERIFIED or \
-                            link.current(document) == link.ProcessState.INVALID
+
+    assert_state(
+        [link.ProcessState.VERIFIED, link.ProcessState.INVALID],
+        document,
+    )
 
 
 def start_analysis(document: str):
-    assert link.current(document) == link.ProcessState.VERIFIED
+    assert_state(link.ProcessState.VERIFIED, document)
+
     todo = os.path.join(configo.todo(), document)
     fastview = os.path.join(todo, 'fastview')
     resultview = os.path.join(todo, 'result')
 
     os.makedirs(fastview)
     os.makedirs(resultview)
-    assert link.current(document) == link.ProcessState.ANALYSIS
+
+    assert_state(link.ProcessState.ANALYSIS, document)
 
 
 def finish_fastview(document: str):
-    assert link.current(document) == link.ProcessState.ANALYSIS
+    assert_state(link.ProcessState.ANALYSIS, document)
+
     fastview = link.state.fastview_done(document)
     utila.file_create(fastview)
 
 
 def finish_resultview(document: str):
+    assert_state(link.ProcessState.ANALYSIS, document)
+
     assert link.current(document) == link.ProcessState.ANALYSIS
     resultview = link.state.resultview_done(document)
     utila.file_create(resultview)
 
 
 def publish(document: str):
-    assert link.current(document) == link.ProcessState.ANALYSED or\
-                             link.current(document) == link.ProcessState.INVALID
+    assert_state(
+        [link.ProcessState.ANALYSED, link.ProcessState.INVALID],
+        document,
+    )
+
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
     os.makedirs(destination)
@@ -83,4 +97,12 @@ def publish(document: str):
         )
 
     utila.file_create(link.state.done(document))
-    assert link.current(document) == link.ProcessState.PUBLISHED
+
+    assert_state(link.ProcessState.PUBLISHED, document)
+
+
+def assert_state(state, document):
+    current = link.current(document)
+    if not isinstance(state, list):
+        state = [state]
+    assert any([current == item for item in state]), current
