@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.3
+
+### Fix
+
+* add missing recursive flag (a2d910701439)
+
 ## v0.3.2
 
 ### Feature
