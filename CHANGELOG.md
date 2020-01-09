@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.2
+
+### Feature
+
+* print assertion validation to ease debugging (d0f68f39b62d)
+
 ## v0.3.1
 
 ### Fix
