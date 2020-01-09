@@ -89,11 +89,13 @@ def publish(document: str):
         utila.copy_content(
             link.state.fastview(document),
             os.path.join(destination, 'fastview'),
+            recursive=True,
         )
 
         utila.copy_content(
             link.state.resultview(document),
             os.path.join(destination, 'result'),
+            recursive=True,
         )
 
     utila.file_create(link.state.done(document))
