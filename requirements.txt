@@ -1,6 +1,6 @@
 PyYAML==5.1
 
-configo==0.5.17
-utila==1.18.1
+configo==0.6.0
+utila==1.19.0
 
-rawmaker==1.17.9
+rawmaker==1.17.11
