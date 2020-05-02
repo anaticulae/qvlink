@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.4.1
+
+### Feature
+
+* add method `delete` to set deleting folder flag (d109666b81bb)
+* add data field password and hashlink (ca2db4455bde)
+
 ## v0.4.0
 
 ### Feature
