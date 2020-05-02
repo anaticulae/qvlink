@@ -12,6 +12,7 @@ from os.path import join
 
 from pytest import fixture
 
+import link
 from link import JOB_FILE_NAME
 from link import JobInfo
 from link import collect_jobs
@@ -27,7 +28,7 @@ def test_dump_and_load(tmpdir):
     config = JobInfo(
         title='Name',
         date='Date',
-        result='Result',
+        result=link.FindingStatus(10, 20, 30),
         index=1337,
     )
 

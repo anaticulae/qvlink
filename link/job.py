@@ -12,6 +12,7 @@ and a folder in `common-todo` is created.
 This folder contains a JobInfo info.yaml with with a short work status.
 This info is shared, and also used for the finished jobs.
 """
+import collections
 import dataclasses
 import os
 
@@ -21,6 +22,8 @@ import yaml
 
 JOB_FILE_NAME = 'info.yaml'
 
+FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
+
 
 @dataclasses.dataclass
 class JobInfo:
@@ -28,7 +31,8 @@ class JobInfo:
     title: str
     date: str
     index: int
-    result: str = None
+    result: FindingStatus = None
+    done: bool = False
 
 
 def dump_job(path: str, info: JobInfo):
@@ -36,11 +40,36 @@ def dump_job(path: str, info: JobInfo):
     result = {
         'title': info.title,
         'date': info.date,
-        'result': info.result,
+        'result': findingstatus_toraw(info.result),
         'index': info.index,
+        'done': info.done,
     }
     dumped = yaml.dump(result)
     utila.file_create(path, dumped)
+
+
+def findingstatus_toraw(item: FindingStatus) -> dict:
+    try:
+        return {
+            'open': item.open,
+            'closed': item.closed,
+            'excluded': item.excluded
+        }
+    except (AttributeError, TypeError):
+        return None
+
+
+def findingstatus_fromdict(items: dict, default=None) -> FindingStatus:
+    # TODO: REPLACE WITH A SMART ALTERNATIVE
+    try:
+        result = FindingStatus(
+            items['open'],
+            items['closed'],
+            items['excluded'],
+        )
+    except (AttributeError, TypeError):
+        return default
+    return result
 
 
 def load_job(path: str) -> JobInfo:
@@ -50,11 +79,15 @@ def load_job(path: str) -> JobInfo:
     loaded = utila.file_read(path)
     config = yaml.load(loaded, yaml.SafeLoader)
 
+    findings = config.get('result', None)
+    findings = findingstatus_fromdict(findings, default=FindingStatus(0, 0, 0))
+
     result = JobInfo(
         title=config['title'],
         date=config['date'],
-        result=config['result'],
+        result=findings,
         index=config['index'],
+        done=config.get('done', False),
     )
     return result
 

@@ -17,6 +17,7 @@ from link.control import start_progress
 from link.control import verify
 # Job
 from link.job import JOB_FILE_NAME
+from link.job import FindingStatus
 from link.job import JobInfo
 from link.job import count_ready
 from link.job import count_todo
