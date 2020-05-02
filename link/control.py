@@ -119,8 +119,8 @@ def delete(document: str) -> bool:
     Args:
         document(str): document id to identify document.
     Returns:
-        True if deleting mark is set.
-        If `document` is already deleted, return False.
+        True if deleting mark is successfully created.
+        False if `document` is already marked as deleted.
     """
     if link.current(document) == link.ProcessState.DELETED:
         return False
