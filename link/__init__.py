@@ -9,6 +9,7 @@
 import os
 
 # control
+from link.control import delete
 from link.control import finish_fastview
 from link.control import finish_resultview
 from link.control import publish
@@ -28,11 +29,13 @@ from link.state import ProcessState
 from link.state import current
 from link.state import done
 from link.state import fastview
+from link.state import fastview_deleted
 from link.state import fastview_done
 from link.state import inprogress
 from link.state import pdfinfo
 from link.state import ready
 from link.state import resultview
+from link.state import resultview_deleted
 from link.state import resultview_done
 from link.state import todo
 # Workspace

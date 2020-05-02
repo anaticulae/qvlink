@@ -107,6 +107,7 @@ class ProcessState(enum.Enum):
     ANALYSED = enum.auto()
     PUBLISHED = enum.auto()
     ERROR = enum.auto()
+    DELETED = enum.auto()
     UNDEFINED = enum.auto()
 
 
@@ -148,7 +149,13 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     published = all([
         publish,
     ])
+    deleted = any([
+        os.path.exists(fastview_deleted(document)),
+        os.path.exists(resultview_deleted(document)),
+    ])
 
+    if deleted:
+        return ProcessState.DELETED
     if published:
         return ProcessState.PUBLISHED
     if analysed:
@@ -211,6 +218,14 @@ def fastview_done(document: str) -> str:
 def resultview_done(document: str) -> str:
     result = os.path.join(resultview(document), 'done')
     return result
+
+
+def resultview_deleted(document: str) -> str:
+    return os.path.join(resultview(document), 'deleted')
+
+
+def fastview_deleted(document: str) -> str:
+    return os.path.join(fastview(document), 'deleted')
 
 
 def done(document: str) -> str:
