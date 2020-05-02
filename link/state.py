@@ -150,8 +150,8 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
         publish,
     ])
     deleted = any([
-        os.path.exists(fastview_deleted(document)),
-        os.path.exists(resultview_deleted(document)),
+        os.path.exists(ready_deleted(document)),
+        os.path.exists(todo_deleted(document)),
     ])
 
     if deleted:
@@ -220,12 +220,12 @@ def resultview_done(document: str) -> str:
     return result
 
 
-def resultview_deleted(document: str) -> str:
-    return os.path.join(resultview(document), 'deleted')
+def todo_deleted(document: str) -> str:
+    return os.path.join(todo(document), 'deleted')
 
 
-def fastview_deleted(document: str) -> str:
-    return os.path.join(fastview(document), 'deleted')
+def ready_deleted(document: str) -> str:
+    return os.path.join(ready(document), 'deleted')
 
 
 def done(document: str) -> str:

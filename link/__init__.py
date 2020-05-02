@@ -29,15 +29,15 @@ from link.state import ProcessState
 from link.state import current
 from link.state import done
 from link.state import fastview
-from link.state import fastview_deleted
 from link.state import fastview_done
 from link.state import inprogress
 from link.state import pdfinfo
 from link.state import ready
+from link.state import ready_deleted
 from link.state import resultview
-from link.state import resultview_deleted
 from link.state import resultview_done
 from link.state import todo
+from link.state import todo_deleted
 # Workspace
 from link.workspace import collect_jobs
 from link.workspace import create_todo

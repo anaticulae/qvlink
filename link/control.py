@@ -124,6 +124,6 @@ def delete(document: str) -> bool:
     """
     if link.current(document) == link.ProcessState.DELETED:
         return False
-    utila.file_create(link.resultview_deleted(document))
-    utila.file_create(link.fastview_deleted(document))
+    utila.file_create(link.todo_deleted(document))
+    utila.file_create(link.ready_deleted(document))
     return True
