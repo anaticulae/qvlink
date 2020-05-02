@@ -87,7 +87,15 @@ def load_job(path: str) -> JobInfo:
     config = yaml.load(loaded, yaml.SafeLoader)
 
     findings = config.get('result', None)
-    findings = findingstatus_fromdict(findings, default=FindingStatus(0, 0, 0))
+    loaded = findingstatus_fromdict(findings)
+    if loaded:
+        findings = loaded
+    else:
+        # TODO: REMOVE AFTER CHANGING FROM INT TO FINDINGSTATUS COMPLETED
+        if findings:
+            findings = None
+        else:
+            findings = FindingStatus(0, 0, 0)
 
     result = JobInfo(
         title=config['title'],
