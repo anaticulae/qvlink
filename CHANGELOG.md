@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* change result field from int to complex user progress datatype (621ca8155cf2)
+
 ## v0.3.16
 
 ## v0.3.15
