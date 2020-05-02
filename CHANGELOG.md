@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.3
+
+### Fix
+
+* fix path to write `deleted` mark (52eebcb9d8af)
+
 ## v0.4.2
 
 ### Feature
