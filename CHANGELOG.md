@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v0.4.2
+
+### Feature
+
+* add method to skip removed extracted documents (bcd84017d0e7)
+
+### Fix
+
+* convert old style datatype to new FindingStatus (1ec9e8812c52)
+
+### Documentation
+
+* fix interface documentation (2d5f0238c7fa)
+
 ## v0.4.1
 
 ### Feature
