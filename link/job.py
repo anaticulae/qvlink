@@ -33,10 +33,12 @@ class JobInfo:
     index: int
     result: FindingStatus = None
     done: bool = False
+    password: str = None
+    hashlink: str = None
 
 
 def dump_job(path: str, info: JobInfo):
-    """Save `info` to given `path`"""
+    """Save `info` to given `path`."""
     result = {
         'title': info.title,
         'date': info.date,
@@ -44,6 +46,11 @@ def dump_job(path: str, info: JobInfo):
         'index': info.index,
         'done': info.done,
     }
+    if info.password:
+        result['password'] = info.password
+    if info.hashlink:
+        result['hashlink'] = info.hashlink
+
     dumped = yaml.dump(result)
     utila.file_create(path, dumped)
 
@@ -88,6 +95,8 @@ def load_job(path: str) -> JobInfo:
         result=findings,
         index=config['index'],
         done=config.get('done', False),
+        password=config.get('password', None),
+        hashlink=config.get('hashlink', None),
     )
     return result
 
