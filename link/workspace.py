@@ -15,12 +15,23 @@ import utila
 import link
 
 
-def collect_jobs(path: str):
-    """Scan common space for jobs todo and done"""
+def collect_jobs(path: str = None, skip_removed: bool = False) -> tuple:
+    """Scan common space for jobs todo and done.
+
+    Args:
+        path: path to temporary directory
+        skip_removed: skip jobs which contain deleted mark
+    Returns:
+        tuple of collected (todos, readys)
+    """
     assert os.path.exists(path), path
 
-    todo = configo.todo()
-    ready = configo.ready()
+    if path is None:
+        todo = configo.todo()
+        ready = configo.ready()
+    else:
+        todo = os.path.join(path, 'todo')
+        ready = os.path.join(path, 'ready')
 
     assert os.path.exists(todo), todo
     assert os.path.exists(ready), ready
@@ -31,6 +42,12 @@ def collect_jobs(path: str):
         if not os.path.exists(current):
             utila.error('Job does not exists: %s' % current)
             continue
+        if skip_removed:
+            # TODO: REPLACE LATER
+            removed = os.path.join(todo, item, 'deleted')
+            if os.path.exists(removed):
+                utila.info(f'skip removed: {removed}')
+                continue
         todos.append(link.load_job(current))
 
     readys = []
@@ -39,6 +56,12 @@ def collect_jobs(path: str):
         if not os.path.exists(current):
             utila.error('Job does not exists: %s' % current)
             continue
+        if skip_removed:
+            # TODO: REPLACE LATER
+            removed = os.path.join(ready, item, 'deleted')
+            if os.path.exists(removed):
+                utila.info(f'skip removed: {removed}')
+                continue
         readys.append(link.load_job(current))
 
     return todos, readys
