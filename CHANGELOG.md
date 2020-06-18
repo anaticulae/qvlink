@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.10
+
+### Feature
+
+* log non existing todo (c650b2ce9360)
+
 ## v0.4.9
 
 ## v0.4.8
