@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.13
+
+### Documentation
+
+* add copyright header (b314d345f3d3)
+
 ## v0.4.12
 
 ## v0.4.11
