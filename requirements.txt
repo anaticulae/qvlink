@@ -12,4 +12,4 @@ PyYAML==5.1
 configo==0.7.1
 utila==2.6.0
 
-rawmaker==2.2.1
+rawmaker==2.3.0
