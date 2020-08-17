@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.0.0
+
+### Feature
+
+* add count of findings to publish step (f5b4e423c298)
+* extend public API (7ff3fc3ea470)
+* clarify code and drop support for simple status (f9ea27a233be)
+* divide dumping and writing process of job information (e027dd0af474)
+
+### Documentation
+
+* update module description (dce0c4e6a984)
+
 ## v0.4.19
 
 ## v0.4.18
