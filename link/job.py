@@ -83,19 +83,17 @@ def findingstatus_fromdict(items: dict, default=None) -> FindingStatus:
     return result
 
 
+NO_FINDINGS = FindingStatus(0, 0, 0)
+
+
 def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path` or yaml raw str."""
     config = utila.yaml_from_raw_or_path(path)
-    findings = config.get('result', None)
-    loaded = findingstatus_fromdict(findings)
-    if loaded:
-        findings = loaded
-    else:
-        # TODO: REMOVE AFTER CHANGING FROM INT TO FINDINGSTATUS COMPLETED
-        if findings:
-            findings = None
-        else:
-            findings = FindingStatus(0, 0, 0)
+
+    findings = findingstatus_fromdict(
+        config.get('result', None),
+        default=NO_FINDINGS,
+    )
 
     result = JobInfo(
         title=config['title'],
