@@ -13,3 +13,5 @@ configo==0.7.1
 utila==2.6.0
 
 rawmaker==2.3.0
+
+protocol==1.2.1

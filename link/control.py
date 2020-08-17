@@ -10,6 +10,7 @@
 import os
 
 import configo
+import protocol
 import utila
 
 import link
@@ -82,8 +83,11 @@ def publish(document: str):
     os.makedirs(destination)
     assert os.path.exists(destination), destination
 
+    # count findings and update info.yaml
+    init_jobcounter(source)
+
     utila.copy_content(source, destination, pattern='pdfinfo.json')
-    utila.copy_content(source, destination, pattern='info.yaml')
+    utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
 
     if utila.file_read(link.pdfinfo(document)) != '{}':
         # publis content only for valid pdf files
@@ -102,6 +106,18 @@ def publish(document: str):
     utila.file_create(link.state.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
+
+
+def init_jobcounter(source: str):
+    """Count detected findings of analyzed document and write them to
+    jobinfo yaml file."""
+    findings = protocol.findings_from_path(source)
+    findings = utila.flatten([page.content for page in findings])
+    jobpath = os.path.join(source, link.JOB_FILE_NAME)
+    current = link.load_job(jobpath)
+    current.result = link.FindingStatus(len(findings), 0, 0)
+    dumped = link.dump_job(current)
+    utila.file_replace(jobpath, dumped)
 
 
 def assert_state(state, document):
