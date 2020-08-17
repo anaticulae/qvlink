@@ -6,12 +6,16 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""A user uploads a document. While this process, the pdf document is uploaded
-and a folder in `common-todo` is created.
+"""Job
+===
 
-This folder contains a JobInfo info.yaml with with a short work status.
-This info is shared, and also used for the finished jobs.
+Describes current working status of one document which was uploaded by a user.
+
+1. While uploading a pdf file, a job folder in `common-todo` is created.
+2. This folder contains a JobInfo info.yaml with a short work status.
+3. This info is shared and also used for the finished job.
 """
+
 import collections
 import dataclasses
 import os
@@ -27,7 +31,7 @@ FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
 
 @dataclasses.dataclass
 class JobInfo:
-    """Short description for identifying the job"""
+    """Short description for identifying the job."""
     title: str
     date: str
     index: int
