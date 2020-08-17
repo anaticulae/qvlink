@@ -10,6 +10,7 @@
 from os import makedirs
 from os.path import join
 
+import utila
 from pytest import fixture
 
 import link
@@ -23,7 +24,7 @@ from link import load_job
 from tests import patch_todo
 
 
-def test_dump_and_load(tmpdir):
+def test_dump_and_load():
     """Dump and load project an example configuration"""
     config = JobInfo(
         title='Name',
@@ -31,11 +32,8 @@ def test_dump_and_load(tmpdir):
         result=link.FindingStatus(10, 20, 30),
         index=1337,
     )
-
-    path = join(tmpdir, 'configuration.yaml')
-    dump_job(path, config)
-    loaded = load_job(path)
-
+    dumped = dump_job(config)
+    loaded = load_job(dumped)
     assert loaded == config
 
 
@@ -60,14 +58,16 @@ def common(tmpdir):
         makedirs(folder)
         output = join(folder, JOB_FILE_NAME)
         result = JobInfo('Super Duper Masterarbeit', '2019.04.01', None, item)
-        dump_job(output, result)
+        dumped = dump_job(result)
+        utila.file_create(output, dumped)
 
     for item in [3333, 5555]:
         folder = join(ready, '%d' % item)
         makedirs(folder)
         output = join(folder, JOB_FILE_NAME)
         result = JobInfo('Super Masterarbeit', '2019.04.05', '95%', item)
-        dump_job(output, result)
+        dumped = dump_job(result)
+        utila.file_create(output, dumped)
 
     makedirs(join(todo, 'broken'))
     makedirs(join(ready, 'also_broken'))

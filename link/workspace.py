@@ -126,7 +126,8 @@ def create_todo(
     # Create job information
     date = current_date()
     job = link.JobInfo(title=filename, date=date, index=todoname)
-    link.dump_job(infopath, job)
+    dumped = link.dump_job(job)
+    utila.file_create(infopath, dumped)
     return path
 
 

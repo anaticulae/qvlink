@@ -41,8 +41,8 @@ class JobInfo:
     hashlink: str = None
 
 
-def dump_job(path: str, info: JobInfo):
-    """Save `info` to given `path`."""
+def dump_job(info: JobInfo) -> str:
+    """Convert to yaml representation."""
     result = {
         'title': info.title,
         'date': info.date,
@@ -56,7 +56,7 @@ def dump_job(path: str, info: JobInfo):
         result['hashlink'] = info.hashlink
 
     dumped = yaml.dump(result)
-    utila.file_create(path, dumped)
+    return dumped
 
 
 def findingstatus_toraw(item: FindingStatus) -> dict:
@@ -84,12 +84,8 @@ def findingstatus_fromdict(items: dict, default=None) -> FindingStatus:
 
 
 def load_job(path: str) -> JobInfo:
-    """Load `JobInfo` from given `path`"""
-    assert os.path.exists(path), path
-
-    loaded = utila.file_read(path)
-    config = yaml.load(loaded, yaml.SafeLoader)
-
+    """Load `JobInfo` from given `path` or yaml raw str."""
+    config = utila.yaml_from_raw_or_path(path)
     findings = config.get('result', None)
     loaded = findingstatus_fromdict(findings)
     if loaded:
