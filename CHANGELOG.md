@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.1.0
+
+### Feature
+
+* return None if process does not exists (9e0bb9443888)
+
+### Fix
+
+* do not log that path does not exists (9b4986a6bb25)
+
 ## v1.0.4
 
 ## v1.0.3
