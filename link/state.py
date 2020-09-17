@@ -112,6 +112,13 @@ class ProcessState(enum.Enum):
 
 
 def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals
+    """Determine state of process defined by `document` location.
+
+    >>> assert current('doesnotexists') is None
+    """
+    if not (os.path.exists(todo(document)) or os.path.exists(ready(document))):
+        # process does not exists
+        return None
     inprogressed = os.path.exists(inprogress(document))
 
     publish = os.path.exists(os.path.join(ready(document), 'done'))
