@@ -175,8 +175,6 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
 
 def todo(document: str) -> str:
     result = os.path.join(configo.todo(), document)
-    if not os.path.exists(result):
-        utila.log(f'todo does not exists: {result}')
     return result
 
 
