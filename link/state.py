@@ -239,3 +239,13 @@ def ready_deleted(documentid: str) -> str:
 def done(documentid: str) -> str:
     result = os.path.join(ready(documentid), 'done')
     return result
+
+
+def document(documentid: str) -> str:
+    """Access resource folder by `documentid`. Prefere ready over todo
+    folder and return None if none of them exists."""
+    if os.path.exists(ready(documentid)):
+        return ready(documentid)
+    if os.path.exists(todo(documentid)):
+        return todo(documentid)
+    return None
