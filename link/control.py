@@ -127,20 +127,33 @@ def assert_state(state, document):
     assert any([current == item for item in state]), current
 
 
-def delete(document: str) -> bool:
+def delete(documentid: str) -> bool:
     """Set deleting flag to mark fastview and resultview as deleted.
 
     This function works asynchronous. The content is removed later by
     `ResourceSyncScheduler`.
 
     Args:
-        document(str): document id to identify document.
+        documentid(str): document id to identify document.
     Returns:
         True if deleting mark is successfully created.
         False if `document` is already marked as deleted.
     """
-    if link.current(document) == link.ProcessState.DELETED:
+    if link.current(documentid) == link.ProcessState.DELETED:
         return False
-    utila.file_create(link.todo_deleted(document))
-    utila.file_create(link.ready_deleted(document))
+
+    todo_path = link.todo(documentid)
+    ready_path = link.ready(documentid)
+
+    if not (os.path.exists(todo_path) or os.path.exists(ready_path)):
+        # document does not exists
+        return False
+
+    if os.path.exists(todo_path):
+        utila.file_create(link.todo_deleted(documentid))
+
+    if os.path.exists(ready_path):
+        # processing is not completed(error or cancelled)
+        utila.file_create(link.ready_deleted(documentid))
+
     return True
