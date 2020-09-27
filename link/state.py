@@ -111,24 +111,25 @@ class ProcessState(enum.Enum):
     UNDEFINED = enum.auto()
 
 
-def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals
-    """Determine state of process defined by `document` location.
+def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals
+    """Determine state of process defined by `documentid` location.
 
     >>> assert current('doesnotexists') is None
     """
-    if not (os.path.exists(todo(document)) or os.path.exists(ready(document))):
+    if not (os.path.exists(todo(documentid)) or
+            os.path.exists(ready(documentid))):
         # process does not exists
         return None
-    inprogressed = os.path.exists(inprogress(document))
+    inprogressed = os.path.exists(inprogress(documentid))
 
-    publish = os.path.exists(os.path.join(ready(document), 'done'))
-    pdfinfopath = pdfinfo(document)
+    publish = os.path.exists(os.path.join(ready(documentid), 'done'))
+    pdfinfopath = pdfinfo(documentid)
 
     new = all([
-        os.path.exists(todo(document)),  # valid todo document folder
-        os.path.exists(os.path.join(todo(document), document)),  # pdf file
-        os.path.exists(os.path.join(todo(document), link.job.JOB_FILE_NAME)),
-        not os.path.exists(ready(document)),
+        os.path.exists(todo(documentid)),  # valid todo document folder
+        os.path.exists(os.path.join(todo(documentid), documentid)),  # pdf file
+        os.path.exists(os.path.join(todo(documentid), link.job.JOB_FILE_NAME)),
+        not os.path.exists(ready(documentid)),
         not os.path.exists(pdfinfopath),
         not inprogressed,
     ])
@@ -145,20 +146,20 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     ])
     analysis = all([
         verified,
-        os.path.exists(fastview(document)),
-        os.path.exists(resultview(document)),
+        os.path.exists(fastview(documentid)),
+        os.path.exists(resultview(documentid)),
     ])
     analysed = all([
         analysis,
-        os.path.exists(fastview_done(document)),
-        os.path.exists(resultview_done(document)),
+        os.path.exists(fastview_done(documentid)),
+        os.path.exists(resultview_done(documentid)),
     ])
     published = all([
         publish,
     ])
     deleted = any([
-        os.path.exists(ready_deleted(document)),
-        os.path.exists(todo_deleted(document)),
+        os.path.exists(ready_deleted(documentid)),
+        os.path.exists(todo_deleted(documentid)),
     ])
 
     if deleted:
@@ -180,61 +181,61 @@ def current(document: str) -> ProcessState:  # pylint:disable=too-many-return-st
     return ProcessState.UNDEFINED
 
 
-def todo(document: str) -> str:
-    result = os.path.join(configo.todo(), document)
+def todo(documentid: str) -> str:
+    result = os.path.join(configo.todo(), documentid)
     return result
 
 
-def ready(document: str) -> str:
-    result = os.path.join(configo.ready(), document)
+def ready(documentid: str) -> str:
+    result = os.path.join(configo.ready(), documentid)
     return result
 
 
-def pdfinfo(document: str) -> str:
-    source = todo(document)
-    if os.path.exists(done(document)):
-        source = ready(document)
+def pdfinfo(documentid: str) -> str:
+    source = todo(documentid)
+    if os.path.exists(done(documentid)):
+        source = ready(documentid)
     result = os.path.join(source, 'pdfinfo.json')
     return result
 
 
-def inprogress(document: str) -> str:
-    result = os.path.join(todo(document), 'inprogress')
+def inprogress(documentid: str) -> str:
+    result = os.path.join(todo(documentid), 'inprogress')
     return result
 
 
-def fastview(document: str) -> str:
-    source = todo(document)
-    if os.path.exists(done(document)):
-        source = ready(document)
+def fastview(documentid: str) -> str:
+    source = todo(documentid)
+    if os.path.exists(done(documentid)):
+        source = ready(documentid)
     return os.path.join(source, 'fastview')
 
 
-def resultview(document: str) -> str:
-    source = todo(document)
-    if os.path.exists(done(document)):
-        source = ready(document)
+def resultview(documentid: str) -> str:
+    source = todo(documentid)
+    if os.path.exists(done(documentid)):
+        source = ready(documentid)
     return os.path.join(source, 'result')
 
 
-def fastview_done(document: str) -> str:
-    result = os.path.join(fastview(document), 'done')
+def fastview_done(documentid: str) -> str:
+    result = os.path.join(fastview(documentid), 'done')
     return result
 
 
-def resultview_done(document: str) -> str:
-    result = os.path.join(resultview(document), 'done')
+def resultview_done(documentid: str) -> str:
+    result = os.path.join(resultview(documentid), 'done')
     return result
 
 
-def todo_deleted(document: str) -> str:
-    return os.path.join(todo(document), 'deleted')
+def todo_deleted(documentid: str) -> str:
+    return os.path.join(todo(documentid), 'deleted')
 
 
-def ready_deleted(document: str) -> str:
-    return os.path.join(ready(document), 'deleted')
+def ready_deleted(documentid: str) -> str:
+    return os.path.join(ready(documentid), 'deleted')
 
 
-def done(document: str) -> str:
-    result = os.path.join(ready(document), 'done')
+def done(documentid: str) -> str:
+    result = os.path.join(ready(documentid), 'done')
     return result
