@@ -26,7 +26,7 @@ def test_free_todo(tmpdir, monkeypatch):
 
     folder = iter(['test', 'test', 'ts'])
 
-    def random_foldername():
+    def random_foldername(width=None):  # pylint:disable=W0613
         return next(folder)
 
     def todo():

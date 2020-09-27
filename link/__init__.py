@@ -50,3 +50,6 @@ from link.workspace import sortable_date
 __version__ = '1.1.1'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# use 16 chars/ints to create random job name
+DOCUMENT_ID_LENGTH = 16

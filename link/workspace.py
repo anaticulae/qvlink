@@ -80,9 +80,9 @@ def find_free_todo(todopath: str = None) -> str:
     """
     if todopath is None:
         todopath = configo.todo()
-    name = utila.tmpname()
+    name = utila.tmpname(width=link.DOCUMENT_ID_LENGTH)
     while os.path.exists(os.path.join(todopath, name)):
-        name = utila.tmpname()
+        name = utila.tmpname(width=link.DOCUMENT_ID_LENGTH)
     return name
 
 
