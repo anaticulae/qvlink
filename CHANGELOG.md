@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.2.0
+
+### Feature
+
+* handle more cases of to delete a document (1d8348c6eeb6)
+* add done flag to select result view type (bb74701de166)
+* add method document to access document resource folder by id (129c8140269b)
+* add constant to define width of random job id (e3d0f1537549)
+
 ## v1.1.1
 
 ## v1.1.0
