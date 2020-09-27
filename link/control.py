@@ -103,7 +103,7 @@ def publish(document: str):
             recursive=True,
         )
 
-    utila.file_create(link.state.done(document))
+    utila.file_create(link.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
 

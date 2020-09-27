@@ -30,7 +30,7 @@ from link.job import load_job
 from link.state import ProcessState
 from link.state import current
 from link.state import document
-from link.state import done
+from link.state import done_ as done
 from link.state import fastview
 from link.state import fastview_done
 from link.state import inprogress

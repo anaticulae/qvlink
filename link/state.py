@@ -193,7 +193,7 @@ def ready(documentid: str) -> str:
 
 def pdfinfo(documentid: str) -> str:
     source = todo(documentid)
-    if os.path.exists(done(documentid)):
+    if os.path.exists(done_(documentid)):
         source = ready(documentid)
     result = os.path.join(source, 'pdfinfo.json')
     return result
@@ -236,7 +236,7 @@ def ready_deleted(documentid: str) -> str:
     return os.path.join(ready(documentid), 'deleted')
 
 
-def done(documentid: str) -> str:
+def done_(documentid: str) -> str:
     result = os.path.join(ready(documentid), 'done')
     return result
 
