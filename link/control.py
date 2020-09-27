@@ -92,14 +92,14 @@ def publish(document: str):
     if utila.file_read(link.pdfinfo(document)) != '{}':
         # publis content only for valid pdf files
         utila.copy_content(
-            link.state.fastview(document),
-            os.path.join(destination, 'fastview'),
+            link.fastview(document),
+            link.fastview(document, done=True),
             recursive=True,
         )
 
         utila.copy_content(
-            link.state.resultview(document),
-            os.path.join(destination, 'result'),
+            link.resultview(document),
+            link.resultview(document, done=True),
             recursive=True,
         )
 

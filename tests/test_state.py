@@ -96,11 +96,13 @@ def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
 def test_state_verify_result(example, monkeypatch):  # pylint:disable=W0621
     """Ensure that path refer to copied `ready` result instead of `todo`
     directory."""
+    # TODO: THIS TEST SEEMS TO BE VERY USELESS
+    done = True
     with completed(example, monkeypatch):
-        fastview = link.fastview(DOCUMENT)
-        resultview = link.resultview(DOCUMENT)
-        fastview_done = link.fastview_done(DOCUMENT)
-        resultview_done = link.resultview_done(DOCUMENT)
+        fastview = link.fastview(DOCUMENT, done)
+        resultview = link.resultview(DOCUMENT, done)
+        fastview_done = link.fastview_done(DOCUMENT, done)
+        resultview_done = link.resultview_done(DOCUMENT, done)
     for item in [fastview, resultview, fastview_done, resultview_done]:
         assert os.path.exists(item), item
 

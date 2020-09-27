@@ -204,27 +204,23 @@ def inprogress(documentid: str) -> str:
     return result
 
 
-def fastview(documentid: str) -> str:
-    source = todo(documentid)
-    if os.path.exists(done(documentid)):
-        source = ready(documentid)
+def fastview(documentid: str, done: bool = False) -> str:
+    source = ready(documentid) if done else todo(documentid)
     return os.path.join(source, 'fastview')
 
 
-def resultview(documentid: str) -> str:
-    source = todo(documentid)
-    if os.path.exists(done(documentid)):
-        source = ready(documentid)
+def resultview(documentid: str, done: bool = False) -> str:
+    source = ready(documentid) if done else todo(documentid)
     return os.path.join(source, 'result')
 
 
-def fastview_done(documentid: str) -> str:
-    result = os.path.join(fastview(documentid), 'done')
+def fastview_done(documentid: str, done: bool = False) -> str:
+    result = os.path.join(fastview(documentid, done=done), 'done')
     return result
 
 
-def resultview_done(documentid: str) -> str:
-    result = os.path.join(resultview(documentid), 'done')
+def resultview_done(documentid: str, done: bool = False) -> str:
+    result = os.path.join(resultview(documentid, done=done), 'done')
     return result
 
 
