@@ -103,6 +103,11 @@ def publish(document: str):
             recursive=True,
         )
 
+        optimized = link.optimized(document)
+        utila.log(f'copy to optimized {optimized}')
+        findings = protocol.load_grouped(link.resultview(document))
+        protocol.write_grouped(findings, optimized)
+
     utila.file_create(link.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
