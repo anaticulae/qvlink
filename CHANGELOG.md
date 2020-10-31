@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.3.0
+
+### Feature
+
+* publish optimized findings separately (90f4e121ec3d)
+* add link to optimized finding path (e9b597ae6fac)
+
 ## v1.2.3
 
 ## v1.2.2
