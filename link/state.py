@@ -214,6 +214,11 @@ def resultview(documentid: str, done: bool = False) -> str:
     return os.path.join(source, 'result')
 
 
+def optimized(documentid: str) -> str:
+    result = resultview(documentid, done=True)
+    return os.path.join(result, '__optimized__')
+
+
 def fastview_done(documentid: str, done: bool = False) -> str:
     result = os.path.join(fastview(documentid, done=done), 'done')
     return result

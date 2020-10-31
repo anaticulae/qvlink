@@ -34,6 +34,7 @@ from link.state import done_ as done
 from link.state import fastview
 from link.state import fastview_done
 from link.state import inprogress
+from link.state import optimized
 from link.state import pdfinfo
 from link.state import ready
 from link.state import ready_deleted
