@@ -90,7 +90,7 @@ def publish(document: str):
     utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
 
     if utila.file_read(link.pdfinfo(document)) != '{}':
-        # publis content only for valid pdf files
+        # publish content only for valid pdf files
         utila.copy_content(
             link.fastview(document),
             link.fastview(document, done=True),
