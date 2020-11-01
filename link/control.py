@@ -103,14 +103,24 @@ def publish(document: str):
             recursive=True,
         )
 
-        optimized = link.optimized(document)
-        utila.log(f'copy to optimized {optimized}')
-        findings = protocol.load_grouped(link.resultview(document))
-        protocol.write_grouped(findings, optimized)
+        write_optimized_findings(document)
 
     utila.file_create(link.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
+
+
+def write_optimized_findings(document: str):
+    optimized = link.optimized(document)
+    os.makedirs(optimized)
+    utila.log(f'copy to optimized {optimized}')
+    findings = [
+        pagefindings.content for pagefindings in protocol.findings_from_path(
+            link.resultview(document))
+    ]
+    findings = utila.flatten(findings)
+    findings = utila.not_none(findings)
+    protocol.write_grouped(findings, optimized)
 
 
 def init_jobcounter(source: str):
