@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.1
+
+### Fix
+
+* replace loader cause grouped loader expect optimized format (2722deaa889f)
+
 ## v1.3.0
 
 ### Feature
