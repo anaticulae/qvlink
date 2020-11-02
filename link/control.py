@@ -12,6 +12,7 @@ import os
 import configo
 import protocol
 import utila
+import utila.logger
 
 import link
 import link.state
@@ -86,21 +87,27 @@ def publish(document: str):
     # count findings and update info.yaml
     init_jobcounter(source)
 
+    verbose = utila.logger.LEVEL.value > utila.Level.LOGGING
+
     utila.copy_content(source, destination, pattern='pdfinfo.json')
     utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
 
     if utila.file_read(link.pdfinfo(document)) != '{}':
         # publish content only for valid pdf files
+        utila.log('copy fastview')
         utila.copy_content(
             link.fastview(document),
             link.fastview(document, done=True),
             recursive=True,
+            verbose=verbose,
         )
 
+        utila.log('copy resultview')
         utila.copy_content(
             link.resultview(document),
             link.resultview(document, done=True),
             recursive=True,
+            verbose=verbose,
         )
 
         write_optimized_findings(document)
@@ -113,7 +120,8 @@ def publish(document: str):
 def write_optimized_findings(document: str):
     optimized = link.optimized(document)
     os.makedirs(optimized)
-    utila.log(f'copy to optimized {optimized}')
+    utila.log((f'load: {link.resultview(document)} and '
+               f'write optimized to: {optimized}'))
     findings = [
         pagefindings.content for pagefindings in protocol.findings_from_path(
             link.resultview(document))
