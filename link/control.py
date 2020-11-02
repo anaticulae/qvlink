@@ -110,15 +110,21 @@ def publish(document: str):
             verbose=verbose,
         )
 
-        write_optimized_findings(document)
+        utila.log('copy optimized')
+        # utila.copy_content(
+        #     link.optimized(document),
+        #     link.optimized(document, done=True),
+        #     recursive=True,
+        #     verbose=True,
+        # )
 
     utila.file_create(link.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
 
 
-def write_optimized_findings(document: str):
-    optimized = link.optimized(document)
+def write_optimized_findings(document: str, done: bool = False):
+    optimized = link.optimized(document, done=done)
     os.makedirs(optimized)
     utila.log((f'load: {link.resultview(document)} and '
                f'write optimized to: {optimized}'))

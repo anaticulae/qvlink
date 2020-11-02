@@ -17,6 +17,7 @@ from link.control import publish
 from link.control import start_analysis
 from link.control import start_progress
 from link.control import verify
+from link.control import write_optimized_findings
 # Job
 from link.job import JOB_FILE_NAME
 from link.job import NO_FINDINGS
