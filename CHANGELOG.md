@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.4.1
+
+### Fix
+
+* fix level compare (fb0d9bb37e6c)
+
 ## v1.4.0
 
 ### Feature
