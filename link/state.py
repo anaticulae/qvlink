@@ -125,11 +125,14 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     publish = os.path.exists(os.path.join(ready(documentid), 'done'))
     pdfinfopath = pdfinfo(documentid)
 
+    # Source and sink are the same. This is required when running queueumo
+    # in single mode.
+    equal_path = todo(documentid) == ready(documentid)
     new = all([
         os.path.exists(todo(documentid)),  # valid todo document folder
         os.path.exists(os.path.join(todo(documentid), documentid)),  # pdf file
         os.path.exists(os.path.join(todo(documentid), link.job.JOB_FILE_NAME)),
-        not os.path.exists(ready(documentid)),
+        (not os.path.exists(ready(documentid)) or equal_path),
         not os.path.exists(pdfinfopath),
         not inprogressed,
     ])

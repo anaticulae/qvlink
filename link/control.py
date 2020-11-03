@@ -79,34 +79,39 @@ def publish(document: str):
         document,
     )
 
+    verbose = utila.logger.LEVEL.value > utila.Level.LOGGING
+
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
-    os.makedirs(destination)
+    equal_location = source == destination
+    if not equal_location:
+        os.makedirs(destination)
     assert os.path.exists(destination), destination
 
     # count findings and update info.yaml
     init_jobcounter(source)
 
-    verbose = utila.logger.LEVEL.value > utila.Level.LOGGING
-
-    utila.copy_content(source, destination, pattern='pdfinfo.json')
-    utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
+    if not equal_location:
+        utila.copy_content(source, destination, pattern='pdfinfo.json')
+        utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
 
     if utila.file_read(link.pdfinfo(document)) != '{}':
         # publish content only for valid pdf files
         utila.log('copy fastview')
-        utila.copy_content(
+        utila.copy_content(  # pylint:disable=unexpected-keyword-arg
             link.fastview(document),
             link.fastview(document, done=True),
             recursive=True,
+            skip_equal=equal_location,
             verbose=verbose,
         )
 
         utila.log('copy resultview')
-        utila.copy_content(
+        utila.copy_content(  # pylint:disable=unexpected-keyword-arg
             link.resultview(document),
             link.resultview(document, done=True),
             recursive=True,
+            skip_equal=equal_location,
             verbose=verbose,
         )
 
@@ -118,7 +123,8 @@ def publish(document: str):
         #     verbose=True,
         # )
 
-    utila.file_create(link.done(document))
+    if not equal_location:
+        utila.file_create(link.done(document))
 
     assert_state(link.ProcessState.PUBLISHED, document)
 
