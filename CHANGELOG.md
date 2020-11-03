@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.4.0
+
+### Feature
+
+* enable sink and source as equal folder (331eacf3c441)
+* add option to control copying of optimized findings (41899024d43a)
+* adjust logging policy (20bb96e7601c)
+
 ## v1.3.2
 
 ## v1.3.1
