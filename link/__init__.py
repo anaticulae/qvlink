@@ -9,6 +9,7 @@
 
 import os
 
+import link.__patch__
 # control
 from link.control import delete
 from link.control import finish_fastview
