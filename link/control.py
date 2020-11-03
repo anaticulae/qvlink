@@ -79,7 +79,7 @@ def publish(document: str):
         document,
     )
 
-    verbose = utila.logger.LEVEL.value > utila.Level.LOGGING
+    verbose = utila.logger.LEVEL > utila.Level.LOGGING
 
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
