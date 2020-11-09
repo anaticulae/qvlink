@@ -34,7 +34,7 @@ def common(tmpdir):
         result = link.JobInfo(
             title='Super Duper Masterarbeit',
             date='2019.04.01',
-            index=item,
+            name=item,
             result=None,
             owner=link.PUBLIC_OWNER,
         )
@@ -49,7 +49,7 @@ def common(tmpdir):
             'Super Masterarbeit',
             '2019.04.05',
             '95%',
-            item,
+            name=item,
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)

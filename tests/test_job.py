@@ -17,7 +17,7 @@ def test_dump_and_load():
         title='Name',
         date='Date',
         result=link.FindingStatus(10, 20, 30),
-        index='AFC1337ACD',
+        name='AFC1337ACD',
     )
     dumped = link.dump_job(config)
     loaded = link.load_job(dumped)
@@ -50,7 +50,7 @@ def test_delete_job(common, monkeypatch):
         )
         assert len(jobs_todo) == 3
         # delete first todo job(set removed flag)
-        link.delete(jobs_todo[0].index)
+        link.delete(jobs_todo[0].name)
         jobs_todo, _ = link.collect_jobs(
             common,
             owner=link.PUBLIC_OWNER,

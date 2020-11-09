@@ -136,7 +136,7 @@ def create_todo(
     # filename = secure_filename(file.filename)
     # Create job information
     date = current_date()
-    job = link.JobInfo(title=filename, date=date, index=todoname, owner=owner)
+    job = link.JobInfo(title=filename, date=date, name=todoname, owner=owner)
     dumped = link.dump_job(job)
     utila.file_create(infopath, dumped)
     return path

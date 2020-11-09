@@ -36,7 +36,7 @@ class JobInfo:
     """Short description for identifying the job."""
     title: str
     date: str
-    index: str
+    name: str
     result: FindingStatus = None
     done: bool = False
     password: str = None
@@ -44,7 +44,7 @@ class JobInfo:
     owner: str = None
 
     def __post_init__(self):
-        assert isinstance(self.index, str), type(self.index)
+        assert isinstance(self.name, str), type(self.name)
 
 
 def dump_job(info: JobInfo) -> str:
@@ -53,7 +53,7 @@ def dump_job(info: JobInfo) -> str:
         'title': info.title,
         'date': info.date,
         'result': findingstatus_toraw(info.result),
-        'index': info.index,
+        'name': info.name,
         'done': info.done,
         'owner': info.owner,
     }
@@ -106,7 +106,7 @@ def load_job(path: str) -> JobInfo:
         title=config['title'],
         date=config['date'],
         result=findings,
-        index=config['index'],
+        name=config['name'],
         owner=config['owner'],
         done=config.get('done', False),
         password=config.get('password', None),
