@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.0.0
+
+### Feature
+
+* add post init hook to verify data type (0eee941cb80d)
+* use str to describe job index (c74677c92c1f)
+* add owner parameter to todo creator (b31e29d81de6)
+* add multiple owner (2ffd6fe1cd71)
+* add owner parameter to filter loading (1f828c48b8cd)
+* add job owner (493262aaa1ef)
+
 ## v1.4.1
 
 ### Fix
