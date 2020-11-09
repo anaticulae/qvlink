@@ -46,10 +46,10 @@ def common(tmpdir):
         os.makedirs(folder)
         output = os.path.join(folder, link.JOB_FILE_NAME)
         result = link.JobInfo(
-            'Super Masterarbeit',
-            '2019.04.05',
-            '95%',
+            title='Super Masterarbeit',
+            date='2019.04.05',
             name=item,
+            result=link.FindingStatus(10, 20, 30),
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
