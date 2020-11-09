@@ -10,10 +10,8 @@
 import contextlib
 import os
 
-import configo
+import configo.directory
 import power
-from configo.directory import READY
-from configo.directory import TODO
 
 MINIMAL = power.DOCU07_PDF
 assert os.path.exists(MINIMAL), MINIMAL
