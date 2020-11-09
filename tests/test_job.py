@@ -65,3 +65,9 @@ def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
 
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_ready() == 2
+
+
+def test_access_owner(common, monkeypatch):  # pylint:disable=W0621
+    with tests.patch.patch_todo(common, monkeypatch):
+        assert link.owner('1234', done=False) == link.PUBLIC_OWNER
+        assert link.owner('3333') is None
