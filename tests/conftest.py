@@ -7,4 +7,53 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
+import pytest
+import utila
+
+import link
+
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
+
+
+@pytest.fixture
+def common(tmpdir):
+    """Create common folder with `todo` and `ready` folder. Todo
+    contains 3 elements, ready 2."""
+    # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
+    todo = os.path.join(tmpdir, 'todo')
+    ready = os.path.join(tmpdir, 'ready')
+    os.makedirs(todo)
+    os.makedirs(ready)
+
+    for item in [1234, 5555, 4321]:
+        folder = os.path.join(todo, '%d' % item)
+        os.makedirs(folder)
+        output = os.path.join(folder, link.JOB_FILE_NAME)
+        result = link.JobInfo(
+            'Super Duper Masterarbeit',
+            '2019.04.01',
+            None,
+            item,
+            owner=link.PUBLIC_OWNER,
+        )
+        dumped = link.dump_job(result)
+        utila.file_create(output, dumped)
+
+    for item in [3333, 5555]:
+        folder = os.path.join(ready, '%d' % item)
+        os.makedirs(folder)
+        output = os.path.join(folder, link.JOB_FILE_NAME)
+        result = link.JobInfo(
+            'Super Masterarbeit',
+            '2019.04.05',
+            '95%',
+            item,
+        )
+        dumped = link.dump_job(result)
+        utila.file_create(output, dumped)
+
+    os.makedirs(os.path.join(todo, 'broken'))
+    os.makedirs(os.path.join(ready, 'also_broken'))
+    return tmpdir

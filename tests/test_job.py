@@ -7,46 +7,33 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os import makedirs
-from os.path import join
-
-import utila
-from pytest import fixture
-
 import link
-from link import JOB_FILE_NAME
-from link import JobInfo
-from link import collect_jobs
-from link import count_ready
-from link import count_todo
-from link import dump_job
-from link import load_job
-from tests import patch_todo
+import tests
 
 
 def test_dump_and_load():
     """Dump and load project an example configuration"""
-    config = JobInfo(
+    config = link.JobInfo(
         title='Name',
         date='Date',
         result=link.FindingStatus(10, 20, 30),
         index=1337,
     )
-    dumped = dump_job(config)
-    loaded = load_job(dumped)
+    dumped = link.dump_job(config)
+    loaded = link.load_job(dumped)
     assert loaded == config
 
 
 def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
-    with patch_todo(common, monkeypatch):
-        jobs = collect_jobs(common)
+    with tests.patch_todo(common, monkeypatch):
+        jobs = link.collect_jobs(common)
 
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
 def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W0621
-    with patch_todo(common, monkeypatch):
-        jobs_todo, _ = collect_jobs(
+    with tests.patch_todo(common, monkeypatch):
+        jobs_todo, _ = link.collect_jobs(
             common,
             owner=link.PUBLIC_OWNER,
             skip_removed=True,  # increase test coverage
@@ -54,47 +41,9 @@ def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W062
     assert len(jobs_todo) == 3
 
 
-@fixture
-def common(tmpdir):
-    """Create common folder with `todo` and `ready` folder. Todo
-    contains 3 elements, ready 2."""
-    # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
-    todo = join(tmpdir, 'todo')
-    ready = join(tmpdir, 'ready')
-    makedirs(todo)
-    makedirs(ready)
-
-    for item in [1234, 5555, 4321]:
-        folder = join(todo, '%d' % item)
-        makedirs(folder)
-        output = join(folder, JOB_FILE_NAME)
-        result = JobInfo(
-            'Super Duper Masterarbeit',
-            '2019.04.01',
-            None,
-            item,
-            owner=link.PUBLIC_OWNER,
-        )
-        dumped = dump_job(result)
-        utila.file_create(output, dumped)
-
-    for item in [3333, 5555]:
-        folder = join(ready, '%d' % item)
-        makedirs(folder)
-        output = join(folder, JOB_FILE_NAME)
-        result = JobInfo('Super Masterarbeit', '2019.04.05', '95%', item)
-        dumped = dump_job(result)
-        utila.file_create(output, dumped)
-
-    makedirs(join(todo, 'broken'))
-    makedirs(join(ready, 'also_broken'))
-
-    return tmpdir
-
-
 def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
-    with patch_todo(common, monkeypatch):
-        assert count_todo() == 3
+    with tests.patch_todo(common, monkeypatch):
+        assert link.count_todo() == 3
 
-    with patch_todo(common, monkeypatch):
-        assert count_ready() == 2
+    with tests.patch_todo(common, monkeypatch):
+        assert link.count_ready() == 2
