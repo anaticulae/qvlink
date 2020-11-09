@@ -15,12 +15,20 @@ import utila
 import link
 
 
-def collect_jobs(path: str = None, skip_removed: bool = False) -> tuple:
+def collect_jobs(
+        path: str = None,
+        skip_removed: bool = False,
+        owner: str = None,
+) -> tuple:
     """Scan common space for jobs todo and done.
 
     Args:
         path: path to temporary directory
         skip_removed: skip jobs which contain deleted mark
+        owner: skip all jobs which does not match owner id. Options:
+               - None: do not check owner id
+               - PUBLIC: 00000000
+               - Rest
     Returns:
         tuple of collected (todos, readys)
     """
@@ -63,6 +71,10 @@ def collect_jobs(path: str = None, skip_removed: bool = False) -> tuple:
                 utila.info(f'skip removed: {removed}')
                 continue
         readys.append(link.load_job(current))
+
+    if owner:
+        todos = [item for item in todos if item.owner == owner]
+        readys = [item for item in readys if item.owner == owner]
 
     return todos, readys
 
