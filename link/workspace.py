@@ -44,39 +44,34 @@ def collect_jobs(
     assert os.path.exists(todo), todo
     assert os.path.exists(ready), ready
 
-    todos = []
-    for item in os.listdir(todo):
-        current = os.path.join(todo, item, link.JOB_FILE_NAME)
-        if not os.path.exists(current):
-            utila.error('Job does not exists: %s' % current)
-            continue
-        if skip_removed:
-            # TODO: REPLACE LATER
-            removed = os.path.join(todo, item, 'deleted')
-            if os.path.exists(removed):
-                utila.info(f'skip removed: {removed}')
-                continue
-        todos.append(link.load_job(current))
-
-    readys = []
-    for item in os.listdir(ready):
-        current = os.path.join(ready, item, link.JOB_FILE_NAME)
-        if not os.path.exists(current):
-            utila.error('Job does not exists: %s' % current)
-            continue
-        if skip_removed:
-            # TODO: REPLACE LATER
-            removed = os.path.join(ready, item, 'deleted')
-            if os.path.exists(removed):
-                utila.info(f'skip removed: {removed}')
-                continue
-        readys.append(link.load_job(current))
+    todos = collect_job_folder(todo, skip_removed=skip_removed)
+    readys = collect_job_folder(ready, skip_removed=skip_removed)
 
     if owner:
         todos = [item for item in todos if item.owner == owner]
         readys = [item for item in readys if item.owner == owner]
 
     return todos, readys
+
+
+def collect_job_folder(
+        folder: str,
+        skip_removed: bool = False,
+):
+    result = []
+    for item in os.listdir(folder):
+        current = os.path.join(folder, item, link.JOB_FILE_NAME)
+        if not os.path.exists(current):
+            utila.error('Job does not exists: %s' % current)
+            continue
+        if skip_removed:
+            # TODO: REPLACE LATER
+            removed = os.path.join(folder, item, 'deleted')
+            if os.path.exists(removed):
+                utila.info(f'skip removed: {removed}')
+                continue
+        result.append(link.load_job(current))
+    return result
 
 
 def find_free_todo(todopath: str = None) -> str:
