@@ -48,8 +48,10 @@ def collect_jobs(
     readys = collect_job_folder(ready, skip_removed=skip_removed)
 
     if owner:
-        todos = [item for item in todos if item.owner == owner]
-        readys = [item for item in readys if item.owner == owner]
+        # support multiple owner, eg. public, owner
+        owner = {owner} if isinstance(owner, str) else owner
+        todos = [item for item in todos if item.owner in owner]
+        readys = [item for item in readys if item.owner in owner]
 
     return todos, readys
 
