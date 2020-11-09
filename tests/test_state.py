@@ -18,20 +18,20 @@ from tests.fixtures import DOCUMENT
 
 
 def test_state_init(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         state = link.current(DOCUMENT)
     assert state == link.ProcessState.NEW
 
 
 def test_state_start(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
         state = link.current(DOCUMENT)
     assert state == link.ProcessState.STARTED
 
 
 def test_state_verify(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
         state = link.current(DOCUMENT)
@@ -39,7 +39,7 @@ def test_state_verify(example, monkeypatch):  # pylint:disable=W0621
 
 
 def test_state_verify_broken(broken, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(broken, monkeypatch):
+    with tests.patch.patch_todo(broken, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
         state = link.current(DOCUMENT)
@@ -47,7 +47,7 @@ def test_state_verify_broken(broken, monkeypatch):  # pylint:disable=W0621
 
 
 def test_state_verify_start_analysis(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
         link.start_analysis(DOCUMENT)
@@ -56,7 +56,7 @@ def test_state_verify_start_analysis(example, monkeypatch):  # pylint:disable=W0
 
 
 def test_state_verify_finish(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
         link.start_analysis(DOCUMENT)
@@ -70,7 +70,7 @@ def test_state_verify_finish(example, monkeypatch):  # pylint:disable=W0621
 
 @contextlib.contextmanager
 def completed(example, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
         link.start_analysis(DOCUMENT)

@@ -8,7 +8,7 @@
 # =============================================================================
 
 import link
-import tests
+import tests.patch
 
 
 def test_dump_and_load():
@@ -25,14 +25,14 @@ def test_dump_and_load():
 
 
 def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(common, monkeypatch):
+    with tests.patch.patch_todo(common, monkeypatch):
         jobs = link.collect_jobs(common)
 
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
 def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(common, monkeypatch):
+    with tests.patch.patch_todo(common, monkeypatch):
         jobs_todo, _ = link.collect_jobs(
             common,
             owner=link.PUBLIC_OWNER,
@@ -42,7 +42,7 @@ def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W062
 
 
 def test_delete_job(common, monkeypatch):
-    with tests.patch_todo(common, monkeypatch):
+    with tests.patch.patch_todo(common, monkeypatch):
         jobs_todo, _ = link.collect_jobs(
             common,
             owner=link.PUBLIC_OWNER,
@@ -60,8 +60,8 @@ def test_delete_job(common, monkeypatch):
 
 
 def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
-    with tests.patch_todo(common, monkeypatch):
+    with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_todo() == 3
 
-    with tests.patch_todo(common, monkeypatch):
+    with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_ready() == 2

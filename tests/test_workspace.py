@@ -40,7 +40,7 @@ def test_free_todo(tmpdir, monkeypatch):
 
 
 def test_create_todo(tmpdir, monkeypatch):
-    with tests.patch_todo(tmpdir, monkeypatch):
+    with tests.patch.patch_todo(tmpdir, monkeypatch):
 
         class SaveMock:
 
