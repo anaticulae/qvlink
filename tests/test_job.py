@@ -41,6 +41,24 @@ def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W062
     assert len(jobs_todo) == 3
 
 
+def test_delete_job(common, monkeypatch):
+    with tests.patch_todo(common, monkeypatch):
+        jobs_todo, _ = link.collect_jobs(
+            common,
+            owner=link.PUBLIC_OWNER,
+            skip_removed=True,
+        )
+        assert len(jobs_todo) == 3
+        # delete first todo job(set removed flag)
+        link.delete(jobs_todo[0].index)
+        jobs_todo, _ = link.collect_jobs(
+            common,
+            owner=link.PUBLIC_OWNER,
+            skip_removed=True,
+        )
+        assert len(jobs_todo) == 2
+
+
 def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
     with tests.patch_todo(common, monkeypatch):
         assert link.count_todo() == 3
