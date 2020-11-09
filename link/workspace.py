@@ -100,6 +100,7 @@ def create_todo(
         filename: str = 'default.pdf',
         todopath: str = None,
         todoname: str = None,
+        owner: str = None,
 ) -> str:
     """Create working folder, add info.yaml and write `file` to todo dir
 
@@ -110,6 +111,7 @@ def create_todo(
                        the todopath of `configo.todo()` is used.
         todoname(str): name of todo folder to save file in. If None
                        todoname is automatically generated.
+        owner(str): user which can access document
     Returns:
         path to created todo with job content
     """
@@ -134,7 +136,7 @@ def create_todo(
     # filename = secure_filename(file.filename)
     # Create job information
     date = current_date()
-    job = link.JobInfo(title=filename, date=date, index=todoname)
+    job = link.JobInfo(title=filename, date=date, index=todoname, owner=owner)
     dumped = link.dump_job(job)
     utila.file_create(infopath, dumped)
     return path
