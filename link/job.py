@@ -28,6 +28,8 @@ JOB_FILE_NAME = 'info.yaml'
 
 FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
 
+PUBLIC_OWNER = '00000000'
+
 
 @dataclasses.dataclass
 class JobInfo:
@@ -39,6 +41,7 @@ class JobInfo:
     done: bool = False
     password: str = None
     hashlink: str = None
+    owner: str = None
 
 
 def dump_job(info: JobInfo) -> str:
@@ -49,6 +52,7 @@ def dump_job(info: JobInfo) -> str:
         'result': findingstatus_toraw(info.result),
         'index': info.index,
         'done': info.done,
+        'owner': info.owner,
     }
     if info.password:
         result['password'] = info.password
@@ -100,6 +104,7 @@ def load_job(path: str) -> JobInfo:
         date=config['date'],
         result=findings,
         index=config['index'],
+        owner=config['owner'],
         done=config.get('done', False),
         password=config.get('password', None),
         hashlink=config.get('hashlink', None),

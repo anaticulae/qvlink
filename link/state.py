@@ -88,6 +88,7 @@ Path
 `configo.ready` path where completed documents are located
 
 """
+
 import enum
 import os
 
@@ -243,6 +244,18 @@ def ready_deleted(documentid: str) -> str:
 def done_(documentid: str) -> str:
     result = os.path.join(ready(documentid), 'done')
     return result
+
+
+def owner(documentid: str, done: bool = True) -> str:
+    info = load_jobinfo(documentid, done)
+    return info.owner
+
+
+def load_jobinfo(documentid: str, done: bool = True):
+    source = ready(documentid) if done else todo(documentid)
+    path = os.path.join(source, link.JOB_FILE_NAME)
+    loaded = link.load_job(path)
+    return loaded
 
 
 def document(documentid: str) -> str:

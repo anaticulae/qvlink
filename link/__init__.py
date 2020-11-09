@@ -22,6 +22,7 @@ from link.control import write_optimized_findings
 # Job
 from link.job import JOB_FILE_NAME
 from link.job import NO_FINDINGS
+from link.job import PUBLIC_OWNER
 from link.job import FindingStatus
 from link.job import JobInfo
 from link.job import count_ready
@@ -36,7 +37,9 @@ from link.state import done_ as done
 from link.state import fastview
 from link.state import fastview_done
 from link.state import inprogress
+from link.state import load_jobinfo
 from link.state import optimized
+from link.state import owner
 from link.state import pdfinfo
 from link.state import ready
 from link.state import ready_deleted
