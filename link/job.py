@@ -43,6 +43,9 @@ class JobInfo:
     hashlink: str = None
     owner: str = None
 
+    def __post_init__(self):
+        assert isinstance(self.index, str), type(self.index)
+
 
 def dump_job(info: JobInfo) -> str:
     """Convert to yaml representation."""

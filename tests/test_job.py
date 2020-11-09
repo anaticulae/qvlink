@@ -17,7 +17,7 @@ def test_dump_and_load():
         title='Name',
         date='Date',
         result=link.FindingStatus(10, 20, 30),
-        index=1337,
+        index='AFC1337ACD',
     )
     dumped = link.dump_job(config)
     loaded = link.load_job(dumped)
