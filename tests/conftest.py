@@ -27,22 +27,22 @@ def common(tmpdir):
     os.makedirs(todo)
     os.makedirs(ready)
 
-    for item in [1234, 5555, 4321]:
-        folder = os.path.join(todo, '%d' % item)
+    for item in ['1234', '5555', '4321']:
+        folder = os.path.join(todo, item)
         os.makedirs(folder)
         output = os.path.join(folder, link.JOB_FILE_NAME)
         result = link.JobInfo(
-            'Super Duper Masterarbeit',
-            '2019.04.01',
-            None,
-            item,
+            title='Super Duper Masterarbeit',
+            date='2019.04.01',
+            index=item,
+            result=None,
             owner=link.PUBLIC_OWNER,
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
 
-    for item in [3333, 5555]:
-        folder = os.path.join(ready, '%d' % item)
+    for item in ['3333', '5555']:
+        folder = os.path.join(ready, item)
         os.makedirs(folder)
         output = os.path.join(folder, link.JOB_FILE_NAME)
         result = link.JobInfo(

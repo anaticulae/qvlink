@@ -36,7 +36,7 @@ class JobInfo:
     """Short description for identifying the job."""
     title: str
     date: str
-    index: int
+    index: str
     result: FindingStatus = None
     done: bool = False
     password: str = None
