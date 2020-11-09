@@ -44,10 +44,21 @@ def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
+def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W0621
+    with patch_todo(common, monkeypatch):
+        jobs_todo, _ = collect_jobs(
+            common,
+            owner=link.PUBLIC_OWNER,
+            skip_removed=True,  # increase test coverage
+        )
+    assert len(jobs_todo) == 3
+
+
 @fixture
 def common(tmpdir):
-    """Create common folder with `todo` and `ready` folder. Todo contains 3
-    elements, ready 2."""
+    """Create common folder with `todo` and `ready` folder. Todo
+    contains 3 elements, ready 2."""
+    # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
     todo = join(tmpdir, 'todo')
     ready = join(tmpdir, 'ready')
     makedirs(todo)
@@ -57,7 +68,13 @@ def common(tmpdir):
         folder = join(todo, '%d' % item)
         makedirs(folder)
         output = join(folder, JOB_FILE_NAME)
-        result = JobInfo('Super Duper Masterarbeit', '2019.04.01', None, item)
+        result = JobInfo(
+            'Super Duper Masterarbeit',
+            '2019.04.01',
+            None,
+            item,
+            owner=link.PUBLIC_OWNER,
+        )
         dumped = dump_job(result)
         utila.file_create(output, dumped)
 
