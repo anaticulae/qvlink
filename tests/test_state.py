@@ -14,10 +14,7 @@ import utila
 
 import link
 import tests
-# pylint:disable=W0611
 from tests.fixtures import DOCUMENT
-from tests.fixtures import broken
-from tests.fixtures import example
 
 
 def test_state_init(example, monkeypatch):  # pylint:disable=W0621
