@@ -11,15 +11,11 @@ import contextlib
 import os
 
 import configo
+import power
 from configo.directory import READY
 from configo.directory import TODO
 
-import link
-
-TEST_DATA = os.path.join(link.ROOT, 'tests/data')
-assert os.path.exists(TEST_DATA), TEST_DATA
-
-MINIMAL = os.path.join(TEST_DATA, 'minimal.pdf')
+MINIMAL = power.DOCU07_PDF
 assert os.path.exists(MINIMAL), MINIMAL
 
 
