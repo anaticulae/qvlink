@@ -135,20 +135,11 @@ def create_todo(
 
     # filename = secure_filename(file.filename)
     # Create job information
-    date = current_date()
+    date = utila.timedate()
     job = link.JobInfo(title=filename, date=date, name=todoname, owner=owner)
     dumped = link.dump_job(job)
     utila.file_create(infopath, dumped)
     return path
-
-
-def current_date() -> str:
-    """Determine current date and time
-
-    Format:
-        year:month:day hour:second
-    """
-    return f'{utila.today()} {utila.current()}'
 
 
 def sortable_date(date: str) -> str:

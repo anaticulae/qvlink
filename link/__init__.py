@@ -50,7 +50,6 @@ from link.state import todo_deleted
 # Workspace
 from link.workspace import collect_jobs
 from link.workspace import create_todo
-from link.workspace import current_date
 from link.workspace import find_free_todo
 from link.workspace import sortable_date
 
