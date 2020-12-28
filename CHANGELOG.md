@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.0.5
+
+### Feature
+
+* add todopath to bypass configo for testing purpose (7a1ff925b628)
+
+### Documentation
+
+* fix spelling error (2f8d0b1caeab)
+
 ## v2.0.4
 
 ## v2.0.3
