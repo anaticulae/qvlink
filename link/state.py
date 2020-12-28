@@ -185,8 +185,10 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     return ProcessState.UNDEFINED
 
 
-def todo(documentid: str) -> str:
-    result = os.path.join(configo.todo(), documentid)
+def todo(documentid: str, todopath=None) -> str:
+    if not todopath:
+        todopath = configo.todo()
+    result = os.path.join(todopath, documentid)
     return result
 
 
