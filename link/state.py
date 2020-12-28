@@ -78,7 +78,7 @@ ERROR*
 ~~~~~~
 
 * If some exceptions occurs, goto error mode
-* Info user about technical error
+* Inform user about technical error
 
 Path
 ----
