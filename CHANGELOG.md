@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.2.0
+
+### Feature
+
+* add Error state to current (72a12fe78d0e)
+* add method to check fail state and add fail state (25345a460167)
+
 ## v2.1.1
 
 ### Feature
