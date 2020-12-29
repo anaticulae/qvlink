@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.1.0
+
+### Feature
+
+* add progress step update method (30fc6581f040)
+* add method to update progress and determine progress (8084a098edb2)
+
 ## v2.0.5
 
 ### Feature
