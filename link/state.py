@@ -263,6 +263,8 @@ def owner(documentid: str, done: bool = True) -> str:
 
 def progress(documentid: str) -> int:
     path = inprogress(documentid)
+    if not os.path.exists(path):
+        return -1
     result = utila.file_read(path)
     result = int(float(result))  # TODO: REPLACE WITH UTILA CODE
     return result
