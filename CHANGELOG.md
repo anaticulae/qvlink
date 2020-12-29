@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.2.1
+
+### Fix
+
+* return invalid progress if file does not exists (cbe265a52f20)
+
 ## v2.2.0
 
 ### Feature
