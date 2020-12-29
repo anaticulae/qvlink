@@ -32,6 +32,18 @@ def test_state_start(example, monkeypatch):
     assert state == link.ProcessState.STARTED
 
 
+def test_state_delete(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
+        link.control.start_progress(DOCUMENT)
+        state = link.current(DOCUMENT)
+        assert state == link.ProcessState.STARTED
+        link.delete(DOCUMENT)
+        state = link.current(DOCUMENT)
+        assert state == link.ProcessState.DELETED
+        # do not delete twice
+        assert link.delete(DOCUMENT) is False
+
+
 def test_state_verify(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
