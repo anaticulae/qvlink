@@ -253,7 +253,14 @@ def owner(documentid: str, done: bool = True) -> str:
     return info.owner
 
 
-def load_jobinfo(documentid: str, done: bool = True):
+def progress(documentid: str) -> int:
+    path = inprogress(documentid)
+    result = utila.file_read(path)
+    result = int(float(result))  # TODO: REPLACE WITH UTILA CODE
+    return result
+
+
+def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
     source = ready(documentid) if done else todo(documentid)
     path = os.path.join(source, link.JOB_FILE_NAME)
     loaded = link.load_job(path)
@@ -268,3 +275,10 @@ def document(documentid: str) -> str:
     if os.path.exists(todo(documentid)):
         return todo(documentid)
     return None
+
+
+def update_progress(documentid: str, value: int):
+    assert 0 <= value <= 100, f'invalid progress: {value}'
+    path = inprogress(documentid)
+    value = str(value).zfill(3)
+    utila.file_replace(path, value)

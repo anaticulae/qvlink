@@ -41,12 +41,14 @@ from link.state import load_jobinfo
 from link.state import optimized
 from link.state import owner
 from link.state import pdfinfo
+from link.state import progress
 from link.state import ready
 from link.state import ready_deleted
 from link.state import resultview
 from link.state import resultview_done
 from link.state import todo
 from link.state import todo_deleted
+from link.state import update_progress
 # Workspace
 from link.workspace import collect_jobs
 from link.workspace import create_todo
