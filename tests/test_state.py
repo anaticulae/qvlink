@@ -120,3 +120,11 @@ def test_state_progress(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
         link.update_progress(DOCUMENT, 50.0)
         assert link.progress(DOCUMENT) == 50
+
+
+def test_state_progress_step(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
+        link.update_progress_step(DOCUMENT, 5, 15)
+        assert link.progress(DOCUMENT) == 33
+        link.update_progress_step(DOCUMENT, 15, 15)
+        assert link.progress(DOCUMENT) == 100

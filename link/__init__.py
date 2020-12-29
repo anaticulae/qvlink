@@ -50,6 +50,7 @@ from link.state import resultview_done
 from link.state import todo
 from link.state import todo_deleted
 from link.state import update_progress
+from link.state import update_progress_step
 # Workspace
 from link.workspace import collect_jobs
 from link.workspace import create_todo

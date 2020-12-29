@@ -282,3 +282,10 @@ def update_progress(documentid: str, value: int):
     path = inprogress(documentid)
     value = str(value).zfill(3)
     utila.file_replace(path, value)
+
+
+def update_progress_step(documentid: str, value: int, maxvalue: int):
+    assert 0 <= value <= maxvalue, f'invalid value: {value} <= {maxvalue}'
+    percent = (value / maxvalue) * 100
+    percent = utila.roundme(percent)
+    update_progress(documentid, percent)
