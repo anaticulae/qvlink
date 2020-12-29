@@ -14,23 +14,25 @@ import utila
 
 import link
 import tests
-from tests.fixtures import DOCUMENT
+import tests.fixtures
+
+DOCUMENT = tests.fixtures.DOCUMENT
 
 
-def test_state_init(example, monkeypatch):  # pylint:disable=W0621
+def test_state_init(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         state = link.current(DOCUMENT)
     assert state == link.ProcessState.NEW
 
 
-def test_state_start(example, monkeypatch):  # pylint:disable=W0621
+def test_state_start(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
         state = link.current(DOCUMENT)
     assert state == link.ProcessState.STARTED
 
 
-def test_state_verify(example, monkeypatch):  # pylint:disable=W0621
+def test_state_verify(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -38,7 +40,7 @@ def test_state_verify(example, monkeypatch):  # pylint:disable=W0621
     assert state == link.ProcessState.VERIFIED
 
 
-def test_state_verify_broken(broken, monkeypatch):  # pylint:disable=W0621
+def test_state_verify_broken(broken, monkeypatch):
     with tests.patch.patch_todo(broken, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -46,7 +48,7 @@ def test_state_verify_broken(broken, monkeypatch):  # pylint:disable=W0621
     assert state == link.ProcessState.INVALID
 
 
-def test_state_verify_start_analysis(example, monkeypatch):  # pylint:disable=W0621
+def test_state_verify_start_analysis(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -55,7 +57,7 @@ def test_state_verify_start_analysis(example, monkeypatch):  # pylint:disable=W0
     assert state == link.ProcessState.ANALYSIS
 
 
-def test_state_verify_finish(example, monkeypatch):  # pylint:disable=W0621
+def test_state_verify_finish(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -69,7 +71,7 @@ def test_state_verify_finish(example, monkeypatch):  # pylint:disable=W0621
 
 
 @contextlib.contextmanager
-def completed(example, monkeypatch):  # pylint:disable=W0621
+def completed(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
         link.verify(DOCUMENT)
@@ -82,7 +84,7 @@ def completed(example, monkeypatch):  # pylint:disable=W0621
         yield
 
 
-def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
+def test_state_verify_publish(example, monkeypatch):
     with completed(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
         assert os.path.join(ready), ready
@@ -90,7 +92,7 @@ def test_state_verify_publish(example, monkeypatch):  # pylint:disable=W0621
             assert os.path.exists(os.path.join(ready, item)), item
 
 
-def test_state_verify_result(example, monkeypatch):  # pylint:disable=W0621
+def test_state_verify_result(example, monkeypatch):
     """Ensure that path refer to copied `ready` result instead of `todo`
     directory."""
     # TODO: THIS TEST SEEMS TO BE VERY USELESS
