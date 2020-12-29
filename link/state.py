@@ -117,8 +117,7 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
 
     >>> assert current('doesnotexists') is None
     """
-    if not (os.path.exists(todo(documentid)) or
-            os.path.exists(ready(documentid))):
+    if not document(documentid):
         # process does not exists
         return None
     inprogressed = os.path.exists(inprogress(documentid))
