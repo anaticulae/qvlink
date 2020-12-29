@@ -15,16 +15,16 @@ import utila
 import utila.logger
 
 import link
+import link.job
 import link.state
 
-PROGRESS_START = '000'
+PROGRESS_START = 0
 
 
 def start_progress(document: str):
     assert_state(link.ProcessState.NEW, document)
 
-    path = link.state.inprogress(document)
-    utila.file_create(path, PROGRESS_START)
+    link.update_progress(document, PROGRESS_START)
 
     assert_state(link.ProcessState.STARTED, document)
 
