@@ -33,6 +33,7 @@ from link.job import load_job
 # state
 from link.state import ProcessState
 from link.state import current
+from link.state import deleted
 from link.state import document
 from link.state import done_ as done
 from link.state import fastview

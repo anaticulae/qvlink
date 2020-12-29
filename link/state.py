@@ -161,12 +161,8 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     published = all([
         publish,
     ])
-    deleted = any([
-        os.path.exists(ready_deleted(documentid)),
-        os.path.exists(todo_deleted(documentid)),
-    ])
 
-    if deleted:
+    if deleted(documentid):
         return ProcessState.DELETED
     if published:
         return ProcessState.PUBLISHED
@@ -241,6 +237,14 @@ def todo_deleted(documentid: str) -> str:
 
 def ready_deleted(documentid: str) -> str:
     return os.path.join(ready(documentid), 'deleted')
+
+
+def deleted(documentid: str) -> bool:
+    if os.path.exists(todo_deleted(documentid)):
+        return True
+    if os.path.exists(ready_deleted(documentid)):
+        return True
+    return False
 
 
 def done_(documentid: str) -> str:
