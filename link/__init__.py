@@ -11,6 +11,7 @@ import os
 
 import link.__patch__
 # control
+from link.control import PROGRESS_START
 from link.control import delete
 from link.control import finish_fastview
 from link.control import finish_resultview

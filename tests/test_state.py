@@ -114,3 +114,9 @@ def test_state_verify_result(example, monkeypatch):
     assert resultview.endswith('ready/example/result'), resultview
     assert fastview_done.endswith('ready/example/fastview/done'), fastview_done
     assert resultview_done.endswith('ready/example/result/done'), resultview_done # yapf:disable
+
+def test_state_progress(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
+        link.control.start_progress(DOCUMENT)
+        link.update_progress(DOCUMENT, 50.0)
+        assert link.progress(DOCUMENT) == 50
