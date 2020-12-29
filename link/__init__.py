@@ -36,6 +36,8 @@ from link.state import current
 from link.state import deleted
 from link.state import document
 from link.state import done_ as done
+from link.state import fail
+from link.state import failed
 from link.state import fastview
 from link.state import fastview_done
 from link.state import inprogress

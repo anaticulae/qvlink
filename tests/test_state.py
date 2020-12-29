@@ -44,6 +44,14 @@ def test_state_delete(example, monkeypatch):
         assert link.delete(DOCUMENT) is False
 
 
+def test_state_failed(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
+        link.control.start_progress(DOCUMENT)
+        link.fail(DOCUMENT)
+        state = link.current(DOCUMENT)
+        assert state == link.ProcessState.ERROR
+
+
 def test_state_verify(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)

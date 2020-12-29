@@ -112,7 +112,7 @@ class ProcessState(enum.Enum):
     UNDEFINED = enum.auto()
 
 
-def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals
+def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals, R1260
     """Determine state of process defined by `documentid` location.
 
     >>> assert current('doesnotexists') is None
@@ -264,6 +264,17 @@ def progress(documentid: str) -> int:
     result = utila.file_read(path)
     result = int(float(result))  # TODO: REPLACE WITH UTILA CODE
     return result
+
+
+def fail(documentid: str, error: str = None):
+    path = os.path.join(document(documentid), 'failed')
+    error = error or ''
+    utila.file_replace(path, error)
+
+
+def failed(documentid: str) -> bool:
+    path = os.path.join(document(documentid), 'failed')
+    return os.path.exists(path)
 
 
 def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
