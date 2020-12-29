@@ -113,7 +113,8 @@ def test_state_verify_result(example, monkeypatch):
     assert fastview.endswith('ready/example/fastview'), fastview
     assert resultview.endswith('ready/example/result'), resultview
     assert fastview_done.endswith('ready/example/fastview/done'), fastview_done
-    assert resultview_done.endswith('ready/example/result/done'), resultview_done # yapf:disable
+    assert resultview_done.endswith('ready/example/result/done'), resultview_done  # yapf:disable
+
 
 def test_state_progress(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
