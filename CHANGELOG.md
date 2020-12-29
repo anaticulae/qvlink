@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.1.1
+
+### Feature
+
+* add inprogressed method (bba413b888c3)
+* add deleted method (a53350277f50)
+
 ## v2.1.0
 
 ### Feature
