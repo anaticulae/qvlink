@@ -120,7 +120,6 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     if not document(documentid):
         # process does not exists
         return None
-    inprogressed = os.path.exists(inprogress(documentid))
 
     publish = os.path.exists(os.path.join(ready(documentid), 'done'))
     pdfinfopath = pdfinfo(documentid)
@@ -134,10 +133,10 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
         os.path.exists(os.path.join(todo(documentid), link.job.JOB_FILE_NAME)),
         (not os.path.exists(ready(documentid)) or equal_path),
         not os.path.exists(pdfinfopath),
-        not inprogressed,
+        not inprogressed(documentid),
     ])
     started = all([
-        inprogressed,
+        inprogressed(documentid),
     ])
     verified = all([
         started,
@@ -203,6 +202,10 @@ def pdfinfo(documentid: str) -> str:
 def inprogress(documentid: str) -> str:
     result = os.path.join(todo(documentid), 'inprogress')
     return result
+
+
+def inprogressed(documentid: str) -> bool:
+    return os.path.exists(inprogress(documentid))
 
 
 def fastview(documentid: str, done: bool = False) -> str:

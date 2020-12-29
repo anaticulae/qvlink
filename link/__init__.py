@@ -39,6 +39,7 @@ from link.state import done_ as done
 from link.state import fastview
 from link.state import fastview_done
 from link.state import inprogress
+from link.state import inprogressed
 from link.state import load_jobinfo
 from link.state import optimized
 from link.state import owner
