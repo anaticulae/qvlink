@@ -162,6 +162,8 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
 
     if deleted(documentid):
         return ProcessState.DELETED
+    if failed(documentid):
+        return ProcessState.ERROR
     if published:
         return ProcessState.PUBLISHED
     if analysed:
