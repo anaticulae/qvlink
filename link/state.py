@@ -120,7 +120,7 @@ class State(enum.Enum):
     FAILED = 2
 
     @staticmethod
-    def fromstr(item: str):
+    def fromstr(item: str) -> 'State':
         """\
         >>> State.fromstr('2')
         <State.FAILED: 2>
@@ -131,6 +131,27 @@ class State(enum.Enum):
             if state.value == item:
                 return state
         raise ValueError(f'could not create State from `{item}`')
+
+    @staticmethod
+    def fromstate(state: ProcessState) -> 'State':
+        """\
+        >>> State.fromstate(ProcessState.VERIFIED)
+        <State.RUNNING: 1>
+        """
+        if state == ProcessState.NEW:
+            return State.WAITING
+        if state in (ProcessState.INVALID, ProcessState.ERROR):
+            return State.FAILED
+        if state == ProcessState.PUBLISHED:
+            return State.DONE
+        return State.RUNNING
+
+    def __int__(self):
+        """\
+        >>> int(State.FAILED)
+        2
+        """
+        return self.value
 
 
 def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals, R1260
