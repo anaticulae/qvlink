@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.3.1
+
+### Feature
+
+* add method to convert ProcessState to State (3b44a3d6f8ed)
+* add option to return raw job representation (a7018810ba90)
+
 ## v2.3.0
 
 ### Feature
