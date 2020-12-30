@@ -271,13 +271,19 @@ def progress(documentid: str) -> int:
 
 
 def fail(documentid: str, error: str = None):
-    path = os.path.join(document(documentid), 'failed')
+    path = document(documentid)
+    if not path:
+        return
+    path = os.path.join(path, 'failed')
     error = error or ''
     utila.file_replace(path, error)
 
 
 def failed(documentid: str) -> bool:
-    path = os.path.join(document(documentid), 'failed')
+    path = document(documentid)
+    if not path:
+        return None
+    path = os.path.join(path, 'failed')
     return os.path.exists(path)
 
 
