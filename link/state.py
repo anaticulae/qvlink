@@ -89,6 +89,7 @@ Path
 
 """
 
+import contextlib
 import enum
 import os
 
@@ -110,6 +111,26 @@ class ProcessState(enum.Enum):
     ERROR = enum.auto()
     DELETED = enum.auto()
     UNDEFINED = enum.auto()
+
+
+class State(enum.Enum):
+    WAITING = -1
+    DONE = 0
+    RUNNING = 1
+    FAILED = 2
+
+    @staticmethod
+    def fromstr(item: str):
+        """\
+        >>> State.fromstr('2')
+        <State.FAILED: 2>
+        """
+        with contextlib.suppress(ValueError):
+            item = int(item)
+        for state in State:
+            if state.value == item:
+                return state
+        raise ValueError(f'could not create State from `{item}`')
 
 
 def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals, R1260

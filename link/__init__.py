@@ -32,6 +32,7 @@ from link.job import dump_job
 from link.job import load_job
 # state
 from link.state import ProcessState
+from link.state import State
 from link.state import current
 from link.state import deleted
 from link.state import document
