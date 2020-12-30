@@ -49,7 +49,7 @@ class JobInfo:
         assert isinstance(self.name, str), type(self.name)
 
 
-def dump_job(info: JobInfo) -> str:
+def dump_job(info: JobInfo, convert: bool = True) -> str:
     """Convert to yaml representation."""
     result = {
         'title': info.title,
@@ -64,8 +64,8 @@ def dump_job(info: JobInfo) -> str:
         result['password'] = info.password
     if info.hashlink:
         result['hashlink'] = info.hashlink
-
-    dumped = yaml.dump(result)
+    # convert to yaml
+    dumped = yaml.dump(result) if convert else result
     return dumped
 
 
