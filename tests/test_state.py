@@ -10,6 +10,7 @@
 import contextlib
 import os
 
+import pytest
 import utila
 
 import link
@@ -149,3 +150,8 @@ def test_state_progress_step(example, monkeypatch):
         assert link.progress(DOCUMENT) == 33
         link.update_progress_step(DOCUMENT, 15, 15)
         assert link.progress(DOCUMENT) == 100
+
+
+def test_status_fromstr_error():
+    with pytest.raises(ValueError):
+        link.State.fromstr('')
