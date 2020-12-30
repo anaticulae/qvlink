@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.2.2
+
+### Fix
+
+* skip non existing documents (f1fad7bfd338)
+
 ## v2.2.1
 
 ### Fix
