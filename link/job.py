@@ -38,10 +38,12 @@ class JobInfo:
     date: str
     name: str
     result: FindingStatus = None
+    # TODO: REPLACE DONE BY PROPERTY DONE WITH STATE CHECK
     done: bool = False
     password: str = None
     hashlink: str = None
     owner: str = None
+    state: int = None
 
     def __post_init__(self):
         assert isinstance(self.name, str), type(self.name)
@@ -56,6 +58,7 @@ def dump_job(info: JobInfo) -> str:
         'name': info.name,
         'done': info.done,
         'owner': info.owner,
+        'state': info.state,
     }
     if info.password:
         result['password'] = info.password
@@ -109,6 +112,7 @@ def load_job(path: str) -> JobInfo:
         name=config['name'],
         owner=config['owner'],
         done=config.get('done', False),
+        state=config.get('state', None),
         password=config.get('password', None),
         hashlink=config.get('hashlink', None),
     )
