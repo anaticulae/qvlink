@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.3.0
+
+### Feature
+
+* add state parameter (fdf0706a16a4)
+* move enum State from viewo project (7de64cf579b9)
+
 ## v2.2.2
 
 ### Fix
