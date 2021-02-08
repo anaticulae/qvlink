@@ -17,15 +17,16 @@ import link
 
 def collect_jobs(
         path: str = None,
-        skip_removed: bool = False,
         owner: str = None,
+        *,
+        skip_removed: bool = False,
 ) -> tuple:
     """Scan common space for jobs todo and done.
 
     Args:
-        path: path to temporary directory
-        skip_removed: skip jobs which contain deleted mark
-        owner: skip all jobs which does not match owner id. Options:
+        path(str): path to temporary directory
+        skip_removed(bool): skip jobs which contain deleted mark
+        owner(str): skip all jobs which does not match owner id. Options:
                - None: do not check owner id
                - PUBLIC: 00000000
                - Rest
@@ -101,6 +102,7 @@ def create_todo(
         todopath: str = None,
         todoname: str = None,
         owner: str = None,
+        *,
         exist_ok: bool = False,
 ) -> str:
     """Create working folder, add info.yaml and write `file` to todo dir
