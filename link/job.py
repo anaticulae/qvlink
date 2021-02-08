@@ -98,7 +98,10 @@ NO_FINDINGS = FindingStatus(0, 0, 0)
 
 def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path` or yaml raw str."""
-    config = utila.yaml_from_raw_or_path(path)
+    config = utila.yaml_from_raw_or_path(
+        path,
+        fname='info',
+    )
 
     findings = findingstatus_fromdict(
         config.get('result', None),
