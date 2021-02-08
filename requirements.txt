@@ -7,9 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-configo>=0.8.6<1.0.0
-utila>=2.16.1<3.0.0
+configo>=0.9.0<1.0.0
+utila>=2.20.1<3.0.0
 
-rawmaker>=2.9.4<3.0.0
+rawmaker>=2.13.1<3.0.0
 
-protocol>=3.2.1<4.0.0
+protocol>=3.5.0<4.0.0
