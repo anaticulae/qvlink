@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.4.1
+
+### Feature
+
+* add default file name (1b14fa77d562)
+
+### Documentation
+
+* make interface more explicit (63644ac8db13)
+
 ## v2.4.0
 
 ### Feature
