@@ -71,3 +71,17 @@ def test_access_owner(common, monkeypatch):  # pylint:disable=W0621
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.owner('1234', done=False) == link.PUBLIC_OWNER
         assert link.owner('3333') is None
+
+
+DEBUG = """\
+queuemo 1.1.1
+
+# comment
+rawmaker 2.0.0
+"""
+
+
+def test_load_debug():
+    loaded = link.load_debug(DEBUG)
+    assert loaded['rawmaker'] == '2.0.0'
+    assert loaded['queuemo'] == '1.1.1'

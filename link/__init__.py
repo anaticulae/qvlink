@@ -29,6 +29,7 @@ from link.job import JobInfo
 from link.job import count_ready
 from link.job import count_todo
 from link.job import dump_job
+from link.job import load_debug
 from link.job import load_job
 # state
 from link.state import ProcessState
