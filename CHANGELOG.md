@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.3.2
+
+### Feature
+
+* add flag to not fail on existing workspace folder (2e32d9b8f622)
+
+### Documentation
+
+* Happy New Year! (65fe069a584c)
+
 ## v2.3.1
 
 ### Feature
