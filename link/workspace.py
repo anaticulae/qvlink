@@ -101,6 +101,7 @@ def create_todo(
         todopath: str = None,
         todoname: str = None,
         owner: str = None,
+        exist_ok: bool = False,
 ) -> str:
     """Create working folder, add info.yaml and write `file` to todo dir
 
@@ -112,6 +113,7 @@ def create_todo(
         todoname(str): name of todo folder to save file in. If None
                        todoname is automatically generated.
         owner(str): user which can access document
+        exist_ok(bool): do not fail on existing output directory
     Returns:
         path to created todo with job content
     """
@@ -121,9 +123,7 @@ def create_todo(
         todopath = configo.todo()
 
     path = os.path.join(todopath, todoname)
-    assert not os.path.exists(path)
-
-    os.makedirs(path)
+    os.makedirs(path, exist_ok=exist_ok)
     filepath = os.path.join(path, todoname)
     infopath = os.path.join(path, link.JOB_FILE_NAME)
     # Copy provied file to todo location
