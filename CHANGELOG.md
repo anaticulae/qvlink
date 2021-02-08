@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.4.0
+
+### Feature
+
+* add method to load debug information (52f93815cc3a)
+
 ## v2.3.2
 
 ### Feature
