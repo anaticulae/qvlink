@@ -115,7 +115,7 @@ def publish(document: str):
             verbose=verbose,
         )
 
-        utila.log('copy optimized')
+        # utila.log('copy optimized')
         # utila.copy_content(
         #     link.optimized(document),
         #     link.optimized(document, done=True),
