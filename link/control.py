@@ -39,6 +39,8 @@ def verify(document: str):
     result = utila.run(f'pdfinfo -i {pdf} -o {workspace}')
     assert result.returncode == utila.SUCCESS, (result.stderr + result.stdout)
 
+    utila.run(f'abel -i {pdf} -o {workspace}', expect=None)
+
     assert_state(
         [link.ProcessState.VERIFIED, link.ProcessState.INVALID],
         document,
