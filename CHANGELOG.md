@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.5.0
+
+### Feature
+
+* run abel to gather document information (de92491198f5)
+
 ## v2.4.1
 
 ### Feature
