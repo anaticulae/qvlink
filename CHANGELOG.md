@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.5.1
+
+### Feature
+
+* add argument to skip coping files (8b50e6a22321)
+
 ## v2.5.0
 
 ### Feature
