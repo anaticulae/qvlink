@@ -75,7 +75,15 @@ def finish_resultview(document: str):
     utila.file_create(resultview)
 
 
-def publish(document: str):
+def publish(
+        document: str,
+        skip_fastview: callable = None,
+        skip_resultview: callable = None,
+):
+    """\
+    skip_fastview: do not copy file to public view
+    skip_resultview: do not copy file to public view
+    """
     assert_state(
         [link.ProcessState.ANALYSED, link.ProcessState.INVALID],
         document,
@@ -106,6 +114,7 @@ def publish(document: str):
             recursive=True,
             skip_equal=equal_location,
             verbose=verbose,
+            ignore=skip_fastview,
         )
 
         utila.log('copy resultview')
@@ -115,6 +124,7 @@ def publish(document: str):
             recursive=True,
             skip_equal=equal_location,
             verbose=verbose,
+            ignore=skip_resultview,
         )
 
         # utila.log('copy optimized')
