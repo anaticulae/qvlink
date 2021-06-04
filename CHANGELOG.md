@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.6.0
+
+### Feature
+
+* encrypt private user data (7594a7c4dbfc)
+
 ## v2.5.1
 
 ### Feature
