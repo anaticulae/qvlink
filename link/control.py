@@ -174,7 +174,7 @@ def assert_state(state, document):
     current = link.current(document)
     if not isinstance(state, list):
         state = [state]
-    assert any([current == item for item in state]), current
+    assert any(current == item for item in state), current
 
 
 def delete(documentid: str) -> bool:
