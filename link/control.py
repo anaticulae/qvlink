@@ -104,27 +104,30 @@ def publish(
     if not equal_location:
         utila.copy_content(source, destination, pattern='pdfinfo.json')
         utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
-
+    # decide if we encrypt result
+    private = link.owner(document, done=False) != link.PUBLIC_OWNER
     if utila.file_read(link.pdfinfo(document)) != '{}':
         # publish content only for valid pdf files
         utila.log('copy fastview')
-        utila.copy_content(  # pylint:disable=unexpected-keyword-arg
+        utila.copy_content(
             link.fastview(document),
             link.fastview(document, done=True),
             recursive=True,
             skip_equal=equal_location,
             verbose=verbose,
             ignore=skip_fastview,
+            private=private,
         )
 
         utila.log('copy resultview')
-        utila.copy_content(  # pylint:disable=unexpected-keyword-arg
+        utila.copy_content(
             link.resultview(document),
             link.resultview(document, done=True),
             recursive=True,
             skip_equal=equal_location,
             verbose=verbose,
             ignore=skip_resultview,
+            private=private,
         )
 
         # utila.log('copy optimized')
