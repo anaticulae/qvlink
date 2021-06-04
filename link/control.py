@@ -76,9 +76,9 @@ def finish_resultview(document: str):
 
 
 def publish(
-        document: str,
-        skip_fastview: callable = None,
-        skip_resultview: callable = None,
+    document: str,
+    skip_fastview: callable = None,
+    skip_resultview: callable = None,
 ):
     """\
     skip_fastview: do not copy file to public view

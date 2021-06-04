@@ -16,10 +16,10 @@ import link
 
 
 def collect_jobs(
-        path: str = None,
-        owner: str = None,
-        *,
-        skip_removed: bool = False,
+    path: str = None,
+    owner: str = None,
+    *,
+    skip_removed: bool = False,
 ) -> tuple:
     """Scan common space for jobs todo and done.
 
@@ -58,8 +58,8 @@ def collect_jobs(
 
 
 def collect_job_folder(
-        folder: str,
-        skip_removed: bool = False,
+    folder: str,
+    skip_removed: bool = False,
 ):
     result = []
     for item in os.listdir(folder):
@@ -97,13 +97,13 @@ def find_free_todo(todopath: str = None) -> str:
 
 
 def create_todo(
-        file,
-        filename: str = 'default.pdf',
-        todopath: str = None,
-        todoname: str = None,
-        owner: str = None,
-        *,
-        exist_ok: bool = False,
+    file,
+    filename: str = 'default.pdf',
+    todopath: str = None,
+    todoname: str = None,
+    owner: str = None,
+    *,
+    exist_ok: bool = False,
 ) -> str:
     """Create working folder, add info.yaml and write `file` to todo dir
 
