@@ -303,6 +303,10 @@ def owner(documentid: str, done: bool = True) -> str:
     return info.owner
 
 
+def private(documentid: str) -> bool:
+    return owner(documentid, done=False) != link.PUBLIC_OWNER
+
+
 def progress(documentid: str) -> int:
     path = inprogress(documentid)
     if not os.path.exists(path):

@@ -48,6 +48,7 @@ from link.state import load_jobinfo
 from link.state import optimized
 from link.state import owner
 from link.state import pdfinfo
+from link.state import private
 from link.state import progress
 from link.state import ready
 from link.state import ready_deleted
