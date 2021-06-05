@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.7.0
+
+### Feature
+
+* add method to check if document is private (f844eb8971b1)
+
 ## v2.6.0
 
 ### Feature
