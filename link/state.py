@@ -341,8 +341,11 @@ def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
 
 
 def document(documentid: str) -> str:
-    """Access resource folder by `documentid`. Prefere ready over todo
-    folder and return None if none of them exists."""
+    """Access resource folder by `documentid`.
+
+    Prefere ready over todo folder and return None if none of them
+    exists.
+    """
     if os.path.exists(ready(documentid)):
         return ready(documentid)
     if os.path.exists(todo(documentid)):
