@@ -12,6 +12,7 @@ import os
 
 import pytest
 import utila
+import utilatest
 
 import link
 import tests
@@ -33,6 +34,7 @@ def test_state_start(example, monkeypatch):
     assert state == link.ProcessState.STARTED
 
 
+@utilatest.longrun
 def test_state_delete(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
@@ -45,6 +47,7 @@ def test_state_delete(example, monkeypatch):
         assert link.delete(DOCUMENT) is False
 
 
+@utilatest.longrun
 def test_state_failed(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
@@ -53,6 +56,7 @@ def test_state_failed(example, monkeypatch):
         assert state == link.ProcessState.ERROR
 
 
+@utilatest.longrun
 def test_state_verify(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -61,6 +65,7 @@ def test_state_verify(example, monkeypatch):
     assert state == link.ProcessState.VERIFIED
 
 
+@utilatest.longrun
 def test_state_verify_broken(broken, monkeypatch):
     with tests.patch.patch_todo(broken, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -69,6 +74,7 @@ def test_state_verify_broken(broken, monkeypatch):
     assert state == link.ProcessState.INVALID
 
 
+@utilatest.longrun
 def test_state_verify_start_analysis(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -78,6 +84,7 @@ def test_state_verify_start_analysis(example, monkeypatch):
     assert state == link.ProcessState.ANALYSIS
 
 
+@utilatest.longrun
 def test_state_verify_finish(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -105,6 +112,7 @@ def completed(example, monkeypatch):
         yield
 
 
+@utilatest.longrun
 def test_state_verify_publish(example, monkeypatch):
     with completed(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
@@ -113,6 +121,7 @@ def test_state_verify_publish(example, monkeypatch):
             assert os.path.exists(os.path.join(ready, item)), item
 
 
+@utilatest.longrun
 def test_state_verify_result(example, monkeypatch):
     """Ensure that path refer to copied `ready` result instead of `todo`
     directory."""
