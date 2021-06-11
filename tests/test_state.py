@@ -153,3 +153,11 @@ def test_state_progress_step(example, monkeypatch):
 def test_status_fromstr_error():
     with pytest.raises(ValueError):
         link.State.fromstr('')
+
+
+def test_update_bookkeeping(withfindings):
+    documentid = DOCUMENT
+    optimized = link.optimized(documentid, done=True)
+    assert link.load_jobinfo(documentid).result.open == 0
+    assert link.update_bookkeeping(documentid)
+    assert link.load_jobinfo(documentid).result.open == 4
