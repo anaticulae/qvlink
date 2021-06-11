@@ -24,14 +24,14 @@ def test_dump_and_load():
     assert loaded == config
 
 
-def test_common_folder(common, monkeypatch):  # pylint:disable=W0621
+def test_common_folder(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         jobs = link.collect_jobs(common)
 
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
-def test_common_folder_owner_public(common, monkeypatch):  # pylint:disable=W0621
+def test_common_folder_owner_public(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         jobs_todo, _ = link.collect_jobs(
             common,
@@ -59,7 +59,7 @@ def test_delete_job(common, monkeypatch):
         assert len(jobs_todo) == 2
 
 
-def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
+def test_todo_count(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_todo() == 3
 
@@ -67,7 +67,7 @@ def test_todo_count(common, monkeypatch):  # pylint:disable=W0621
         assert link.count_ready() == 2
 
 
-def test_access_owner(common, monkeypatch):  # pylint:disable=W0621
+def test_access_owner(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.owner('1234', done=False) == link.PUBLIC_OWNER
         assert link.owner('3333') is None

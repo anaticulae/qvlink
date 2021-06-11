@@ -20,31 +20,28 @@ DOCUMENT = 'example'
 
 @pytest.fixture
 def example(testdir) -> str:
-    root = str(testdir)
-    todo = os.path.join(root, 'todo')
+    todo = os.path.join(testdir.tmpdir, 'todo')
     os.makedirs(todo, exist_ok=True)
-    ready = os.path.join(root, 'ready')
+    ready = os.path.join(testdir.tmpdir, 'ready')
     os.makedirs(ready, exist_ok=True)
-
-    source = power.DOCU07_PDF
+    # create todo
     link.create_todo(
-        source,
+        power.DOCU07_PDF,
         filename='minimal.pdf',
         todopath=todo,
         todoname=DOCUMENT,
     )
-    return root
+    return testdir.tmpdir
 
 
 @pytest.fixture
 def broken(testdir) -> str:
-    root = str(testdir)
-    todo = os.path.join(root, 'todo')
+    todo = os.path.join(testdir.tmpdir, 'todo')
     os.makedirs(todo, exist_ok=True)
-    ready = os.path.join(root, 'ready')
+    ready = os.path.join(testdir.tmpdir, 'ready')
     os.makedirs(ready, exist_ok=True)
 
-    source = os.path.join(root, 'broken.pdf')
+    source = os.path.join(testdir.tmpdir, 'broken.pdf')
     utila.file_create(source, '')
 
     link.create_todo(
@@ -53,7 +50,7 @@ def broken(testdir) -> str:
         todopath=todo,
         todoname=DOCUMENT,
     )
-    return root
+    return testdir.tmpdir
 
 
 @pytest.fixture
