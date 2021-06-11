@@ -24,6 +24,8 @@ import configo
 import utila
 import yaml
 
+import link
+
 JOB_FILE_NAME = 'info.yaml'
 
 FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
@@ -120,6 +122,15 @@ def load_job(path: str) -> JobInfo:
         hashlink=config.get('hashlink', None),
     )
     return result
+
+
+def save_job(info: JobInfo, done: bool = True):
+    documentid = info.name
+    outpath = link.ready(documentid) if done else link.todo(documentid)
+    outpath = os.path.join(outpath, JOB_FILE_NAME)
+    utila.debug(f'update jobinfo: {outpath}')
+    dumped = dump_job(info)
+    utila.file_replace(outpath, dumped)
 
 
 def load_debug(path: str) -> dict:
