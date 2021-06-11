@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import contextlib
 import os
 
 import pytest
@@ -155,9 +154,8 @@ def test_status_fromstr_error():
         link.State.fromstr('')
 
 
-def test_update_bookkeeping(withfindings):
+def test_update_bookkeeping(withfindings):  # pylint:disable=W0613
     documentid = DOCUMENT
-    optimized = link.optimized(documentid, done=True)
     assert link.load_jobinfo(documentid).result.open == 0
     assert link.update_bookkeeping(documentid)
     assert link.load_jobinfo(documentid).result.open == 4
