@@ -138,8 +138,7 @@ def publish(
         #     verbose=True,
         # )
 
-    if not equal_location:
-        utila.file_create(link.done(document))
+    make_done(document)
 
     assert_state(link.ProcessState.PUBLISHED, document)
 
@@ -175,6 +174,23 @@ def assert_state(state, document):
     if not isinstance(state, list):
         state = [state]
     assert any(current == item for item in state), current
+
+
+def make_done(documentid: str) -> bool:
+    if link.current(documentid) == link.ProcessState.PUBLISHED:
+        return False
+    source = os.path.join(configo.todo(), documentid)
+    destination = os.path.join(configo.ready(), documentid)
+    equal_location = source == destination
+    if equal_location:
+        utila.error('could not add done to equal location')
+        return False
+    jobinfo = link.load_jobinfo(documentid, done=False)
+    # set done flag
+    jobinfo.done = True
+    link.save_job(jobinfo, done=True)
+    utila.file_create(link.done(documentid))
+    return True
 
 
 def delete(documentid: str) -> bool:
