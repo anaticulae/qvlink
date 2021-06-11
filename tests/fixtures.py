@@ -9,11 +9,11 @@
 
 import os
 
+import power
 import pytest
 import utila
 
 import link
-import tests
 
 DOCUMENT = 'example'
 
@@ -26,7 +26,7 @@ def example(testdir) -> str:
     ready = os.path.join(root, 'ready')
     os.makedirs(ready, exist_ok=True)
 
-    source = tests.MINIMAL
+    source = power.DOCU07_PDF
     link.create_todo(
         source,
         filename='minimal.pdf',

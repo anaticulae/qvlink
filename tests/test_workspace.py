@@ -10,6 +10,7 @@
 import os
 
 import configo
+import power
 import utila
 
 import link
@@ -53,7 +54,7 @@ def test_create_todo(tmpdir, monkeypatch):
 
 def test_create_todo_pathandname(testdir):
     root = str(testdir)
-    created = link.create_todo(tests.MINIMAL, 'testfile.pdf', root, 'helmut')
+    created = link.create_todo(power.DOCU07_PDF, 'testfile.pdf', root, 'helmut')
     assert os.path.exists(created), created
 
 
