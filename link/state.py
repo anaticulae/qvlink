@@ -94,6 +94,8 @@ import enum
 import os
 
 import configo
+import iamraw
+import protocol
 import utila
 
 import link.job
@@ -365,3 +367,24 @@ def update_progress_step(documentid: str, value: int, maxvalue: int):
     percent = (value / maxvalue) * 100
     percent = utila.roundme(percent)
     update_progress(documentid, percent)
+
+
+def update_bookkeeping(documentid: str) -> bool:
+    path = link.optimized(documentid, done=True)
+    findings = protocol.load_grouped(path)
+    findings = utila.flatten([page.content for page in findings])
+    opened, closed, excluded = 0, 0, 0
+    for finding in findings:
+        status = finding.solution.status
+        if status == iamraw.ProblemStatus.OPEN:
+            opened += 1
+        elif status == iamraw.ProblemStatus.CLOSED:
+            closed += 1
+        else:
+            excluded += 1
+    job = link.load_jobinfo(documentid)
+    job.result = link.FindingStatus(opened, closed, excluded)
+    # update current job status
+    utila.debug(f'update job information: {documentid}')
+    link.save_job(job)
+    return True

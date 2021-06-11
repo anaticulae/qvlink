@@ -57,6 +57,7 @@ from link.state import resultview
 from link.state import resultview_done
 from link.state import todo
 from link.state import todo_deleted
+from link.state import update_bookkeeping
 from link.state import update_progress
 from link.state import update_progress_step
 # Workspace
