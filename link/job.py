@@ -26,7 +26,7 @@ import yaml
 
 import link
 
-JOB_FILE_NAME = 'info.yaml'
+JOB_FILE_NAME = 'jobinfo.yaml'
 
 FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
 
