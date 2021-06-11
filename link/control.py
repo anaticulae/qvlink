@@ -36,7 +36,7 @@ def verify(document: str):
     workspace = os.path.join(todo, document)
     pdf = os.path.join(workspace, document)
 
-    result = utila.run(f'pdfinfo -i {pdf} -o {workspace}')
+    result = utila.run(f'pdfinfo -i {pdf} -o {workspace} --format=yaml')
     assert result.returncode == utila.SUCCESS, (result.stderr + result.stdout)
 
     utila.run(f'abel -i {pdf} -o {workspace}', expect=None)
@@ -102,7 +102,7 @@ def publish(
     init_jobcounter(source)
 
     if not equal_location:
-        utila.copy_content(source, destination, pattern='pdfinfo.json')
+        utila.copy_content(source, destination, pattern=link.PDFINFO_NAME)
         utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
     # decide if we encrypt result
     private = link.owner(document, done=False) != link.PUBLIC_OWNER

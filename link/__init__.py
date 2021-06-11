@@ -71,3 +71,5 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # use 16 chars/ints to create random job name
 DOCUMENT_ID_LENGTH = 16
+
+PDFINFO_NAME = 'pdfinfo.yaml'

@@ -239,7 +239,7 @@ def pdfinfo(documentid: str) -> str:
     source = todo(documentid)
     if os.path.exists(done_(documentid)):
         source = ready(documentid)
-    result = os.path.join(source, 'pdfinfo.json')
+    result = os.path.join(source, link.PDFINFO_NAME)
     return result
 
 

@@ -118,7 +118,8 @@ def test_state_verify_publish(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
         assert os.path.join(ready), ready
         for item in [
-                'fastview', 'result', 'done', 'pdfinfo.json', link.JOB_FILE_NAME
+                'fastview', 'result', 'done', link.PDFINFO_NAME,
+                link.JOB_FILE_NAME
         ]:
             assert os.path.exists(os.path.join(ready, item)), item
 
