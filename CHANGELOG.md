@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.8.0
+
+### Feature
+
+* add method to update bookkeeping (73ff16ec4460)
+* clarify job file name (0ef65f629d4c)
+* change from json to yaml (2bf8036cc6d7)
+* update done flag while publishing document (59554d3eed84)
+* add method to write job info (496ad67c5e39)
+
 ## v2.7.0
 
 ### Feature
