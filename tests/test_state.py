@@ -98,23 +98,10 @@ def test_state_verify_finish(example, monkeypatch):
     assert state == link.ProcessState.ANALYSED
 
 
-@contextlib.contextmanager
-def completed(example, monkeypatch):
-    with tests.patch.patch_todo(example, monkeypatch):
-        link.start_progress(DOCUMENT)
-        link.verify(DOCUMENT)
-        link.start_analysis(DOCUMENT)
-        link.finish_fastview(DOCUMENT)
-        link.finish_resultview(DOCUMENT)
-        link.publish(DOCUMENT)
-        state = link.current(DOCUMENT)
-        assert state == link.ProcessState.PUBLISHED
-        yield
-
 
 @utilatest.longrun
 def test_state_verify_publish(example, monkeypatch):
-    with completed(example, monkeypatch):
+    with tests.fixtures.complete(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
         assert os.path.join(ready), ready
         for item in [
@@ -130,7 +117,7 @@ def test_state_verify_result(example, monkeypatch):
     directory."""
     # TODO: THIS TEST SEEMS TO BE VERY USELESS
     done = True
-    with completed(example, monkeypatch):
+    with tests.fixtures.complete(example, monkeypatch):
         fastview = link.fastview(DOCUMENT, done)
         resultview = link.resultview(DOCUMENT, done)
         fastview_done = link.fastview_done(DOCUMENT, done)

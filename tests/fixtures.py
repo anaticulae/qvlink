@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import os
 
 import power
@@ -14,6 +15,7 @@ import pytest
 import utila
 
 import link
+import tests.patch
 
 DOCUMENT = 'example'
 
@@ -32,6 +34,29 @@ def example(testdir) -> str:
         todoname=DOCUMENT,
     )
     return testdir.tmpdir
+
+
+@pytest.fixture
+def completed(example, monkeypatch) -> str: # pylint:disable=W0621
+    with complete(example, monkeypatch):
+        pass
+    with tests.patch.patch_todo(example, monkeypatch):
+        ready = os.path.join(example, f'ready/{DOCUMENT}')
+        yield ready
+
+
+@contextlib.contextmanager
+def complete(example, monkeypatch):  # pylint:disable=W0621
+    with tests.patch.patch_todo(example, monkeypatch):
+        link.start_progress(DOCUMENT)
+        link.verify(DOCUMENT)
+        link.start_analysis(DOCUMENT)
+        link.finish_fastview(DOCUMENT)
+        link.finish_resultview(DOCUMENT)
+        link.publish(DOCUMENT)
+        state = link.current(DOCUMENT)
+        assert state == link.ProcessState.PUBLISHED
+        yield
 
 
 @pytest.fixture
