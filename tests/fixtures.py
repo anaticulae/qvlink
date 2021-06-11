@@ -10,7 +10,9 @@
 import contextlib
 import os
 
+import iamraw
 import power
+import protocol
 import pytest
 import utila
 
@@ -37,12 +39,42 @@ def example(testdir) -> str:
 
 
 @pytest.fixture
-def completed(example, monkeypatch) -> str: # pylint:disable=W0621
+def completed(example, monkeypatch) -> str:  # pylint:disable=W0621
     with complete(example, monkeypatch):
         pass
     with tests.patch.patch_todo(example, monkeypatch):
         ready = os.path.join(example, f'ready/{DOCUMENT}')
         yield ready
+
+
+@pytest.fixture
+def withfindings(completed):
+    optimized = link.optimized(DOCUMENT, done=True)
+    os.makedirs(optimized)
+    findings = [
+        iamraw.Finding(
+            number=1337,
+            location=iamraw.Location.from_page(2),
+            solution=iamraw.Solution(),
+        ),
+        iamraw.Finding(
+            number=1338,
+            location=iamraw.Location.from_page(2),
+            solution=iamraw.Solution(),
+        ),
+        iamraw.Finding(
+            number=1339,
+            location=iamraw.Location.from_page(1),
+            solution=iamraw.Solution(),
+        ),
+        iamraw.Finding(
+            number=1339,
+            location=iamraw.Location.from_page(3),
+            solution=iamraw.Solution(),
+        ),
+    ]
+    protocol.write_grouped(findings, optimized)
+    yield completed
 
 
 @contextlib.contextmanager

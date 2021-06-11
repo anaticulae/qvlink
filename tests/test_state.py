@@ -98,7 +98,6 @@ def test_state_verify_finish(example, monkeypatch):
     assert state == link.ProcessState.ANALYSED
 
 
-
 @utilatest.longrun
 def test_state_verify_publish(example, monkeypatch):
     with tests.fixtures.complete(example, monkeypatch):

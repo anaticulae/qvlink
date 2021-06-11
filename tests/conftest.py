@@ -11,5 +11,6 @@ from tests.fixtures import broken  # pylint:disable=W0611
 from tests.fixtures import common  # pylint:disable=W0611
 from tests.fixtures import completed  # pylint:disable=W0611
 from tests.fixtures import example  # pylint:disable=W0611
+from tests.fixtures import withfindings  # pylint:disable=W0611
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
