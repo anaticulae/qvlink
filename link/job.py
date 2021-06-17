@@ -102,14 +102,12 @@ def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path` or yaml raw str."""
     config = utila.yaml_from_raw_or_path(
         path,
-        fname='info',
+        fname=utila.file_name(JOB_FILE_NAME),
     )
-
     findings = findingstatus_fromdict(
         config.get('result', None),
         default=NO_FINDINGS,
     )
-
     result = JobInfo(
         title=config['title'],
         date=config['date'],
