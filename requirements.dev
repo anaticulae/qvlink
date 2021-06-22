@@ -9,3 +9,5 @@
 
 utilatest==0.6.0
 power==1.5.0
+
+rawmaker>=2.19.0<3.0.0
