@@ -123,7 +123,7 @@ def common(tmpdir):
     for item in ['1234', '5555', '4321']:
         folder = os.path.join(todo, item)
         os.makedirs(folder)
-        output = os.path.join(folder, link.JOB_FILE_NAME)
+        output = os.path.join(folder, link.JOBFILE_NAME)
         result = link.JobInfo(
             title='Super Duper Masterarbeit',
             date='2019.04.01',
@@ -137,7 +137,7 @@ def common(tmpdir):
     for item in ['3333', '5555']:
         folder = os.path.join(ready, item)
         os.makedirs(folder)
-        output = os.path.join(folder, link.JOB_FILE_NAME)
+        output = os.path.join(folder, link.JOBFILE_NAME)
         result = link.JobInfo(
             title='Super Masterarbeit',
             date='2019.04.05',

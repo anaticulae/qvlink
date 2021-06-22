@@ -21,7 +21,8 @@ from link.control import start_progress
 from link.control import verify
 from link.control import write_optimized_findings
 # Job
-from link.job import JOB_FILE_NAME
+from link.job import JOB_FILE_NAME  # TODO: REMOVE LATER
+from link.job import JOBFILE_NAME
 from link.job import NO_FINDINGS
 from link.job import PUBLIC_OWNER
 from link.job import FindingStatus

@@ -63,7 +63,7 @@ def collect_job_folder(
 ):
     result = []
     for item in os.listdir(folder):
-        current = os.path.join(folder, item, link.JOB_FILE_NAME)
+        current = os.path.join(folder, item, link.JOBFILE_NAME)
         if not os.path.exists(current):
             utila.error('Job does not exists: %s' % current)
             continue
@@ -127,7 +127,7 @@ def create_todo(
     path = os.path.join(todopath, todoname)
     os.makedirs(path, exist_ok=exist_ok)
     filepath = os.path.join(path, todoname)
-    infopath = os.path.join(path, link.JOB_FILE_NAME)
+    infopath = os.path.join(path, link.JOBFILE_NAME)
     # Copy provied file to todo location
     try:
         file.save(filepath)

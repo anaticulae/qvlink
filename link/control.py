@@ -103,7 +103,7 @@ def publish(
 
     if not equal_location:
         utila.copy_content(source, destination, pattern=link.PDFINFO_NAME)
-        utila.copy_content(source, destination, pattern=link.JOB_FILE_NAME)
+        utila.copy_content(source, destination, pattern=link.JOBFILE_NAME)
     # decide if we encrypt result
     private = link.owner(document, done=False) != link.PUBLIC_OWNER
     if utila.file_read(link.pdfinfo(document)) != '{}':
@@ -162,7 +162,7 @@ def init_jobcounter(source: str):
     jobinfo yaml file."""
     findings = protocol.findings_from_path(source)
     findings = utila.flatten([page.content for page in findings])
-    jobpath = os.path.join(source, link.JOB_FILE_NAME)
+    jobpath = os.path.join(source, link.JOBFILE_NAME)
     current = link.load_job(jobpath)
     current.result = link.FindingStatus(len(findings), 0, 0)
     dumped = link.dump_job(current)

@@ -26,7 +26,8 @@ import yaml
 
 import link
 
-JOB_FILE_NAME = 'jobinfo.yaml'
+JOBFILE_NAME = 'jobinfo.yaml'
+JOB_FILE_NAME = JOBFILE_NAME
 
 FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
 
@@ -102,7 +103,7 @@ def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path` or yaml raw str."""
     config = utila.yaml_from_raw_or_path(
         path,
-        fname=utila.file_name(JOB_FILE_NAME),
+        fname=utila.file_name(JOBFILE_NAME),
     )
     findings = findingstatus_fromdict(
         config.get('result', None),
@@ -125,7 +126,7 @@ def load_job(path: str) -> JobInfo:
 def save_job(info: JobInfo, done: bool = True):
     documentid = info.name
     outpath = link.ready(documentid) if done else link.todo(documentid)
-    outpath = os.path.join(outpath, JOB_FILE_NAME)
+    outpath = os.path.join(outpath, JOBFILE_NAME)
     utila.debug(f'update jobinfo: {outpath}')
     dumped = dump_job(info)
     utila.file_replace(outpath, dumped)
@@ -197,7 +198,7 @@ def validate_todo(path: str) -> bool:
     """
     if not os.path.isdir(path):
         return False
-    if not os.path.exists(os.path.join(path, JOB_FILE_NAME)):
+    if not os.path.exists(os.path.join(path, JOBFILE_NAME)):
         return False
     return True
 

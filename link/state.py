@@ -174,7 +174,7 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     new = all([
         os.path.exists(todo(documentid)),  # valid todo document folder
         os.path.exists(os.path.join(todo(documentid), documentid)),  # pdf file
-        os.path.exists(os.path.join(todo(documentid), link.job.JOB_FILE_NAME)),
+        os.path.exists(os.path.join(todo(documentid), link.job.JOBFILE_NAME)),
         (not os.path.exists(ready(documentid)) or equal_path),
         not os.path.exists(pdfinfopath),
         not inprogressed(documentid),
@@ -337,7 +337,7 @@ def failed(documentid: str) -> bool:
 
 def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
     source = ready(documentid) if done else todo(documentid)
-    path = os.path.join(source, link.JOB_FILE_NAME)
+    path = os.path.join(source, link.JOBFILE_NAME)
     loaded = link.load_job(path)
     return loaded
 
