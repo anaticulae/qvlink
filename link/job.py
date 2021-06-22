@@ -18,6 +18,7 @@ Describes current working status of one document which was uploaded by a user.
 
 import collections
 import dataclasses
+import json
 import os
 import typing
 
@@ -56,7 +57,7 @@ class JobInfo:
 JobInfos = typing.List[JobInfo]
 
 
-def dump_job(info: JobInfo, convert: bool = True) -> str:
+def dump_job(info: JobInfo, convert: str = 'yaml') -> str:
     """Convert to yaml representation."""
     result = {
         'title': info.title,
@@ -71,8 +72,11 @@ def dump_job(info: JobInfo, convert: bool = True) -> str:
         result['password'] = info.password
     if info.hashlink:
         result['hashlink'] = info.hashlink
-    # convert to yaml
-    dumped = yaml.dump(result) if convert else result
+    dumped = result
+    if convert == 'yaml':
+        dumped: str = yaml.dump(dumped)
+    if convert == 'json':
+        dumped: str = json.dumps(dumped)
     return dumped
 
 
