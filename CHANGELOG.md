@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.9.2
+
+### Fix
+
+* determine state for raw jobinfo loader (e9588eb61207)
+
 ## v2.9.1
 
 ### Feature
