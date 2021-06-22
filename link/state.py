@@ -354,7 +354,12 @@ def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
 def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
     """Load jobinfo and convert to plain dict and add pages information
     if present.
+
+    Use done=None to select existing documentid automatically
     """
+    if done is None:
+        # select existing done flag
+        done = os.path.exists(done_(documentid))
     info = load_jobinfo(documentid, done=done)
     pdf = link.pdfinfo(documentid)
     raw = link.dump_job(info, convert=False, password=False)
