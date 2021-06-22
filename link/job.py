@@ -57,7 +57,11 @@ class JobInfo:
 JobInfos = typing.List[JobInfo]
 
 
-def dump_job(info: JobInfo, convert: str = 'yaml') -> str:
+def dump_job(
+    info: JobInfo,
+    convert: str = 'yaml',
+    password: bool = True,
+) -> str:
     """Convert to yaml representation."""
     result = {
         'title': info.title,
@@ -69,7 +73,7 @@ def dump_job(info: JobInfo, convert: str = 'yaml') -> str:
         'state': info.state,
     }
     if info.password:
-        result['password'] = info.password
+        result['password'] = info.password if password else 'XXXXXXXXXXXXXXX'
     if info.hashlink:
         result['hashlink'] = info.hashlink
     dumped = result
