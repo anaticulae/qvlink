@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.9.1
+
+### Feature
+
+* add optional done selector (ddff7fb6457f)
+
 ## v2.9.0
 
 ### Feature
