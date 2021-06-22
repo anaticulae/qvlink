@@ -48,7 +48,7 @@ def completed(example, monkeypatch) -> str:  # pylint:disable=W0621
 
 
 @pytest.fixture
-def withfindings(completed): # pylint:disable=W0621
+def withfindings(completed):  # pylint:disable=W0621
     optimized = link.optimized(DOCUMENT, done=True)
     os.makedirs(optimized)
     findings = [
