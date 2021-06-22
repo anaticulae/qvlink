@@ -305,8 +305,8 @@ def owner(documentid: str, done: bool = True) -> str:
     return info.owner
 
 
-def private(documentid: str) -> bool:
-    return owner(documentid, done=False) != link.PUBLIC_OWNER
+def private(documentid: str, done: bool = False) -> bool:
+    return owner(documentid, done=done) != link.PUBLIC_OWNER
 
 
 def progress(documentid: str) -> int:
