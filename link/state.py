@@ -351,6 +351,18 @@ def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
     return loaded
 
 
+def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
+    """Load jobinfo and convert to plain dict and add pages information
+    if present.
+    """
+    info = load_jobinfo(documentid, done=done)
+    pdf = link.pdfinfo(documentid)
+    raw = link.dump_job(info, convert=False, password=False)
+    if pdf:
+        raw['pages'] = pdf.pages
+    return raw
+
+
 def document(documentid: str) -> str:
     """Access resource folder by `documentid`.
 
