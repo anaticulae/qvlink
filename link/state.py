@@ -166,7 +166,7 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
         return None
 
     publish = os.path.exists(os.path.join(ready(documentid), 'done'))
-    pdfinfopath = pdfinfo(documentid)
+    pdfinfopath = pdfinfo_path(documentid)
 
     # Source and sink are the same. This is required when running queueumo
     # in single mode.
@@ -237,7 +237,7 @@ def ready(documentid: str) -> str:
     return result
 
 
-def pdfinfo(documentid: str) -> str:
+def pdfinfo_path(documentid: str) -> str:
     source = todo(documentid)
     if os.path.exists(done_(documentid)):
         source = ready(documentid)
