@@ -96,6 +96,7 @@ import os
 import configo
 import iamraw
 import protocol
+import serializeraw
 import utila
 
 import link.job
@@ -243,6 +244,14 @@ def pdfinfo_path(documentid: str) -> str:
         source = ready(documentid)
     result = os.path.join(source, link.PDFINFO_NAME)
     return result
+
+
+def pdfinfo(documentid: str) -> iamraw.PDFInfo:
+    path = pdfinfo_path(documentid)
+    if not os.path.exists(path):
+        return None
+    loaded = serializeraw.load_pdfinfo(path)
+    return loaded
 
 
 def inprogress(documentid: str) -> str:
