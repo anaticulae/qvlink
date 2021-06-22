@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v2.9.0
+
+### Feature
+
+* add method to load raw job information (d14144c2092e)
+* add method to load load pdfinfo from documentid (bccc84927685)
+* add parameter to remove password (24796fc0e9aa)
+* add option to convert to json (dbf46d33d09f)
+* add Jobs-List datatype (7d435ee72cb7)
+* add optional done flag (ac46e966f724)
+
+### Fix
+
+* add missing renaming (fb70697743d6)
+
 ## v2.8.0
 
 ### Feature
