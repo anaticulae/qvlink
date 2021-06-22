@@ -27,6 +27,7 @@ from link.job import NO_FINDINGS
 from link.job import PUBLIC_OWNER
 from link.job import FindingStatus
 from link.job import JobInfo
+from link.job import JobInfos
 from link.job import count_ready
 from link.job import count_todo
 from link.job import dump_job

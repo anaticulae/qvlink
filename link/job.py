@@ -19,6 +19,7 @@ Describes current working status of one document which was uploaded by a user.
 import collections
 import dataclasses
 import os
+import typing
 
 import configo
 import utila
@@ -50,6 +51,9 @@ class JobInfo:
 
     def __post_init__(self):
         assert isinstance(self.name, str), type(self.name)
+
+
+JobInfos = typing.List[JobInfo]
 
 
 def dump_job(info: JobInfo, convert: bool = True) -> str:
