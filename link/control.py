@@ -105,8 +105,8 @@ def publish(
         utila.copy_content(source, destination, pattern=link.PDFINFO_NAME)
         utila.copy_content(source, destination, pattern=link.JOBFILE_NAME)
     # decide if we encrypt result
-    private = link.owner(document, done=False) != link.PUBLIC_OWNER
     if utila.file_read(link.pdfinfo(document)) != '{}':
+        private = link.private(document, done=False)
         # publish content only for valid pdf files
         utila.log('copy fastview')
         utila.copy_content(
