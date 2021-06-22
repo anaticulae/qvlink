@@ -361,11 +361,20 @@ def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
         # select existing done flag
         done = os.path.exists(done_(documentid))
     info = load_jobinfo(documentid, done=done)
-    pdf = link.pdfinfo(documentid)
+    info.state = rawstate(documentid)
     raw = link.dump_job(info, convert=False, password=False)
+    pdf = link.pdfinfo(documentid)
     if pdf:
         raw['pages'] = pdf.pages
     return raw
+
+
+def rawstate(documentid: str) -> int:
+    curme = current(documentid)
+    if curme is None:
+        return -2
+    converted = State.fromstate(curme)
+    return int(converted)
 
 
 def document(documentid: str) -> str:
