@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.9.3
+
+### Feature
+
+* add option to automatically detect if document is done (6345aefb047c)
+
 ## v2.9.2
 
 ### Fix
