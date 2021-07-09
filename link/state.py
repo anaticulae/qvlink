@@ -315,6 +315,11 @@ def owner(documentid: str, done: bool = True) -> str:
 
 
 def private(documentid: str, done: bool = False) -> bool:
+    """\
+    If done is None: automatically determine if document is done
+    """
+    if done is None:
+        done = done_(documentid)
     return owner(documentid, done=done) != link.PUBLIC_OWNER
 
 
