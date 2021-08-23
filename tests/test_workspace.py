@@ -54,7 +54,7 @@ def test_create_todo(tmpdir, monkeypatch):
 
 def test_create_todo_pathandname(testdir):
     created = link.create_todo(
-        power.DOCU07_PDF,
+        power.DOCU007_PDF,
         'testfile.pdf',
         testdir.tmpdir,
         'helmut',

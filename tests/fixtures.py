@@ -30,7 +30,7 @@ def example(testdir) -> str:
     os.makedirs(ready, exist_ok=True)
     # create todo
     link.create_todo(
-        power.DOCU07_PDF,
+        power.DOCU007_PDF,
         filename='minimal.pdf',
         todopath=todo,
         todoname=DOCUMENT,
