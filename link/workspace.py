@@ -34,26 +34,24 @@ def collect_jobs(
         tuple of collected (todos, readys)
     """
     assert os.path.exists(path), path
-
     if path is None:
         todo = configo.todo()
         ready = configo.ready()
     else:
         todo = os.path.join(path, 'todo')
         ready = os.path.join(path, 'ready')
-
+    # ensure that todo and ready exists
     assert os.path.exists(todo), todo
     assert os.path.exists(ready), ready
-
+    # collect jobs depending on state
     todos = collect_job_folder(todo, skip_removed=skip_removed)
     readys = collect_job_folder(ready, skip_removed=skip_removed)
-
+    # filter jobs by owner
     if owner:
         # support multiple owner, eg. public, owner
         owner = {owner} if isinstance(owner, str) else owner
         todos = [item for item in todos if item.owner in owner]
         readys = [item for item in readys if item.owner in owner]
-
     return todos, readys
 
 
@@ -65,7 +63,7 @@ def collect_job_folder(
     for item in os.listdir(folder):
         current = os.path.join(folder, item, link.JOBFILE_NAME)
         if not os.path.exists(current):
-            utila.error('Job does not exists: %s' % current)
+            utila.error(f'job does not exists: {current}')
             continue
         if skip_removed:
             # TODO: REPLACE LATER
@@ -123,7 +121,6 @@ def create_todo(
         todoname = find_free_todo(todopath)
     if todopath is None:
         todopath = configo.todo()
-
     path = os.path.join(todopath, todoname)
     os.makedirs(path, exist_ok=exist_ok)
     filepath = os.path.join(path, todoname)
@@ -134,7 +131,6 @@ def create_todo(
     except AttributeError:
         # Support path to file as input
         utila.file_copy(file, filepath)
-
     # filename = secure_filename(file.filename)
     # Create job information
     date = utila.timedate()
