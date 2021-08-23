@@ -75,7 +75,7 @@ from link.workspace import create_todo
 from link.workspace import find_free_todo
 from link.workspace import sortable_date
 
-__version__ = '2.9.3'
+__version__ = '2.10.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 

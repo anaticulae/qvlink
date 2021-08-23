@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v2.10.0
+
+### Feature
+
+* add method to remove long pending jobs (bce9f5e5ac4a)
+* add method to publish run statistics (116953fe9934)
+* add method to write debug information (354b1fc5f5ea)
+
 ## v2.9.3
 
 ### Feature
