@@ -20,6 +20,8 @@ from link.control import start_analysis
 from link.control import start_progress
 from link.control import verify
 from link.control import write_optimized_findings
+# debug
+from link.debug import load_debug
 # Job
 from link.job import JOB_FILE_NAME  # TODO: REMOVE LATER
 from link.job import JOBFILE_NAME
@@ -31,7 +33,6 @@ from link.job import JobInfos
 from link.job import count_ready
 from link.job import count_todo
 from link.job import dump_job
-from link.job import load_debug
 from link.job import load_job
 from link.job import save_job
 # state

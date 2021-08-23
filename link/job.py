@@ -144,34 +144,6 @@ def save_job(info: JobInfo, done: bool = True):
     utila.file_replace(outpath, dumped)
 
 
-def load_debug(path: str) -> dict:
-    """Debug information of software which was used to create this run.
-
-    The number of queuemo defines all other dependencies, but it is
-    possible to store more data.
-
-    Args:
-        path(str): path/content to/of debug file or folder which
-                   contains the file
-    Returns:
-        dict with package -> version
-    """
-    content = utila.from_raw_or_path(path, ftype='', fname='debug')
-    result = {}
-    for line in content.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        if line[0] == '#':
-            continue
-        try:
-            package, version = line.split()
-        except ValueError:
-            continue
-        result[package] = version
-    return result
-
-
 def count_todo() -> int:
     """Count folder in common `todo` folder.
 
