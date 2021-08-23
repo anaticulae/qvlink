@@ -10,6 +10,8 @@
 import os
 
 import link.__patch__
+# cleaner
+from link.cleaner import remove_outdated
 # control
 from link.control import PROGRESS_START
 from link.control import delete
