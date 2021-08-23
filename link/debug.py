@@ -7,7 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import utila
+
+import link
 
 
 def load_debug(path: str) -> dict:
@@ -36,3 +40,18 @@ def load_debug(path: str) -> dict:
             continue
         result[package] = version
     return result
+
+
+RUNNABLE = utila.splitlines("""
+queuemo
+rawmaker
+""")
+
+
+def write_debug(document: str, todo: list = None):
+    ready = link.ready(document)
+    if todo is None:
+        todo = RUNNABLE
+    debug = os.path.join(ready, 'debug')
+    for program in todo:
+        utila.run(f'{program} -v -V >> {debug}')
