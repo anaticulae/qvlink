@@ -55,3 +55,18 @@ def write_debug(document: str, todo: list = None):
     debug = os.path.join(ready, 'debug')
     for program in todo:
         utila.run(f'{program} -v -V >> {debug}')
+
+
+def publish_statistics(document: str, debug: bool = True):
+    if not debug:
+        utila.debug('skip publish statistics')
+        return
+    ready = link.ready(document)
+    cmd = f'qcon -i {ready} --publish'
+    completed = utila.run(
+        cmd,
+        expect=None,
+    )
+    if completed.returncode:
+        utila.error('could not publish `qcon`')
+        utila.error(completed)

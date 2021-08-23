@@ -22,6 +22,7 @@ from link.control import verify
 from link.control import write_optimized_findings
 # debug
 from link.debug import load_debug
+from link.debug import publish_statistics
 from link.debug import write_debug
 # Job
 from link.job import JOB_FILE_NAME  # TODO: REMOVE LATER
