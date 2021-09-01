@@ -204,7 +204,6 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     published = all([
         publish,
     ])
-
     if deleted(documentid):
         return ProcessState.DELETED
     if failed(documentid):
@@ -347,6 +346,25 @@ def failed(documentid: str) -> bool:
         return None
     path = os.path.join(path, 'failed')
     return os.path.exists(path)
+
+
+NOTSUPPORTED = 'layout not supported'
+
+
+def nosupport(documentid: str):
+    # TODO: IMPROVE LATER
+    fail(documentid, NOTSUPPORTED)
+
+
+def notsupported(documentid: str) -> bool:
+    if not failed(documentid):
+        return False
+    path = os.path.join(document(documentid), 'failed')
+    error = utila.file_read(path).strip()
+    # TODO: EXTEND LATER
+    if error == NOTSUPPORTED:
+        return True
+    return False
 
 
 def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
