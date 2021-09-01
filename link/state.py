@@ -157,7 +157,7 @@ class State(enum.Enum):
         return self.value
 
 
-def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements, too-many-locals, R1260
+def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-statements,too-many-locals,R1260
     """Determine state of process defined by `documentid` location.
 
     >>> assert current('doesnotexists') is None
@@ -165,10 +165,8 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     if not document(documentid):
         # process does not exists
         return None
-
     publish = os.path.exists(os.path.join(ready(documentid), 'done'))
     pdfinfopath = pdfinfo_path(documentid)
-
     # Source and sink are the same. This is required when running queueumo
     # in single mode.
     equal_path = todo(documentid) == ready(documentid)
