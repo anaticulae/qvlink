@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.11.1
+
+### Fix
+
+* add NOT SUPPORTED to raw state converter (7aa2df8cffab)
+
 ## v2.11.0
 
 ### Feature
