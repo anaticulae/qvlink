@@ -113,6 +113,7 @@ class ProcessState(enum.Enum):
     PUBLISHED = enum.auto()
     ERROR = enum.auto()
     DELETED = enum.auto()
+    NOTSUPPORTED = enum.auto()
     UNDEFINED = enum.auto()
 
 
@@ -121,6 +122,7 @@ class State(enum.Enum):
     DONE = 0
     RUNNING = 1
     FAILED = 2
+    NOTSUPPORTED = 4
 
     @staticmethod
     def fromstr(item: str) -> 'State':
@@ -143,6 +145,8 @@ class State(enum.Enum):
         """
         if state == ProcessState.NEW:
             return State.WAITING
+        if state == ProcessState.NOTSUPPORTED:
+            return State.NOTSUPPORTED
         if state in (ProcessState.INVALID, ProcessState.ERROR):
             return State.FAILED
         if state == ProcessState.PUBLISHED:
@@ -204,6 +208,8 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     ])
     if deleted(documentid):
         return ProcessState.DELETED
+    if notsupported(documentid):
+        return ProcessState.NOTSUPPORTED
     if failed(documentid):
         return ProcessState.ERROR
     if published:
