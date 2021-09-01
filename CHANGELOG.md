@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.11.0
+
+### Feature
+
+* add method to signal that document type is not supported (8fb5f8e0b6d6)
+
 ## v2.10.0
 
 ### Feature
