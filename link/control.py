@@ -98,7 +98,7 @@ def publish(
         os.makedirs(destination)
     assert os.path.exists(destination), destination
 
-    # count findings and update info.yaml
+    # count findings and update jobinfo.yaml
     init_jobcounter(source)
 
     if not equal_location:

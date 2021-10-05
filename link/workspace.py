@@ -103,12 +103,12 @@ def create_todo(
     *,
     exist_ok: bool = False,
 ) -> str:
-    """Create working folder, add info.yaml and write `file` to todo dir
+    """Create working folder, add jobinfo.yaml and write `file` to todo dir
 
     Args:
         file(str): path to source file
         filename(str): name of saved pdf file - not very important
-        todopath(str): Path to location where todos are written. If None
+        todopath(str): path to location where todos are written. If None
                        the todopath of `configo.todo()` is used.
         todoname(str): name of todo folder to save file in. If None
                        todoname is automatically generated.

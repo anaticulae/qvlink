@@ -12,7 +12,7 @@
 Describes current working status of one document which was uploaded by a user.
 
 1. While uploading a pdf file, a job folder in `common-todo` is created.
-2. This folder contains a JobInfo info.yaml with a short work status.
+2. This folder contains a JobInfo jobinfo.yaml with a short work status.
 3. This info is shared and also used for the finished job.
 """
 
