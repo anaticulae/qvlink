@@ -48,13 +48,27 @@ rawmaker
 """)
 
 
-def write_debug(document: str, todo: list = None):
+def write_debug(
+    document: str,
+    todo: list = None,
+    expect: bool = None,
+):
+    """Write versions of used programs `todo` to ready folder as debug file.
+
+    Args:
+        document(str): document id
+        todo(list): list of used programs
+        expect(bool): Use None to avoid failing when one of `todo` fails
+    """
     ready = link.ready(document)
     if todo is None:
         todo = RUNNABLE
     debug = os.path.join(ready, 'debug')
     for program in todo:
-        utila.run(f'{program} -v -V >> {debug}')
+        utila.run(
+            f'{program} -v -V >> {debug}',
+            expect=expect,
+        )
 
 
 def publish_statistics(document: str, debug: bool = True):
