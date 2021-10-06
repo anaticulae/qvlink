@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.12.0
+
+### Feature
+
+* add parameter to shrink published findings (55c279bc8662)
+* add flag to control failing behavior (034a4b9d3521)
+
+### Documentation
+
+* fix file name (bcca46c4200a)
+
 ## v2.11.1
 
 ### Fix
