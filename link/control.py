@@ -153,7 +153,7 @@ def write_optimized_findings(document: str, done: bool = False):
             link.resultview(document))
     ]
     findings = utila.flatten(findings)
-    findings = utila.not_none(findings)
+    findings = utila.notnone(findings)
     protocol.write_grouped(findings, optimized)
 
 
