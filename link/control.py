@@ -143,14 +143,20 @@ def publish(
     assert_state(link.ProcessState.PUBLISHED, document)
 
 
-def write_optimized_findings(document: str, done: bool = False):
+def write_optimized_findings(
+    document: str,
+    done: bool = False,
+    active: set = None,
+):
     optimized = link.optimized(document, done=done)
     os.makedirs(optimized)
     utila.log((f'load: {link.resultview(document)} and '
                f'write optimized to: {optimized}'))
     findings = [
         pagefindings.content for pagefindings in protocol.findings_from_path(
-            link.resultview(document))
+            path=link.resultview(document),
+            msgid=active,
+        )
     ]
     findings = utila.flatten(findings)
     findings = utila.notnone(findings)
