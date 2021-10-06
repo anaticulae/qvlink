@@ -43,7 +43,7 @@ def test_state_delete(example, monkeypatch):
         state = link.current(DOCUMENT)
         assert state == link.ProcessState.DELETED
         # do not delete twice
-        assert link.delete(DOCUMENT) is False
+        assert link.delete(DOCUMENT) is False  # pylint:disable=C2001
 
 
 @utilatest.longrun
@@ -156,6 +156,6 @@ def test_status_fromstr_error():
 
 def test_update_bookkeeping(withfindings):  # pylint:disable=W0613
     documentid = DOCUMENT
-    assert link.load_jobinfo(documentid).result.open == 0
+    assert not link.load_jobinfo(documentid).result.open
     assert link.update_bookkeeping(documentid)
     assert link.load_jobinfo(documentid).result.open == 4
