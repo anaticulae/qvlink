@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.12.1
+
+### Fix
+
+* use optimized findings (7b6e6f24ddef)
+
 ## v2.12.0
 
 ### Feature
