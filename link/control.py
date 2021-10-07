@@ -11,6 +11,7 @@ import os
 
 import configo
 import protocol
+import serializeraw
 import utila
 import utila.logger
 
@@ -163,12 +164,19 @@ def write_optimized_findings(
 
 def init_jobcounter(source: str):
     """Count detected findings of analyzed document and write them to
-    jobinfo yaml file."""
-    findings = protocol.findings_from_path(source)
-    findings = utila.flatten([page.content for page in findings])
+
+    jobinfo yaml file.
+    """
+    optimized = os.path.join(source, 'result', '__optimized__')
+    findings = []
+    if utila.exists(optimized):
+        findings = serializeraw.load_grouped(optimized)
+    else:
+        utila.error(f'no optimized findings: {optimized}')
+    finding_count = len(utila.flatten_content(findings))
     jobpath = os.path.join(source, link.JOBFILE_NAME)
     current = link.load_job(jobpath)
-    current.result = link.FindingStatus(len(findings), 0, 0)
+    current.result = link.FindingStatus(finding_count, 0, 0)
     dumped = link.dump_job(current)
     utila.file_replace(jobpath, dumped)
 
