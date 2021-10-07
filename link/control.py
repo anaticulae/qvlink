@@ -88,24 +88,20 @@ def publish(
         [link.ProcessState.ANALYSED, link.ProcessState.INVALID],
         document,
     )
-
     verbose = utila.logger.LEVEL > utila.Level.LOGGING
-
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
     equal_location = source == destination
     if not equal_location:
         os.makedirs(destination)
     assert os.path.exists(destination), destination
-
     # count findings and update jobinfo.yaml
     init_jobcounter(source)
-
     if not equal_location:
         utila.copy_content(source, destination, pattern=link.PDFINFO_NAME)
         utila.copy_content(source, destination, pattern=link.JOBFILE_NAME)
-    # decide if we encrypt result
-    if utila.file_read(link.pdfinfo_path(document)) != '{}':
+    if isextracted(document):
+        # decide if we encrypt result
         private = link.private(document, done=False)
         # publish content only for valid pdf files
         utila.log('copy fastview')
@@ -118,7 +114,6 @@ def publish(
             ignore=skip_fastview,
             private=private,
         )
-
         utila.log('copy resultview')
         utila.copy_content(
             link.resultview(document),
@@ -129,7 +124,6 @@ def publish(
             ignore=skip_resultview,
             private=private,
         )
-
         # utila.log('copy optimized')
         # utila.copy_content(
         #     link.optimized(document),
@@ -137,10 +131,14 @@ def publish(
         #     recursive=True,
         #     verbose=True,
         # )
-
     make_done(document)
-
     assert_state(link.ProcessState.PUBLISHED, document)
+
+
+def isextracted(documentid) -> bool:
+    if utila.file_read(link.pdfinfo_path(documentid)) != '{}':
+        return True
+    return False
 
 
 def write_optimized_findings(
