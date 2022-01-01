@@ -16,3 +16,15 @@ def test_debug_write_and_load(testdir, monkeypatch):
         link.write_debug(testdir.tmpdir, todo=['rawmaker'])
     debug = link.load_debug('debug')
     assert debug['rawmaker']
+
+
+def test_debug_write_requirements(testdir, monkeypatch):
+    with monkeypatch.context() as context:
+        context.setattr(link, 'ready', lambda x: x)
+        link.write_debug(
+            testdir.tmpdir,
+            todo=['rawmaker'],
+            requirements=True,
+        )
+    debug = link.load_debug('debug')
+    assert debug['rawmaker']

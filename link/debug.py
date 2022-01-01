@@ -35,7 +35,8 @@ def load_debug(path: str) -> dict:
         if line[0] == '#':
             continue
         try:
-            package, version = line.split()
+            separator = '==' if '==' in line else ' '
+            package, version = line.split(separator)
         except ValueError:
             continue
         result[package] = version
@@ -53,6 +54,7 @@ def write_debug(
     todo: list = None,
     expect: bool = None,
     sort: bool = True,
+    requirements: bool = False,
 ):
     """Write versions of used programs `todo` to ready folder as debug file.
 
@@ -61,6 +63,7 @@ def write_debug(
         todo(list): list of used programs
         expect(bool): Use None to avoid failing when one of `todo` fails
         sort(bool): run `todo` in sorted order
+        requirements(bool): write debug as pip compatible style
     """
     ready = link.ready(document)
     if todo is None:
@@ -68,11 +71,13 @@ def write_debug(
     if sort:
         todo = sorted(todo)
     debug = os.path.join(ready, 'debug')
-    for program in todo:
-        utila.run(
-            f'{program} -v -V >> {debug}',
-            expect=expect,
-        )
+    with utila.GeorgFork(process=False, returncode=False) as fork:
+        for program in todo:
+            fork.fork(utila.run, cmd=f'{program} -v -V', expect=expect)
+    raw = utila.NEWLINE.join([item.stdout.strip() for item in fork.result])
+    if requirements:
+        raw = raw.replace(' ', '==')
+    utila.file_replace(debug, raw)
 
 
 def publish_statistics(document: str, debug: bool = True):
