@@ -52,6 +52,7 @@ def write_debug(
     document: str,
     todo: list = None,
     expect: bool = None,
+    sort: bool = True,
 ):
     """Write versions of used programs `todo` to ready folder as debug file.
 
@@ -59,10 +60,13 @@ def write_debug(
         document(str): document id
         todo(list): list of used programs
         expect(bool): Use None to avoid failing when one of `todo` fails
+        sort(bool): run `todo` in sorted order
     """
     ready = link.ready(document)
     if todo is None:
         todo = RUNNABLE
+    if sort:
+        todo = sorted(todo)
     debug = os.path.join(ready, 'debug')
     for program in todo:
         utila.run(
