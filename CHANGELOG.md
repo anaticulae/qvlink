@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.13.0
+
+### Feature
+
+* add option to write debug as pip compatible (8f41fb2ea5b0)
+* run debug in sorted order (7d4f74cc7c68)
+
+### Documentation
+
+* Happy New Year! (acba4d904c22)
+
 ## v2.12.1
 
 ### Fix
