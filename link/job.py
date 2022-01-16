@@ -24,7 +24,6 @@ import typing
 
 import configo
 import utila
-import yaml
 
 import link
 
@@ -78,7 +77,7 @@ def dump_job(
         result['hashlink'] = info.hashlink
     dumped = result
     if convert == 'yaml':
-        dumped: str = yaml.dump(dumped)
+        dumped: str = utila.yaml_dump(dumped)
     if convert == 'json':
         dumped: str = json.dumps(dumped)
     return dumped
