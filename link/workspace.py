@@ -152,3 +152,31 @@ def sortable_date(date: str) -> str:
     date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:16]
     assert len(date) == 12, date
     return date
+
+
+def load_documents(common, owner: str, state: link.State = None) -> list:
+    todo, ready = link.collect_jobs(
+        common,
+        skip_removed=True,
+        owner=owner,
+    )
+    dones = {item.name for item in ready}
+    if state in (link.State.RUNNING, link.State.WAITING):
+        ready.clear()
+    result = [link.load_jobinfo_raw(item.name, done=None) for item in ready]
+    for item in result:
+        item['done'] = True
+    if state == link.State.DONE:
+        # do not load jobs which are not done
+        todo.clear()
+    for item in todo:
+        if item.name in dones:
+            continue
+        current = link.load_jobinfo_raw(item.name, done=None)
+        result.append(current)
+    result = sorted(
+        result,
+        key=lambda item: item['date'],
+        reverse=True,
+    )
+    return result

@@ -75,6 +75,7 @@ from link.state import update_progress_step
 from link.workspace import collect_jobs
 from link.workspace import create_todo
 from link.workspace import find_free_todo
+from link.workspace import load_documents
 from link.workspace import sortable_date
 
 __version__ = '2.13.0'
