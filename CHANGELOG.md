@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.14.0
+
+### Feature
+
+* add method to determine job name (54e17d376887)
+* move load documents from viewo project (a2057bf5f409)
+
+### Documentation
+
+* adjust modules path (46aa127f1aee)
+
 ## v2.13.0
 
 ### Feature
