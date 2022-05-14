@@ -27,7 +27,6 @@ def test_dump_and_load():
 def test_common_folder(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         jobs = link.collect_jobs(common)
-
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
@@ -62,7 +61,6 @@ def test_delete_job(common, monkeypatch):
 def test_todo_count(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_todo() == 3
-
     with tests.patch.patch_todo(common, monkeypatch):
         assert link.count_ready() == 2
 
