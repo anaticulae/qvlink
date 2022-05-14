@@ -154,6 +154,7 @@ def test_status_fromstr_error():
         link.State.fromstr('')
 
 
+@utilatest.longrun
 def test_update_bookkeeping(withfindings):  # pylint:disable=W0613
     documentid = DOCUMENT
     assert not link.load_jobinfo(documentid).result.open
