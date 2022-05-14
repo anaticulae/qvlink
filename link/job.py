@@ -189,3 +189,14 @@ def validate_todo(path: str) -> bool:
 def validate_ready(path: str):
     #TODO: Special check for ready is required. E.g. result in percent
     return validate_todo(path)
+
+
+def job_title(documentid: str) -> str:
+    done = utila.exists(link.done(documentid))
+    info = link.load_jobinfo(
+        documentid=documentid,
+        done=done,
+    )
+    title = info.title
+    title = title.rstrip('.pdf')
+    return title

@@ -8,6 +8,7 @@
 # =============================================================================
 
 import link
+import tests.fixtures
 import tests.patch
 
 
@@ -83,3 +84,9 @@ def test_load_debug():
     loaded = link.load_debug(DEBUG)
     assert loaded['rawmaker'] == '2.0.0'
     assert loaded['queuemo'] == '1.1.1'
+
+
+def test_job_name(example, monkeypatch):
+    with tests.patch.patch_todo(example, monkeypatch):
+        title = link.job_title(tests.fixtures.DOCUMENT)
+    assert title == 'minimal'
