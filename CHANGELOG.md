@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.14.1
+
+### Feature
+
+* add done flag (797a945379ff)
+
 ## v2.14.0
 
 ### Feature
