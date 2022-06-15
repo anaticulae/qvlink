@@ -453,7 +453,6 @@ def update_bookkeeping(documentid: str, done: bool = True) -> bool:
     )
     job.result = link.FindingStatus(opened, closed, excluded)
     # update current job status
-    utila.debug(f'update job information: {documentid}, {done}')
     link.save_job(
         job,
         done=done,

@@ -138,7 +138,7 @@ def save_job(info: JobInfo, done: bool = True):
     documentid = info.name
     outpath = link.ready(documentid) if done else link.todo(documentid)
     outpath = os.path.join(outpath, JOBFILE_NAME)
-    utila.debug(f'update jobinfo: {outpath}')
+    utila.debug(f'save jobinfo: {outpath} {done}')
     dumped = dump_job(info)
     utila.file_replace(outpath, dumped)
 
