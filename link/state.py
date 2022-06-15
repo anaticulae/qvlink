@@ -431,8 +431,11 @@ def update_progress_step(documentid: str, value: int, maxvalue: int):
     update_progress(documentid, percent)
 
 
-def update_bookkeeping(documentid: str) -> bool:
-    path = link.optimized(documentid, done=True)
+def update_bookkeeping(documentid: str, done: bool = True) -> bool:
+    path = link.optimized(
+        documentid,
+        done=done,
+    )
     findings = protocol.load_grouped(path)
     findings = utila.flatten([page.content for page in findings])
     opened, closed, excluded = 0, 0, 0
@@ -444,9 +447,15 @@ def update_bookkeeping(documentid: str) -> bool:
             closed += 1
         else:
             excluded += 1
-    job = link.load_jobinfo(documentid)
+    job = link.load_jobinfo(
+        documentid,
+        done=done,
+    )
     job.result = link.FindingStatus(opened, closed, excluded)
     # update current job status
-    utila.debug(f'update job information: {documentid}')
-    link.save_job(job)
+    utila.debug(f'update job information: {documentid}, {done}')
+    link.save_job(
+        job,
+        done=done,
+    )
     return True
