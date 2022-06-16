@@ -123,6 +123,7 @@ class State(enum.Enum):
     RUNNING = 1
     FAILED = 2
     NOTSUPPORTED = 4
+    DELETED = 8
 
     @staticmethod
     def fromstr(item: str) -> 'State':
@@ -152,6 +153,8 @@ class State(enum.Enum):
             return State.FAILED
         if state == ProcessState.PUBLISHED:
             return State.DONE
+        if state == ProcessState.DELETED:
+            return State.DELETED
         return State.RUNNING
 
     def __int__(self):
