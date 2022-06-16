@@ -30,6 +30,10 @@ def determine_outdated():
     result = []
     for documentid in os.listdir(todopath):
         info = os.path.join(todopath, documentid, link.JOB_FILE_NAME)
+        if not utila.exists(info):
+            utila.error(f'file does not exists: {info}')
+            result.append(documentid)
+            continue
         if utila.file_age(info) < ONE_HOUR.value:
             continue
         if link.failed(documentid):
