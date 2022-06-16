@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.14.2
+
+### Fix
+
+* do not fail on missing job info (d1d57a764f33)
+* do not convert invalid state (fc32be4c7cac)
+* add missing pdf resource (19bd9dbce7da)
+* skip todo documents correctly (07652ea5283f)
+* align test data to internal data structure (8c91030596ab)
+* remove duplicated logging (af3502119d31)
+
 ## v2.14.1
 
 ### Feature
