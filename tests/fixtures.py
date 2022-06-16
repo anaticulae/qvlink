@@ -146,6 +146,8 @@ def common(tmpdir):
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
+        # complete job
+        utila.file_create(utila.join(folder, 'done'))
 
     os.makedirs(os.path.join(todo, 'broken'))
     os.makedirs(os.path.join(ready, 'also_broken'))
