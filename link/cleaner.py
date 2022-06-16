@@ -29,7 +29,7 @@ def determine_outdated():
     todopath = configo.todo(True)
     result = []
     for documentid in os.listdir(todopath):
-        info = os.path.join(todopath, documentid, link.JOB_FILE_NAME)
+        info = os.path.join(todopath, documentid, link.JOBFILE_NAME)
         if not utila.exists(info):
             utila.error(f'file does not exists: {info}')
             result.append(documentid)
