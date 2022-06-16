@@ -33,11 +33,11 @@ def collect_jobs(
     Returns:
         tuple of collected (todos, readys)
     """
-    assert os.path.exists(path), path
     if path is None:
         todo = configo.todo()
         ready = configo.ready()
     else:
+        assert os.path.exists(path), path
         todo = os.path.join(path, 'todo')
         ready = os.path.join(path, 'ready')
     # ensure that todo and ready exists
