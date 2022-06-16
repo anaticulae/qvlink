@@ -148,6 +148,7 @@ def common(tmpdir):
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
+        utila.file_create_binary(folder.join(item), b'pdf content')
     todo.join('broken').mkdir()
     # create done
     for item in '5555 3333'.split():
