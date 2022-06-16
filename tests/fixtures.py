@@ -117,15 +117,15 @@ def common(tmpdir):
     Todo contains 3 elements, ready 2.
     """
     # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
-    todo = os.path.join(tmpdir, 'todo')
-    ready = os.path.join(tmpdir, 'ready')
-    os.makedirs(todo)
-    os.makedirs(ready)
-
-    for item in ['1234', '5555', '4321']:
-        folder = os.path.join(todo, item)
-        os.makedirs(folder)
-        output = os.path.join(folder, link.JOBFILE_NAME)
+    todo = tmpdir.join('todo')
+    ready = tmpdir.join('ready')
+    todo.mkdir()
+    ready.mkdir()
+    # create todo
+    for item in '1234 5555 4321'.split():
+        folder = todo.join(item)
+        folder.mkdir()
+        output = folder.join(link.JOBFILE_NAME)
         result = link.JobInfo(
             title='Super Duper Masterarbeit',
             date='2019.04.01',
@@ -135,11 +135,12 @@ def common(tmpdir):
         )
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
-
-    for item in ['3333', '5555']:
-        folder = os.path.join(ready, item)
-        os.makedirs(folder)
-        output = os.path.join(folder, link.JOBFILE_NAME)
+    todo.join('broken').mkdir()
+    # create done
+    for item in '3333 5555'.split():
+        folder = ready.join(item)
+        folder.mkdir()
+        output = folder.join(link.JOBFILE_NAME)
         result = link.JobInfo(
             title='Super Masterarbeit',
             date='2019.04.05',
@@ -149,8 +150,6 @@ def common(tmpdir):
         dumped = link.dump_job(result)
         utila.file_create(output, dumped)
         # complete job
-        utila.file_create(utila.join(folder, 'done'))
-
-    os.makedirs(os.path.join(todo, 'broken'))
-    os.makedirs(os.path.join(ready, 'also_broken'))
+        utila.file_create(folder.join('done'))
+    ready.join('also_broken').mkdir()
     return tmpdir
