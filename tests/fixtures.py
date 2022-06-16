@@ -112,8 +112,10 @@ def broken(testdir) -> str:
 
 @pytest.fixture
 def common(tmpdir):
-    """Create common folder with `todo` and `ready` folder. Todo
-    contains 3 elements, ready 2."""
+    """Create common folder with `todo` and `ready` folder.
+
+    Todo contains 3 elements, ready 2.
+    """
     # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
     todo = os.path.join(tmpdir, 'todo')
     ready = os.path.join(tmpdir, 'ready')
