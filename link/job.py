@@ -28,7 +28,6 @@ import utila
 import link
 
 JOBFILE_NAME = 'jobinfo.yaml'
-JOB_FILE_NAME = JOBFILE_NAME
 
 FindingStatus = collections.namedtuple('FindingStatus', 'open closed excluded')
 

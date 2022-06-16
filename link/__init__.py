@@ -27,7 +27,6 @@ from link.debug import load_debug
 from link.debug import publish_statistics
 from link.debug import write_debug
 # Job
-from link.job import JOB_FILE_NAME  # TODO: REMOVE LATER
 from link.job import JOBFILE_NAME
 from link.job import NO_FINDINGS
 from link.job import PUBLIC_OWNER
@@ -87,3 +86,4 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 DOCUMENT_ID_LENGTH = 16
 
 PDFINFO_NAME = 'pdfinfo.yaml'
+JOB_FILE_NAME = JOBFILE_NAME  # TODO: REMOVE LATER
