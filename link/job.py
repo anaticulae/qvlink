@@ -48,6 +48,10 @@ class JobInfo:
     owner: str = None
     state: int = None
 
+    @property
+    def documentid(self) -> str:
+        return self.name
+
     def __post_init__(self):
         assert isinstance(self.name, str), type(self.name)
 
