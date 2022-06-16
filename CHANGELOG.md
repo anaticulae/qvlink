@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.14.3
+
+### Feature
+
+* add documentid access (bdef13d7c658)
+
+### Fix
+
+* add missing deleted step (11d34456cec6)
+* fix path check (a087d9069e05)
+
 ## v2.14.2
 
 ### Fix
