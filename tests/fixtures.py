@@ -110,25 +110,38 @@ def broken(testdir) -> str:
     return testdir.tmpdir
 
 
+THESIS = [
+    ('Helmuts Arbeit', '2022.01.05'),
+    ('Frank MasterArbeit', '2019.01.05'),
+    # todo
+    ('Theos Studienarbeit', '2021.04.08'),
+    # done
+    ('Theos Studienarbeit', '2021.04.08'),
+    ('Leas Abschlussarbeit', '2022.01.05'),
+]
+
+
 @pytest.fixture
 def common(tmpdir):
     """Create common folder with `todo` and `ready` folder.
 
     Todo contains 3 elements, ready 2.
     """
+    thesis = iter(THESIS)
     # TODO: USE FAKER TO GENERATE EXAMPLE JOBS
     todo = tmpdir.join('todo')
     ready = tmpdir.join('ready')
     todo.mkdir()
     ready.mkdir()
     # create todo
-    for item in '1234 5555 4321'.split():
+    for item in '1234 4321 5555'.split():
         folder = todo.join(item)
         folder.mkdir()
         output = folder.join(link.JOBFILE_NAME)
+        title, date = next(thesis)
         result = link.JobInfo(
-            title='Super Duper Masterarbeit',
-            date='2019.04.01',
+            title=title,
+            date=date,
             name=item,
             result=None,
             owner=link.PUBLIC_OWNER,
@@ -137,13 +150,14 @@ def common(tmpdir):
         utila.file_create(output, dumped)
     todo.join('broken').mkdir()
     # create done
-    for item in '3333 5555'.split():
+    for item in '5555 3333'.split():
         folder = ready.join(item)
         folder.mkdir()
         output = folder.join(link.JOBFILE_NAME)
+        title, date = next(thesis)
         result = link.JobInfo(
-            title='Super Masterarbeit',
-            date='2019.04.05',
+            title=title,
+            date=date,
             name=item,
             result=link.FindingStatus(10, 20, 30),
         )
