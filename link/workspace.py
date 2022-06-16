@@ -173,6 +173,10 @@ def load_documents(common, owner: str, state: link.State = None) -> list:
         if item.name in dones:
             continue
         current = link.load_jobinfo_raw(item.name, done=None)
+        if state is not None:
+            item_state = link.State(current['state'])
+            if item_state != state:
+                continue
         result.append(current)
     result = sorted(
         result,
