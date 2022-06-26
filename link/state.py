@@ -144,7 +144,8 @@ class State(enum.Enum):
         >>> State.fromstate(ProcessState.VERIFIED)
         <State.RUNNING: 1>
         """
-        assert state != ProcessState.UNDEFINED, f'invalid state: {state}'
+        if state == ProcessState.UNDEFINED:
+            raise ValueError(f'invalid state: {state}')
         if state == ProcessState.NEW:
             return State.WAITING
         if state == ProcessState.NOTSUPPORTED:
