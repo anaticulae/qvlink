@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.14.4
+
+### Feature
+
+* raise ValueError if invalid ProcessState is given (84e9a7b07185)
+
+### Fix
+
+* do not fail on invalid state (0507c24bebf4)
+
 ## v2.14.3
 
 ### Feature
