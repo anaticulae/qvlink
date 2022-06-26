@@ -404,8 +404,15 @@ def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
 def rawstate(documentid: str) -> int:
     curme = current(documentid)
     if curme is None:
+        # TODO: INVESTIGATE WHY -2
+        utila.error(f'invalid state: {documentid}')
         return -2
-    converted = State.fromstate(curme)
+    try:
+        converted = State.fromstate(curme)
+    except ValueError:
+        # TODO: INVESTIGATE WHY -2
+        utila.error(f'invalid state: {documentid}')
+        return -2
     return int(converted)
 
 
