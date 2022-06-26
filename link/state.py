@@ -394,7 +394,11 @@ def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
         done = os.path.exists(done_(documentid))
     info = load_jobinfo(documentid, done=done)
     info.state = rawstate(documentid)
-    raw = link.dump_job(info, convert=False, password=False)
+    raw = link.dump_job(
+        info,
+        convert=False,
+        password=False,
+    )
     pdf = link.pdfinfo(documentid)
     if pdf:
         raw['pages'] = pdf.pages
