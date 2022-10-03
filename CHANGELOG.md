@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.15.0 (2022-10-03)
+
+### Chore
+
+* add Jenkinsfile (eb1e7afc1181)
+
 ## v2.14.4
 
 ### Feature
