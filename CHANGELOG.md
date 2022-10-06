@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v2.15.1 (2022-10-06)
+
+### Chore
+
+* root is not required (1bf8c1593991)
+* upgrade requirements.txt (ad884e2ef454)
+
 ## v2.15.0 (2022-10-03)
 
 ### Chore
