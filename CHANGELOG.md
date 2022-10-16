@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v2.15.2 (2022-10-16)
+
+### Chore
+
+* convert nightly to all (63927dd0cea1)
+* upgrade baw (08bc016d1a0f)
+* upgrade requirements.txt (61ab9a154c09)
+
 ## v2.15.1 (2022-10-06)
 
 ### Chore
