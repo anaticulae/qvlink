@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.15.3 (2022-10-16)
+
+### Fix
+
+* fix annotation (cfe9aaabaf08)
+
 ## v2.15.2 (2022-10-16)
 
 ### Chore
