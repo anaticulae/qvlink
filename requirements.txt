@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-configo>=0.21.1<1.0.0
+configo>=0.22.0<1.0.0
 utila>=2.89.0<3.0.0
 
 abel>=0.7.0<1.0.0
@@ -15,4 +15,4 @@ abel>=0.7.0<1.0.0
 protocol>=3.19.2<4.0.0
 
 pycryptodome>=3.10.1<4.0.0
-iamraw>=4.84.0<5.0.0
+iamraw>=4.86.0<5.0.0

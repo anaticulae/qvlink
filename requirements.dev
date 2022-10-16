@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-utilatest==0.22.0
-power==2.14.1
+utilatest==0.24.0
+power==2.15.0
 
 rawmaker>=2.40.0<3.0.0
