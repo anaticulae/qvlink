@@ -55,7 +55,7 @@ class JobInfo:
         assert isinstance(self.name, str), type(self.name)
 
 
-JobInfos = list[JobInfo]
+JobInfos = 'list[JobInfo]'  # pylint:disable=C0103
 
 
 def dump_job(
