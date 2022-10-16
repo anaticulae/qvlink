@@ -20,7 +20,6 @@ import collections
 import dataclasses
 import json
 import os
-import typing
 
 import configo
 import utila
@@ -56,7 +55,7 @@ class JobInfo:
         assert isinstance(self.name, str), type(self.name)
 
 
-JobInfos = typing.List[JobInfo]
+JobInfos = list[JobInfo]
 
 
 def dump_job(
