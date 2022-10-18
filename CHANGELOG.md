@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.15.4 (2022-10-18)
+
+### Feature
+
+* log debug information (2617fdba9462)
+
 ## v2.15.3 (2022-10-16)
 
 ### Fix
