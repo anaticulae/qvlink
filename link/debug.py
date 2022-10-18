@@ -26,6 +26,7 @@ def load_debug(path: str) -> dict:
     Returns:
         dict with package -> version
     """
+    utila.log(f'load debug from: {path}')
     content = utila.from_raw_or_path(path, ftype='', fname='debug')
     result = {}
     for line in content.splitlines():
@@ -77,6 +78,7 @@ def write_debug(
     raw = utila.NEWLINE.join([item.stdout.strip() for item in fork.result])
     if requirements:
         raw = raw.replace(' ', '==')
+    utila.log(f'write debug: {debug}')
     utila.file_replace(debug, raw)
 
 
