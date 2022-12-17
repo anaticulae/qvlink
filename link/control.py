@@ -89,7 +89,7 @@ def publish(
         [link.ProcessState.ANALYSED, link.ProcessState.INVALID],
         document,
     )
-    verbose = utila.logger.LEVEL > utila.Level.LOGGING
+    verbose = utila.level_current() > utila.Level.LOGGING
     source = os.path.join(configo.todo(), document)
     destination = os.path.join(configo.ready(), document)
     equal_location = source == destination
