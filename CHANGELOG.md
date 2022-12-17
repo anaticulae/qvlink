@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v2.15.5 (2022-12-17)
+
+### Fix
+
+* adjust API (ffaeb7949a2a)
+
+### Chore
+
+* use quick installer (4b430e0446ef)
+* upgrade Pipeline (82f741c89456)
+* upgrade requirements.txt (4c3bd1f7b1b1)
+* upgrade Jenkinsfile (9e928e4815c1)
+* add pipe library (4f50aad7836c)
+
 ## v2.15.4 (2022-10-18)
 
 ### Feature
