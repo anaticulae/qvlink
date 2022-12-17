@@ -8,37 +8,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-import re
+import utila
 
-import setuptools
-
-ROOT = os.path.abspath(os.path.dirname(__file__))
-
-with open(os.path.join(ROOT, 'README.md'), encoding='utf8') as fp:
-    README = fp.read()
-with open(os.path.join(ROOT, 'link/__init__.py'), encoding='utf8') as fp:
-    VERSION = re.search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
-with open(os.path.join(ROOT, "requirements.txt"), encoding='utf8') as fp:
-    REQUIRES = [line for line in fp.readlines() if line and '#' not in line]
+PACKAGES = [
+    'link',
+]
 
 if __name__ == "__main__":
-    setuptools.setup(
-        author='Helmut Konrad Fahrendholz',
-        author_email='info@checkitweg.de',
-        description='Connect viewo and queuemo',
-        install_requires=REQUIRES,
-        long_description=README,
-        name='link',
-        platforms='any',
-        url='https://dev.package.checkitweg.de/link',
-        version=VERSION,
-        zip_safe=False,  # create 'zip'-file if True. Don't do it!
-        classifiers=[
-            'Programming Language :: Python :: 3.7',
-            'Programming Language :: Python :: 3.8',
-        ],
-        packages=[
-            'link',
-        ],
-    )
+    utila.install(__file__)
