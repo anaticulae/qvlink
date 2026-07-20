@@ -102,10 +102,8 @@ def test_state_verify_publish(example, monkeypatch):
     with tests.fixtures.complete(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
         assert os.path.join(ready), ready
-        for item in [
-                'fastview', 'result', 'done', link.PDFINFO_NAME,
-                link.JOBFILE_NAME
-        ]:
+        for item in ('fastview', 'result', 'done', link.PDFINFO_NAME,
+                     link.JOBFILE_NAME):
             assert os.path.exists(os.path.join(ready, item)), item
 
 
@@ -120,7 +118,7 @@ def test_state_verify_result(example, monkeypatch):
         resultview = link.resultview(DOCUMENT, done)
         fastview_done = link.fastview_done(DOCUMENT, done)
         resultview_done = link.resultview_done(DOCUMENT, done)
-    for item in [fastview, resultview, fastview_done, resultview_done]:
+    for item in (fastview, resultview, fastview_done, resultview_done):
         assert os.path.exists(item), item
 
     fastview = utilo.forward_slash(str(fastview))
