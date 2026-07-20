@@ -10,8 +10,8 @@
 import os
 
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import link
 import tests
@@ -33,7 +33,7 @@ def test_state_start(example, monkeypatch):
     assert state == link.ProcessState.STARTED
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_delete(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
@@ -46,7 +46,7 @@ def test_state_delete(example, monkeypatch):
         assert link.delete(DOCUMENT) is False  # pylint:disable=C2001
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_failed(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.control.start_progress(DOCUMENT)
@@ -55,7 +55,7 @@ def test_state_failed(example, monkeypatch):
         assert state == link.ProcessState.ERROR
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -64,7 +64,7 @@ def test_state_verify(example, monkeypatch):
     assert state == link.ProcessState.VERIFIED
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify_broken(broken, monkeypatch):
     with tests.patch.patch_todo(broken, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -73,7 +73,7 @@ def test_state_verify_broken(broken, monkeypatch):
     assert state == link.ProcessState.INVALID
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify_start_analysis(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -83,7 +83,7 @@ def test_state_verify_start_analysis(example, monkeypatch):
     assert state == link.ProcessState.ANALYSIS
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify_finish(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
         link.start_progress(DOCUMENT)
@@ -97,7 +97,7 @@ def test_state_verify_finish(example, monkeypatch):
     assert state == link.ProcessState.ANALYSED
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify_publish(example, monkeypatch):
     with tests.fixtures.complete(example, monkeypatch):
         ready = os.path.join(example, 'ready/example')
@@ -109,7 +109,7 @@ def test_state_verify_publish(example, monkeypatch):
             assert os.path.exists(os.path.join(ready, item)), item
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_state_verify_result(example, monkeypatch):
     """Ensure that path refer to copied `ready` result instead of `todo`
     directory."""
@@ -123,10 +123,10 @@ def test_state_verify_result(example, monkeypatch):
     for item in [fastview, resultview, fastview_done, resultview_done]:
         assert os.path.exists(item), item
 
-    fastview = utila.forward_slash(str(fastview))
-    resultview = utila.forward_slash(str(resultview))
-    resultview_done = utila.forward_slash(str(resultview_done))
-    fastview_done = utila.forward_slash(str(fastview_done))
+    fastview = utilo.forward_slash(str(fastview))
+    resultview = utilo.forward_slash(str(resultview))
+    resultview_done = utilo.forward_slash(str(resultview_done))
+    fastview_done = utilo.forward_slash(str(fastview_done))
 
     assert fastview.endswith('ready/example/fastview'), fastview
     assert resultview.endswith('ready/example/result'), resultview
@@ -154,7 +154,7 @@ def test_status_fromstr_error():
         link.State.fromstr('')
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_update_bookkeeping(withfindings):  # pylint:disable=W0613
     documentid = DOCUMENT
     assert not link.load_jobinfo(documentid).result.open

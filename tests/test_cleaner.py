@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utilatest
+import utilotest
 
 import link
 import tests.patch
@@ -17,6 +17,6 @@ def test_remove_outdated(common, monkeypatch, capsys):
     """Ensure that `broken` is cleaned by remover."""
     with tests.patch.patch_todo(common, monkeypatch):
         link.remove_outdated()
-    stderr = utilatest.stdout(capsys)
+    stderr = utilotest.stdout(capsys)
     # broken is compleated by `remove_outdated`
     assert 'complete/fail: broken' in stderr

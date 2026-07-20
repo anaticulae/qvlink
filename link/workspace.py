@@ -9,8 +9,8 @@
 
 import os
 
-import configo
-import utila
+import configos
+import utilo
 
 import link
 
@@ -34,8 +34,8 @@ def collect_jobs(
         tuple of collected (todos, readys)
     """
     if path is None:
-        todo = configo.todo()
-        ready = configo.ready()
+        todo = configos.todo()
+        ready = configos.ready()
     else:
         assert os.path.exists(path), path
         todo = os.path.join(path, 'todo')
@@ -63,13 +63,13 @@ def collect_job_folder(
     for item in os.listdir(folder):
         current = os.path.join(folder, item, link.JOBFILE_NAME)
         if not os.path.exists(current):
-            utila.error(f'job does not exists: {current}')
+            utilo.error(f'job does not exists: {current}')
             continue
         if skip_removed:
             # TODO: REPLACE LATER
             removed = os.path.join(folder, item, 'deleted')
             if os.path.exists(removed):
-                utila.info(f'skip removed: {removed}')
+                utilo.info(f'skip removed: {removed}')
                 continue
         result.append(link.load_job(current))
     return result
@@ -80,17 +80,17 @@ def find_free_todo(todopath: str = None) -> str:
 
     Args:
         todopath(str): Path to location where todos are written. If None
-                   the todopath of `configo.todo()` is used.
+                   the todopath of `configos.todo()` is used.
     Returns:
         Name of process number/folder name which is not used yet.
     Hint:
         This method is not thread safe.
     """
     if todopath is None:
-        todopath = configo.todo()
-    name = utila.tmpname(width=link.DOCUMENT_ID_LENGTH)
+        todopath = configos.todo()
+    name = utilo.tmpname(width=link.DOCUMENT_ID_LENGTH)
     while os.path.exists(os.path.join(todopath, name)):  # pylint:disable=W0149
-        name = utila.tmpname(width=link.DOCUMENT_ID_LENGTH)
+        name = utilo.tmpname(width=link.DOCUMENT_ID_LENGTH)
     return name
 
 
@@ -109,7 +109,7 @@ def create_todo(
         file(str): path to source file
         filename(str): name of saved pdf file - not very important
         todopath(str): path to location where todos are written. If None
-                       the todopath of `configo.todo()` is used.
+                       the todopath of `configos.todo()` is used.
         todoname(str): name of todo folder to save file in. If None
                        todoname is automatically generated.
         owner(str): user which can access document
@@ -120,7 +120,7 @@ def create_todo(
     if todoname is None:
         todoname = find_free_todo(todopath)
     if todopath is None:
-        todopath = configo.todo()
+        todopath = configos.todo()
     path = os.path.join(todopath, todoname)
     os.makedirs(path, exist_ok=exist_ok)
     filepath = os.path.join(path, todoname)
@@ -130,13 +130,13 @@ def create_todo(
         file.save(filepath)
     except AttributeError:
         # Support path to file as input
-        utila.file_copy(file, filepath)
+        utilo.file_copy(file, filepath)
     # filename = secure_filename(file.filename)
     # Create job information
-    date = utila.timedate()
+    date = utilo.timedate()
     job = link.JobInfo(title=filename, date=date, name=todoname, owner=owner)
     dumped = link.dump_job(job)
-    utila.file_create(infopath, dumped)
+    utilo.file_create(infopath, dumped)
     return path
 
 

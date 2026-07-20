@@ -21,8 +21,8 @@ import dataclasses
 import json
 import os
 
-import configo
-import utila
+import configos
+import utilo
 
 import link
 
@@ -79,7 +79,7 @@ def dump_job(
         result['hashlink'] = info.hashlink
     dumped = result
     if convert == 'yaml':
-        dumped: str = utila.yaml_dump(dumped)
+        dumped: str = utilo.yaml_dump(dumped)
     if convert == 'json':
         dumped: str = json.dumps(dumped)
     return dumped
@@ -114,9 +114,9 @@ NO_FINDINGS = FindingStatus(0, 0, 0)
 
 def load_job(path: str) -> JobInfo:
     """Load `JobInfo` from given `path` or yaml raw str."""
-    config = utila.yaml_from_raw_or_path(
+    config = utilo.yaml_from_raw_or_path(
         path,
-        fname=utila.file_name(JOBFILE_NAME),
+        fname=utilo.file_name(JOBFILE_NAME),
     )
     findings = findingstatus_fromdict(
         config.get('result', None),
@@ -140,9 +140,9 @@ def save_job(info: JobInfo, done: bool = True):
     documentid = info.name
     outpath = link.ready(documentid) if done else link.todo(documentid)
     outpath = os.path.join(outpath, JOBFILE_NAME)
-    utila.debug(f'save jobinfo: {outpath} {done}')
+    utilo.debug(f'save jobinfo: {outpath} {done}')
     dumped = dump_job(info)
-    utila.file_replace(outpath, dumped)
+    utilo.file_replace(outpath, dumped)
 
 
 def count_todo() -> int:
@@ -151,7 +151,7 @@ def count_todo() -> int:
     Returns:
         count of valid todo folder in todo path
     """
-    path = configo.todo()
+    path = configos.todo()
     dirs = [
         item for item in os.listdir(path)
         if validate_todo(os.path.join(path, item))
@@ -165,7 +165,7 @@ def count_ready() -> int:
     Returns:
         count of valid ready folder in ready path
     """
-    path = configo.ready()
+    path = configos.ready()
     dirs = [
         item for item in os.listdir(path)
         if validate_ready(os.path.join(path, item))
@@ -194,7 +194,7 @@ def validate_ready(path: str):
 
 
 def job_title(documentid: str) -> str:
-    done = utila.exists(link.done(documentid))
+    done = utilo.exists(link.done(documentid))
     info = link.load_jobinfo(
         documentid=documentid,
         done=done,

@@ -9,7 +9,7 @@
 
 import os
 
-import utila
+import utilo
 
 import link
 
@@ -26,8 +26,8 @@ def load_debug(path: str) -> dict:
     Returns:
         dict with package -> version
     """
-    utila.log(f'load debug from: {path}')
-    content = utila.from_raw_or_path(path, ftype='', fname='debug')
+    utilo.log(f'load debug from: {path}')
+    content = utilo.from_raw_or_path(path, ftype='', fname='debug')
     result = {}
     for line in content.splitlines():
         line = line.strip()
@@ -44,7 +44,7 @@ def load_debug(path: str) -> dict:
     return result
 
 
-RUNNABLE = utila.splitlines("""
+RUNNABLE = utilo.splitlines("""
 queuemo
 rawmaker
 """)
@@ -72,26 +72,26 @@ def write_debug(
     if sort:
         todo = sorted(todo)
     debug = os.path.join(ready, 'debug')
-    with utila.GeorgFork(process=False, returncode=False) as fork:
+    with utilo.GeorgFork(process=False, returncode=False) as fork:
         for program in todo:
-            fork.fork(utila.run, cmd=f'{program} -v -V', expect=expect)
-    raw = utila.NEWLINE.join([item.stdout.strip() for item in fork.result])
+            fork.fork(utilo.run, cmd=f'{program} -v -V', expect=expect)
+    raw = utilo.NEWLINE.join([item.stdout.strip() for item in fork.result])
     if requirements:
         raw = raw.replace(' ', '==')
-    utila.log(f'write debug: {debug}')
-    utila.file_replace(debug, raw)
+    utilo.log(f'write debug: {debug}')
+    utilo.file_replace(debug, raw)
 
 
 def publish_statistics(document: str, debug: bool = True):
     if not debug:
-        utila.debug('skip publish statistics')
+        utilo.debug('skip publish statistics')
         return
     ready = link.ready(document)
     cmd = f'qcon -i {ready} --publish'
-    completed = utila.run(
+    completed = utilo.run(
         cmd,
         expect=None,
     )
     if completed.returncode:
-        utila.error('could not publish `qcon`')
-        utila.error(completed)
+        utilo.error('could not publish `qcon`')
+        utilo.error(completed)

@@ -10,11 +10,11 @@
 import contextlib
 import os
 
+import hoverpower
 import iamraw
-import power
-import protocol
+import protoerror
 import pytest
-import utila
+import utilo
 
 import link
 import tests.patch
@@ -30,7 +30,7 @@ def example(testdir) -> str:
     os.makedirs(ready, exist_ok=True)
     # create todo
     link.create_todo(
-        power.DOCU007_PDF,
+        hoverpower.DOCU007_PDF,
         filename='minimal.pdf',
         todopath=todo,
         todoname=DOCUMENT,
@@ -73,7 +73,7 @@ def withfindings(completed):  # pylint:disable=W0621
             solution=iamraw.Solution(),
         ),
     ]
-    protocol.write_grouped(findings, optimized)
+    protoerror.write_grouped(findings, optimized)
     yield completed
 
 
@@ -99,7 +99,7 @@ def broken(testdir) -> str:
     os.makedirs(ready, exist_ok=True)
 
     source = os.path.join(testdir.tmpdir, 'broken.pdf')
-    utila.file_create(source, '')
+    utilo.file_create(source, '')
 
     link.create_todo(
         source,
@@ -147,8 +147,8 @@ def common(tmpdir):
             owner=link.PUBLIC_OWNER,
         )
         dumped = link.dump_job(result)
-        utila.file_create(output, dumped)
-        utila.file_create_binary(folder.join(item), b'pdf content')
+        utilo.file_create(output, dumped)
+        utilo.file_create_binary(folder.join(item), b'pdf content')
     todo.join('broken').mkdir()
     # create done
     for item in '5555 3333'.split():
@@ -163,8 +163,8 @@ def common(tmpdir):
             result=link.FindingStatus(10, 20, 30),
         )
         dumped = link.dump_job(result)
-        utila.file_create(output, dumped)
+        utilo.file_create(output, dumped)
         # complete job
-        utila.file_create(folder.join('done'))
+        utilo.file_create(folder.join('done'))
     ready.join('also_broken').mkdir()
     return tmpdir

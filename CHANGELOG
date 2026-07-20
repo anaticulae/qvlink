@@ -290,7 +290,7 @@ Every noteable change is logged here.
 
 ### Feature
 
-* add todopath to bypass configo for testing purpose (7a1ff925b628)
+* add todopath to bypass configos for testing purpose (7a1ff925b628)
 
 ### Documentation
 
@@ -599,4 +599,3 @@ Every noteable change is logged here.
 * move job loader and scanner from viewo (b237ff130a65)
 
 ## v0.0.0 Initial release
-

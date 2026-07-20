@@ -9,11 +9,11 @@
 
 import os
 
-import configo
-import protocol
+import configos
+import protoerror
 import serializeraw
-import utila
-import utila.logger
+import utilo
+import utilo.logger
 
 import link
 import link.job
@@ -33,14 +33,14 @@ def start_progress(document: str):
 def verify(document: str):
     assert_state(link.ProcessState.STARTED, document)
 
-    todo = configo.todo()
+    todo = configos.todo()
     workspace = os.path.join(todo, document)
     pdf = os.path.join(workspace, document)
 
-    result = utila.run(f'pdfinfo -i {pdf} -o {workspace} --format=yaml')
-    assert result.returncode == utila.SUCCESS, (result.stderr + result.stdout)
+    result = utilo.run(f'pdfinfo -i {pdf} -o {workspace} --format=yaml')
+    assert result.returncode == utilo.SUCCESS, (result.stderr + result.stdout)
 
-    utila.run(f'abel -i {pdf} -o {workspace}', expect=None)
+    utilo.run(f'abel -i {pdf} -o {workspace}', expect=None)
 
     assert_state(
         [link.ProcessState.VERIFIED, link.ProcessState.INVALID],
@@ -51,7 +51,7 @@ def verify(document: str):
 def start_analysis(document: str):
     assert_state(link.ProcessState.VERIFIED, document)
 
-    todo = os.path.join(configo.todo(), document)
+    todo = os.path.join(configos.todo(), document)
     fastview = os.path.join(todo, 'fastview')
     resultview = os.path.join(todo, 'result')
 
@@ -65,7 +65,7 @@ def finish_fastview(document: str):
     assert_state(link.ProcessState.ANALYSIS, document)
 
     fastview = link.state.fastview_done(document)
-    utila.file_create(fastview)
+    utilo.file_create(fastview)
 
 
 def finish_resultview(document: str):
@@ -73,7 +73,7 @@ def finish_resultview(document: str):
 
     assert link.current(document) == link.ProcessState.ANALYSIS
     resultview = link.state.resultview_done(document)
-    utila.file_create(resultview)
+    utilo.file_create(resultview)
 
 
 def publish(
@@ -89,9 +89,9 @@ def publish(
         [link.ProcessState.ANALYSED, link.ProcessState.INVALID],
         document,
     )
-    verbose = utila.level_current() > utila.Level.LOGGING
-    source = os.path.join(configo.todo(), document)
-    destination = os.path.join(configo.ready(), document)
+    verbose = utilo.level_current() > utilo.Level.LOGGING
+    source = os.path.join(configos.todo(), document)
+    destination = os.path.join(configos.ready(), document)
     equal_location = source == destination
     if not equal_location:
         os.makedirs(destination)
@@ -99,14 +99,14 @@ def publish(
     # count findings and update jobinfo.yaml
     init_jobcounter(source)
     if not equal_location:
-        utila.copy_content(source, destination, pattern=link.PDFINFO_NAME)
-        utila.copy_content(source, destination, pattern=link.JOBFILE_NAME)
+        utilo.copy_content(source, destination, pattern=link.PDFINFO_NAME)
+        utilo.copy_content(source, destination, pattern=link.JOBFILE_NAME)
     if isextracted(document):
         # decide if we encrypt result
         private = link.private(document, done=False)
         # publish content only for valid pdf files
-        utila.log('copy fastview')
-        utila.copy_content(
+        utilo.log('copy fastview')
+        utilo.copy_content(
             link.fastview(document),
             link.fastview(document, done=True),
             recursive=True,
@@ -115,8 +115,8 @@ def publish(
             ignore=skip_fastview,
             private=private,
         )
-        utila.log('copy resultview')
-        utila.copy_content(
+        utilo.log('copy resultview')
+        utilo.copy_content(
             link.resultview(document),
             link.resultview(document, done=True),
             recursive=True,
@@ -125,8 +125,8 @@ def publish(
             ignore=skip_resultview,
             private=private,
         )
-        # utila.log('copy optimized')
-        # utila.copy_content(
+        # utilo.log('copy optimized')
+        # utilo.copy_content(
         #     link.optimized(document),
         #     link.optimized(document, done=True),
         #     recursive=True,
@@ -137,7 +137,7 @@ def publish(
 
 
 def isextracted(documentid) -> bool:
-    if utila.file_read(link.pdfinfo_path(documentid)) != '{}':
+    if utilo.file_read(link.pdfinfo_path(documentid)) != '{}':
         return True
     return False
 
@@ -149,17 +149,17 @@ def write_optimized_findings(
 ):
     optimized = link.optimized(document, done=done)
     os.makedirs(optimized)
-    utila.log((f'load: {link.resultview(document)} and '
+    utilo.log((f'load: {link.resultview(document)} and '
                f'write optimized to: {optimized}'))
     findings = [
-        pagefindings.content for pagefindings in protocol.findings_from_path(
+        pagefindings.content for pagefindings in protoerror.findings_from_path(
             path=link.resultview(document),
             msgid=active,
         )
     ]
-    findings = utila.flatten(findings)
-    findings = utila.notnone(findings)
-    protocol.write_grouped(findings, optimized)
+    findings = utilo.flatten(findings)
+    findings = utilo.notnone(findings)
+    protoerror.write_grouped(findings, optimized)
 
 
 def init_jobcounter(source: str):
@@ -169,16 +169,16 @@ def init_jobcounter(source: str):
     """
     optimized = os.path.join(source, 'result', '__optimized__')
     findings = []
-    if utila.exists(optimized):
+    if utilo.exists(optimized):
         findings = serializeraw.load_grouped(optimized)
     else:
-        utila.error(f'no optimized findings: {optimized}')
-    finding_count = len(utila.flatten_content(findings))
+        utilo.error(f'no optimized findings: {optimized}')
+    finding_count = len(utilo.flatten_content(findings))
     jobpath = os.path.join(source, link.JOBFILE_NAME)
     current = link.load_job(jobpath)
     current.result = link.FindingStatus(finding_count, 0, 0)
     dumped = link.dump_job(current)
-    utila.file_replace(jobpath, dumped)
+    utilo.file_replace(jobpath, dumped)
 
 
 def assert_state(state, document):
@@ -191,17 +191,17 @@ def assert_state(state, document):
 def make_done(documentid: str) -> bool:
     if link.current(documentid) == link.ProcessState.PUBLISHED:
         return False
-    source = os.path.join(configo.todo(), documentid)
-    destination = os.path.join(configo.ready(), documentid)
+    source = os.path.join(configos.todo(), documentid)
+    destination = os.path.join(configos.ready(), documentid)
     equal_location = source == destination
     if equal_location:
-        utila.error('could not add done to equal location')
+        utilo.error('could not add done to equal location')
         return False
     jobinfo = link.load_jobinfo(documentid, done=False)
     # set done flag
     jobinfo.done = True
     link.save_job(jobinfo, done=True)
-    utila.file_create(link.done(documentid))
+    utilo.file_create(link.done(documentid))
     return True
 
 
@@ -228,10 +228,10 @@ def delete(documentid: str) -> bool:
         return False
 
     if os.path.exists(todo_path):
-        utila.file_create(link.todo_deleted(documentid))
+        utilo.file_create(link.todo_deleted(documentid))
 
     if os.path.exists(ready_path):
         # processing is not completed(error or cancelled)
-        utila.file_create(link.ready_deleted(documentid))
+        utilo.file_create(link.ready_deleted(documentid))
 
     return True

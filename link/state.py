@@ -83,9 +83,9 @@ ERROR*
 Path
 ----
 
-`configo.todo` path where new documents are located
+`configos.todo` path where new documents are located
 
-`configo.ready` path where completed documents are located
+`configos.ready` path where completed documents are located
 
 """
 
@@ -93,11 +93,11 @@ import contextlib
 import enum
 import os
 
-import configo
+import configos
 import iamraw
-import protocol
+import protoerror
 import serializeraw
-import utila
+import utilo
 
 import link.job
 
@@ -192,11 +192,11 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     ])
     verified = all([
         started,
-        os.path.exists(pdfinfopath) and utila.file_read(pdfinfopath) != '{}',
+        os.path.exists(pdfinfopath) and utilo.file_read(pdfinfopath) != '{}',
     ])
     invalid = all([
         started,
-        os.path.exists(pdfinfopath) and utila.file_read(pdfinfopath) == '{}',
+        os.path.exists(pdfinfopath) and utilo.file_read(pdfinfopath) == '{}',
     ])
     analysis = all([
         verified,
@@ -236,13 +236,13 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
 
 def todo(documentid: str, todopath=None) -> str:
     if not todopath:
-        todopath = configo.todo()
+        todopath = configos.todo()
     result = os.path.join(todopath, documentid)
     return result
 
 
 def ready(documentid: str) -> str:
-    result = os.path.join(configo.ready(), documentid)
+    result = os.path.join(configos.ready(), documentid)
     return result
 
 
@@ -335,7 +335,7 @@ def progress(documentid: str) -> int:
     path = inprogress(documentid)
     if not os.path.exists(path):
         return -1
-    result = utila.file_read(path)
+    result = utilo.file_read(path)
     result = int(float(result))  # TODO: REPLACE WITH UTILA CODE
     return result
 
@@ -346,7 +346,7 @@ def fail(documentid: str, error: str = None):
         return
     path = os.path.join(path, 'failed')
     error = error or ''
-    utila.file_replace(path, error)
+    utilo.file_replace(path, error)
 
 
 def failed(documentid: str) -> bool:
@@ -369,7 +369,7 @@ def notsupported(documentid: str) -> bool:
     if not failed(documentid):
         return False
     path = os.path.join(document(documentid), 'failed')
-    error = utila.file_read(path).strip()
+    error = utilo.file_read(path).strip()
     # TODO: EXTEND LATER
     if error == NOTSUPPORTED:
         return True
@@ -409,13 +409,13 @@ def rawstate(documentid: str) -> int:
     curme = current(documentid)
     if curme is None:
         # TODO: INVESTIGATE WHY -2
-        utila.error(f'invalid state: {documentid}')
+        utilo.error(f'invalid state: {documentid}')
         return -2
     try:
         converted = State.fromstate(curme)
     except ValueError:
         # TODO: INVESTIGATE WHY -2
-        utila.error(f'invalid state: {documentid}')
+        utilo.error(f'invalid state: {documentid}')
         return -2
     return int(converted)
 
@@ -437,13 +437,13 @@ def update_progress(documentid: str, value: int):
     assert 0 <= value <= 100, f'invalid progress: {value}'
     path = inprogress(documentid)
     value = str(value).zfill(3)
-    utila.file_replace(path, value)
+    utilo.file_replace(path, value)
 
 
 def update_progress_step(documentid: str, value: int, maxvalue: int):
     assert 0 <= value <= maxvalue, f'invalid value: {value} <= {maxvalue}'
     percent = (value / maxvalue) * 100
-    percent = utila.roundme(percent)
+    percent = utilo.roundme(percent)
     update_progress(documentid, percent)
 
 
@@ -452,8 +452,8 @@ def update_bookkeeping(documentid: str, done: bool = True) -> bool:
         documentid,
         done=done,
     )
-    findings = protocol.load_grouped(path)
-    findings = utila.flatten([page.content for page in findings])
+    findings = protoerror.load_grouped(path)
+    findings = utilo.flatten([page.content for page in findings])
     opened, closed, excluded = 0, 0, 0
     for finding in findings:
         status = finding.solution.status

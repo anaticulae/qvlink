@@ -10,9 +10,9 @@
 import functools
 import os
 
-import configo
-import power
-import utila
+import configos
+import hoverpower
+import utilo
 
 import link
 import tests
@@ -31,8 +31,8 @@ def test_free_todo(tmpdir, monkeypatch):
         return tmpdir
 
     with monkeypatch.context() as context:
-        context.setattr(utila, 'tmpname', random_foldername)
-        context.setattr(configo, 'todo', todo)
+        context.setattr(utilo, 'tmpname', random_foldername)
+        context.setattr(configos, 'todo', todo)
 
         # Create folder name, so the next call is already created
         os.makedirs(os.path.join(tmpdir, link.find_free_todo()))
@@ -55,7 +55,7 @@ def test_create_todo(tmpdir, monkeypatch):
 
 def test_create_todo_pathandname(testdir):
     created = link.create_todo(
-        power.DOCU007_PDF,
+        hoverpower.DOCU007_PDF,
         'testfile.pdf',
         testdir.tmpdir,
         'helmut',
@@ -108,7 +108,7 @@ def test_load_documents(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
         load_documents = functools.partial(
             link.load_documents,
-            common=configo.share(),
+            common=configos.share(),
             owner=None,
         )
         documents = load_documents(state=None)

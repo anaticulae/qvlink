@@ -10,15 +10,16 @@
 import contextlib
 import os
 
-import configo.directory
+import configos.directory
 
 
 @contextlib.contextmanager
 def patch_todo(directory, monkeypatch):
     environment = dict(os.environ)
-    environment[configo.directory.COMMON] = str(directory)
-    environment[configo.directory.TODO] = str(os.path.join(directory, 'todo'))
-    environment[configo.directory.READY] = str(os.path.join(directory, 'ready'))
+    environment[configos.directory.COMMON] = str(directory)
+    environment[configos.directory.TODO] = str(os.path.join(directory, 'todo'))
+    environment[configos.directory.READY] = str(os.path.join(
+        directory, 'ready'))
 
     with monkeypatch.context() as context:
         context.setattr(os, 'environ', environment)
