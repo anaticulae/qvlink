@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.15.7 (2026-07-21)
+
+### Chores
+
+- **make**: Add missing secret
+  ([`89a58ca`](https://github.com/anaticulae/qvlink/commit/89a58ca4e91e6a1c8d79bff8fc5741a352252e01))
+
+
 ## v2.15.6 (2026-07-21)
 
 ### Bug Fixes
