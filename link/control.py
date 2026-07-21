@@ -40,7 +40,8 @@ def verify(document: str):
     result = utilo.run(f'pdfinfo -i {pdf} -o {workspace} --format=yaml')
     assert result.returncode == utilo.SUCCESS, (result.stderr + result.stdout)
 
-    utilo.run(f'abel -i {pdf} -o {workspace}', expect=None)
+    # TODO: ENABLE abel LATER
+    # utilo.run(f'abel -i {pdf} -o {workspace}', expect=None)
 
     assert_state(
         [link.ProcessState.VERIFIED, link.ProcessState.INVALID],
