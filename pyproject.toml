@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qvlink"
-version = "2.15.5"
+version = "2.15.6"
 description = ""
 requires-python = ">=3.12"
 authors = [

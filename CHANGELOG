@@ -1,601 +1,1597 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
+
+## v2.15.6 (2026-07-21)
+
+### Bug Fixes
+
+- **control**: Adjust application name
+  ([`d0efff3`](https://github.com/anaticulae/qvlink/commit/d0efff3361cab57b2c83d6330ea3eb8d0866ba8e))
+
+- **link**: Disable `able` till migration is done
+  ([`3ad9b0a`](https://github.com/anaticulae/qvlink/commit/3ad9b0a38ed23c68845e3315e7a2b4456e805d81))
+
+### Chores
+
+- **docs**: Rename files
+  ([`fc7490f`](https://github.com/anaticulae/qvlink/commit/fc7490f324d4a7d3bdcc98bab29bfafe2f7e5928))
+
+- **github**: Add .github
+  ([`229d27b`](https://github.com/anaticulae/qvlink/commit/229d27b9dbba1d226a3dbf7ca31c0d782ab46c11))
+
+- **pyproject**: Add modern project layout
+  ([`a94b0d0`](https://github.com/anaticulae/qvlink/commit/a94b0d0ed4aebd51070ba54e33cbdc7b1029e463))
+
+- **pyproject**: Remove outdated files
+  ([`06fc5ef`](https://github.com/anaticulae/qvlink/commit/06fc5efc4fe4c15bb081734a74a89a49bf5b848e))
+
+- **requirements**: Ensure that pdflog is installed to verify pdf's
+  ([`bd8d423`](https://github.com/anaticulae/qvlink/commit/bd8d423b4a83ceaac9110c3a7ae7a8abd7522736))
+
+### Code Style
+
+- **control**: Format code
+  ([`dc93994`](https://github.com/anaticulae/qvlink/commit/dc939944834f66219235459fd81fa59f91da95a6))
+
+- **fixtures**: Remove unused import
+  ([`b9eb1b1`](https://github.com/anaticulae/qvlink/commit/b9eb1b1f1c88f1fcc904553ec664b36842c90fa8))
+
+### Refactoring
+
+- **project**: Rename project
+  ([`4a8c476`](https://github.com/anaticulae/qvlink/commit/4a8c476aadf29627aa0c6c3ad02177c79c78fc1c))
+
+- **rename**: Adjust package names
+  ([`9115457`](https://github.com/anaticulae/qvlink/commit/911545747d4704292359f2ce6e68ed8565b00d20))
+
+### Testing
+
+- **conftest**: Set env vars if needed
+  ([`a7b913b`](https://github.com/anaticulae/qvlink/commit/a7b913b395a9c054b1e45e24684b78470bd4d585))
+
+- **fix**: Skip test if data is not downloaded
+  ([`0ebbc13`](https://github.com/anaticulae/qvlink/commit/0ebbc13b975b530c6bd5ab00c0fc88b8073fdf73))
+
 
 ## v2.15.5 (2022-12-17)
 
-### Fix
+### Bug Fixes
 
-* adjust API (ffaeb7949a2a)
+- **control**: Adjust API
+  ([`ffaeb79`](https://github.com/anaticulae/qvlink/commit/ffaeb7949a2a2ee1e1811c1fb045abadd273a8a6))
 
-### Chore
+### Chores
 
-* use quick installer (4b430e0446ef)
-* upgrade Pipeline (82f741c89456)
-* upgrade requirements.txt (4c3bd1f7b1b1)
-* upgrade Jenkinsfile (9e928e4815c1)
-* add pipe library (4f50aad7836c)
+- **Jenkins**: Add pipe library
+  ([`4f50aad`](https://github.com/anaticulae/qvlink/commit/4f50aad7836c9beb97eb873a3b21824d946477c2))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`9e928e4`](https://github.com/anaticulae/qvlink/commit/9e928e4815c1301c5a1f1aea5cff4aa4d27af525))
+
+- **Jenkins**: Upgrade Pipeline
+  ([`82f741c`](https://github.com/anaticulae/qvlink/commit/82f741c89456b224001b62e959ff7ca5be61f997))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4c3bd1f`](https://github.com/anaticulae/qvlink/commit/4c3bd1f7b1b14093b12bfa1f361b341e9d3fd1f8))
+
+- **setup**: Use quick installer
+  ([`4b430e0`](https://github.com/anaticulae/qvlink/commit/4b430e0446efaff67180e1023192abdad1c56911))
+
 
 ## v2.15.4 (2022-10-18)
 
-### Feature
+### Features
 
-* log debug information (2617fdba9462)
+- **debug**: Log debug information
+  ([`2617fdb`](https://github.com/anaticulae/qvlink/commit/2617fdba94629e53c6eb368bffed4d147e028e60))
+
 
 ## v2.15.3 (2022-10-16)
 
-### Fix
+### Bug Fixes
 
-* fix annotation (cfe9aaabaf08)
+- **job**: Fix annotation
+  ([`cfe9aaa`](https://github.com/anaticulae/qvlink/commit/cfe9aaabaf08280c16b3fead2be9e99d7b44a52c))
+
 
 ## v2.15.2 (2022-10-16)
 
-### Chore
+### Chores
 
-* convert nightly to all (63927dd0cea1)
-* upgrade baw (08bc016d1a0f)
-* upgrade requirements.txt (61ab9a154c09)
+- **Jenkins**: Convert nightly to all
+  ([`63927dd`](https://github.com/anaticulae/qvlink/commit/63927dd0cea15473ba3c5b313c5f2b360f5db38f))
+
+- **Jenkins**: Upgrade baw
+  ([`08bc016`](https://github.com/anaticulae/qvlink/commit/08bc016d1a0fb4d68baac8b8cc44475555e5a887))
+
+- **requirements**: Upgrade requirements.txt
+  ([`61ab9a1`](https://github.com/anaticulae/qvlink/commit/61ab9a154c0930011e2df4eeadb3ebc5db8fb547))
+
 
 ## v2.15.1 (2022-10-06)
 
-### Chore
+### Chores
 
-* root is not required (1bf8c1593991)
-* upgrade requirements.txt (ad884e2ef454)
+- **Jenkinsfile**: Root is not required
+  ([`1bf8c15`](https://github.com/anaticulae/qvlink/commit/1bf8c15939914634ffd0f50ea16cff83474e0743))
+
+- **requirements**: Upgrade requirements.txt
+  ([`ad884e2`](https://github.com/anaticulae/qvlink/commit/ad884e2ef454da0ce27987942da7ce2908ca5a21))
+
 
 ## v2.15.0 (2022-10-03)
 
-### Chore
+### Chores
 
-* add Jenkinsfile (eb1e7afc1181)
+- **ci**: Add Jenkinsfile
+  ([`eb1e7af`](https://github.com/anaticulae/qvlink/commit/eb1e7afc11819e4badeac75e8608160f5c06aeb2))
 
-## v2.14.4
+### Code Style
 
-### Feature
+- **docs**: Adjust modules headline
+  ([`ca9998c`](https://github.com/anaticulae/qvlink/commit/ca9998c592206631a54cd006ab6e2b6c8f951453))
 
-* raise ValueError if invalid ProcessState is given (84e9a7b07185)
 
-### Fix
+## v2.14.4 (2022-06-26)
 
-* do not fail on invalid state (0507c24bebf4)
+### Bug Fixes
 
-## v2.14.3
+- **state**: Do not fail on invalid state
+  ([`0507c24`](https://github.com/anaticulae/qvlink/commit/0507c24bebf4f4db3cabc522cab6ba7d6d16b1f8))
 
-### Feature
+### Chores
 
-* add documentid access (bdef13d7c658)
+- **requirements**: Upgrade requirements.txt
+  ([`a38e362`](https://github.com/anaticulae/qvlink/commit/a38e3622729a4a70d1add6cd68f95f581031368c))
 
-### Fix
+### Code Style
 
-* add missing deleted step (11d34456cec6)
-* fix path check (a087d9069e05)
+- **state**: Format code
+  ([`d130bba`](https://github.com/anaticulae/qvlink/commit/d130bba58bf3067269c38c973f7f481384ea06a1))
 
-## v2.14.2
+### Features
 
-### Fix
+- **state**: Raise ValueError if invalid ProcessState is given
+  ([`84e9a7b`](https://github.com/anaticulae/qvlink/commit/84e9a7b0718556c0f033fba090d9014c471b4487))
 
-* do not fail on missing job info (d1d57a764f33)
-* do not convert invalid state (fc32be4c7cac)
-* add missing pdf resource (19bd9dbce7da)
-* skip todo documents correctly (07652ea5283f)
-* align test data to internal data structure (8c91030596ab)
-* remove duplicated logging (af3502119d31)
 
-## v2.14.1
+## v2.14.3 (2022-06-16)
 
-### Feature
+### Bug Fixes
 
-* add done flag (797a945379ff)
+- **state**: Add missing deleted step
+  ([`11d3445`](https://github.com/anaticulae/qvlink/commit/11d34456cec63b134f13a43a75aa9518bdd589c7))
 
-## v2.14.0
+- **workspace**: Fix path check
+  ([`a087d90`](https://github.com/anaticulae/qvlink/commit/a087d9069e05f536a349a9408fb7c6e67ef0f16e))
 
-### Feature
+### Features
 
-* add method to determine job name (54e17d376887)
-* move load documents from viewo project (a2057bf5f409)
+- **job**: Add documentid access
+  ([`bdef13d`](https://github.com/anaticulae/qvlink/commit/bdef13d7c65846d41ee379f3c6bd81320d96b9b7))
+
+
+## v2.14.2 (2022-06-16)
+
+### Bug Fixes
+
+- **cleaner**: Do not fail on missing job info
+  ([`d1d57a7`](https://github.com/anaticulae/qvlink/commit/d1d57a764f33adb8b55b80629d6ad1ac029f6631))
+
+- **fixture**: Add missing pdf resource
+  ([`19bd9db`](https://github.com/anaticulae/qvlink/commit/19bd9dbce7da92c15431d502482f13cbec6ca6c5))
+
+- **fixture**: Align test data to internal data structure
+  ([`8c91030`](https://github.com/anaticulae/qvlink/commit/8c91030596ab2d0c28694d5f5a6def46c829db33))
+
+- **job**: Remove duplicated logging
+  ([`af35021`](https://github.com/anaticulae/qvlink/commit/af3502119d3198485257d5790c2dcfc18e4ac515))
+
+- **state**: Do not convert invalid state
+  ([`fc32be4`](https://github.com/anaticulae/qvlink/commit/fc32be4c7cacea12be1fc2f6d7be5b86a5c8446c))
+
+- **workspace**: Skip todo documents correctly
+  ([`07652ea`](https://github.com/anaticulae/qvlink/commit/07652ea5283fd62afecea499f098bdc1ec187ec5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2c9249d`](https://github.com/anaticulae/qvlink/commit/2c9249d2de3a09e689ebb19606b4901845fa9aed))
+
+### Code Style
+
+- **config**: Add copyright header
+  ([`a02cfdd`](https://github.com/anaticulae/qvlink/commit/a02cfdd00587f214391333741b8c7c9decefdf1b))
+
+- **tests**: Format docs
+  ([`66c0bfc`](https://github.com/anaticulae/qvlink/commit/66c0bfc98aa32810faac67a0b5fdfabbf0bf726c))
+
+### Refactoring
+
+- **cleaner**: Use new var name
+  ([`085b6e5`](https://github.com/anaticulae/qvlink/commit/085b6e525403c613a0dc107da4acd1f0510165d3))
+
+- **job**: Improve code style
+  ([`54c7ded`](https://github.com/anaticulae/qvlink/commit/54c7ded0306b6b8f8ad862a77b879d37d3a1ac5e))
+
+### Testing
+
+- **cleaner**: Verify job cleaner
+  ([`8b6e843`](https://github.com/anaticulae/qvlink/commit/8b6e843fdbcea8accbcfb8dc608e970509b02fc5))
+
+- **control**: Extend test coverage
+  ([`96f2ab1`](https://github.com/anaticulae/qvlink/commit/96f2ab124e0792f7d0317b1eb13d3fe7202f2ec6))
+
+- **fixture**: Improve example creation
+  ([`9d6e229`](https://github.com/anaticulae/qvlink/commit/9d6e229ea4ec91a94fd9788ed805507c7aed567e))
+
+- **refactor**: Simplify code
+  ([`118dfef`](https://github.com/anaticulae/qvlink/commit/118dfefbb972a7af4a8ec1a6340eef2fff7c1a7e))
+
+- **workspace**: Verify document loading by document state
+  ([`79c22da`](https://github.com/anaticulae/qvlink/commit/79c22dadc3c2803ced1b39c309ed0414769fc442))
+
+
+## v2.14.1 (2022-06-15)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5b11e1c`](https://github.com/anaticulae/qvlink/commit/5b11e1cfc3a904f4c260df33f6d72062092ae97e))
+
+### Features
+
+- **state**: Add done flag
+  ([`797a945`](https://github.com/anaticulae/qvlink/commit/797a945379ffecd15824bee899370e04ca3b38a3))
+
+
+## v2.14.0 (2022-05-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dc0e473`](https://github.com/anaticulae/qvlink/commit/dc0e473802e2527506a6b567a37469b9850dd580))
 
 ### Documentation
 
-* adjust modules path (46aa127f1aee)
+- **fix**: Adjust modules path
+  ([`46aa127`](https://github.com/anaticulae/qvlink/commit/46aa127f1aee8044a7b9364d2df4fbf41f655426))
 
-## v2.13.0
+### Features
 
-### Feature
+- **job**: Add method to determine job name
+  ([`54e17d3`](https://github.com/anaticulae/qvlink/commit/54e17d376887c6ee6c1bdfcbe16cc569ddf31d86))
 
-* add option to write debug as pip compatible (8f41fb2ea5b0)
-* run debug in sorted order (7d4f74cc7c68)
+- **workspace**: Move load documents from viewo project
+  ([`a2057bf`](https://github.com/anaticulae/qvlink/commit/a2057bf5f409083d1c347fa7bd7076746587d335))
 
-### Documentation
+### Refactoring
 
-* Happy New Year! (acba4d904c22)
+- **job**: Replace yaml dumper with utila code
+  ([`f8aeb27`](https://github.com/anaticulae/qvlink/commit/f8aeb271467e182d9cfed9b8e2b9f2b240cd56b0))
 
-## v2.12.1
+### Testing
 
-### Fix
+- **format**: Format code
+  ([`2f8b333`](https://github.com/anaticulae/qvlink/commit/2f8b333064c1e8d0c31ac39d0a48e1dd5845bcaf))
 
-* use optimized findings (7b6e6f24ddef)
+- **state**: Keep dev build fast
+  ([`aee1940`](https://github.com/anaticulae/qvlink/commit/aee1940ab28116c07660ab56eed964630ccbf3ed))
 
-## v2.12.0
 
-### Feature
+## v2.13.0 (2022-01-01)
 
-* add parameter to shrink published findings (55c279bc8662)
-* add flag to control failing behavior (034a4b9d3521)
+### Chores
 
-### Documentation
+- **config**: Use default config path
+  ([`f967054`](https://github.com/anaticulae/qvlink/commit/f96705443675e35608b842c60759c0e5083c12cc))
 
-* fix file name (bcca46c4200a)
-
-## v2.11.1
-
-### Fix
-
-* add NOT SUPPORTED to raw state converter (7aa2df8cffab)
-
-## v2.11.0
-
-### Feature
-
-* add method to signal that document type is not supported (8fb5f8e0b6d6)
-
-## v2.10.0
-
-### Feature
-
-* add method to remove long pending jobs (bce9f5e5ac4a)
-* add method to publish run statistics (116953fe9934)
-* add method to write debug information (354b1fc5f5ea)
-
-## v2.9.3
-
-### Feature
-
-* add option to automatically detect if document is done (6345aefb047c)
-
-## v2.9.2
-
-### Fix
-
-* determine state for raw jobinfo loader (e9588eb61207)
-
-## v2.9.1
-
-### Feature
-
-* add optional done selector (ddff7fb6457f)
-
-## v2.9.0
-
-### Feature
-
-* add method to load raw job information (d14144c2092e)
-* add method to load load pdfinfo from documentid (bccc84927685)
-* add parameter to remove password (24796fc0e9aa)
-* add option to convert to json (dbf46d33d09f)
-* add Jobs-List datatype (7d435ee72cb7)
-* add optional done flag (ac46e966f724)
-
-### Fix
-
-* add missing renaming (fb70697743d6)
-
-## v2.8.0
-
-### Feature
-
-* add method to update bookkeeping (73ff16ec4460)
-* clarify job file name (0ef65f629d4c)
-* change from json to yaml (2bf8036cc6d7)
-* update done flag while publishing document (59554d3eed84)
-* add method to write job info (496ad67c5e39)
-
-## v2.7.0
-
-### Feature
-
-* add method to check if document is private (f844eb8971b1)
-
-## v2.6.0
-
-### Feature
-
-* encrypt private user data (7594a7c4dbfc)
-
-## v2.5.1
-
-### Feature
-
-* add argument to skip coping files (8b50e6a22321)
-
-## v2.5.0
-
-### Feature
-
-* run abel to gather document information (de92491198f5)
-
-## v2.4.1
-
-### Feature
-
-* add default file name (1b14fa77d562)
+- **requirements**: Upgrade requirements.txt
+  ([`9199159`](https://github.com/anaticulae/qvlink/commit/91991591d0126fc375c260f3078870653988003f))
 
 ### Documentation
 
-* make interface more explicit (63644ac8db13)
+- **copyright**: Happy New Year!
+  ([`acba4d9`](https://github.com/anaticulae/qvlink/commit/acba4d904c229940c29585f6d9eb04b4162d9c93))
 
-## v2.4.0
+### Features
 
-### Feature
+- **debug**: Add option to write debug as pip compatible
+  ([`8f41fb2`](https://github.com/anaticulae/qvlink/commit/8f41fb2ea5b09bce2e3a2b6b1df80df511cf5e44))
 
-* add method to load debug information (52f93815cc3a)
+- **debug**: Run debug in sorted order
+  ([`7d4f74c`](https://github.com/anaticulae/qvlink/commit/7d4f74cc7c68aa4c1171aa2a4cb6142f942550fb))
 
-## v2.3.2
 
-### Feature
+## v2.12.1 (2021-10-07)
 
-* add flag to not fail on existing workspace folder (2e32d9b8f622)
+### Bug Fixes
 
-### Documentation
+- **control**: Use optimized findings
+  ([`7b6e6f2`](https://github.com/anaticulae/qvlink/commit/7b6e6f24ddefb031450cbc1962fdcf59f5ce2bec))
 
-* Happy New Year! (65fe069a584c)
+### Refactoring
 
-## v2.3.1
+- **control**: Clarify code
+  ([`bf11699`](https://github.com/anaticulae/qvlink/commit/bf11699d556afadc0a1d84eddb276b26ee49fc3b))
 
-### Feature
 
-* add method to convert ProcessState to State (3b44a3d6f8ed)
-* add option to return raw job representation (a7018810ba90)
+## v2.12.0 (2021-10-06)
 
-## v2.3.0
+### Chores
 
-### Feature
-
-* add state parameter (fdf0706a16a4)
-* move enum State from viewo project (7de64cf579b9)
-
-## v2.2.2
-
-### Fix
-
-* skip non existing documents (f1fad7bfd338)
-
-## v2.2.1
-
-### Fix
-
-* return invalid progress if file does not exists (cbe265a52f20)
-
-## v2.2.0
-
-### Feature
-
-* add Error state to current (72a12fe78d0e)
-* add method to check fail state and add fail state (25345a460167)
-
-## v2.1.1
-
-### Feature
-
-* add inprogressed method (bba413b888c3)
-* add deleted method (a53350277f50)
-
-## v2.1.0
-
-### Feature
-
-* add progress step update method (30fc6581f040)
-* add method to update progress and determine progress (8084a098edb2)
-
-## v2.0.5
-
-### Feature
-
-* add todopath to bypass configos for testing purpose (7a1ff925b628)
+- **requirements**: Upgrade requirements.txt
+  ([`3bb340d`](https://github.com/anaticulae/qvlink/commit/3bb340db225408e37e8ddc2713d7d2f32968bf6b))
 
 ### Documentation
 
-* fix spelling error (2f8d0b1caeab)
+- **fix**: Fix file name
+  ([`bcca46c`](https://github.com/anaticulae/qvlink/commit/bcca46c4200ae17e72c901f24df4437957ef3e28))
 
-## v2.0.4
+### Features
 
-## v2.0.3
+- **control**: Add parameter to shrink published findings
+  ([`55c279b`](https://github.com/anaticulae/qvlink/commit/55c279bc8662dd6d465feffb0302d73b8fa5b879))
 
-## v2.0.2
+- **debug**: Add flag to control failing behavior
+  ([`034a4b9`](https://github.com/anaticulae/qvlink/commit/034a4b9d3521ac09096fd026d2cbda55ab0a885a))
 
-## v2.0.1
+### Refactoring
 
-## v2.0.0
+- **style**: Use newest method name
+  ([`c98305d`](https://github.com/anaticulae/qvlink/commit/c98305d11af9a6445221be44e462f89567cb2d0d))
 
-### Feature
 
-* add post init hook to verify data type (0eee941cb80d)
-* use str to describe job index (c74677c92c1f)
-* add owner parameter to todo creator (b31e29d81de6)
-* add multiple owner (2ffd6fe1cd71)
-* add owner parameter to filter loading (1f828c48b8cd)
-* add job owner (493262aaa1ef)
+## v2.11.1 (2021-09-01)
 
-## v1.4.1
+### Bug Fixes
 
-### Fix
+- **state**: Add NOT SUPPORTED to raw state converter
+  ([`7aa2df8`](https://github.com/anaticulae/qvlink/commit/7aa2df8cffab38e1123652f77d014b884e7240c4))
 
-* fix level compare (fb0d9bb37e6c)
+### Code Style
 
-## v1.4.0
+- **format**: Format code
+  ([`39b9ece`](https://github.com/anaticulae/qvlink/commit/39b9ecea40ebac5db8fce7edd405fe362079e7ec))
 
-### Feature
 
-* enable sink and source as equal folder (331eacf3c441)
-* add option to control copying of optimized findings (41899024d43a)
-* adjust logging policy (20bb96e7601c)
+## v2.11.0 (2021-09-01)
 
-## v1.3.2
+### Chores
 
-## v1.3.1
+- **requirements**: Upgrade requirements.txt
+  ([`3e68eb1`](https://github.com/anaticulae/qvlink/commit/3e68eb11d9b89d7439435b2e63ad25caa8071b00))
 
-### Fix
+### Features
 
-* replace loader cause grouped loader expect optimized format (2722deaa889f)
+- **state**: Add method to signal that document type is not supported
+  ([`8fb5f8e`](https://github.com/anaticulae/qvlink/commit/8fb5f8e0b6d658e5d72d5153e65e0d6b3b6d885c))
 
-## v1.3.0
 
-### Feature
+## v2.10.0 (2021-08-23)
 
-* publish optimized findings separately (90f4e121ec3d)
-* add link to optimized finding path (e9b597ae6fac)
+### Chores
 
-## v1.2.3
+- **requirements**: Upgrade requirements.txt
+  ([`7bfb2a0`](https://github.com/anaticulae/qvlink/commit/7bfb2a035305f6ef0950f66fed4d4fe8f47da64b))
 
-## v1.2.2
+### Code Style
 
-## v1.2.1
+- **docs**: Improve code structure
+  ([`183c2ae`](https://github.com/anaticulae/qvlink/commit/183c2aeffe9188379f13f7a8179f2b4998edc9ff))
 
-## v1.2.0
+### Features
 
-### Feature
+- **cleaner**: Add method to remove long pending jobs
+  ([`bce9f5e`](https://github.com/anaticulae/qvlink/commit/bce9f5e5ac4a603bcd2b1cb5face6319b475b1b4))
 
-* handle more cases of to delete a document (1d8348c6eeb6)
-* add done flag to select result view type (bb74701de166)
-* add method document to access document resource folder by id (129c8140269b)
-* add constant to define width of random job id (e3d0f1537549)
+- **debug**: Add method to publish run statistics
+  ([`116953f`](https://github.com/anaticulae/qvlink/commit/116953fe993450ed54d325ca5d2fa450d8739a63))
 
-## v1.1.1
+- **debug**: Add method to write debug information
+  ([`354b1fc`](https://github.com/anaticulae/qvlink/commit/354b1fc5f5ea7e838b6fb70263b54b473fe83684))
 
-## v1.1.0
+### Refactoring
 
-### Feature
+- **debug**: Move loading method to debug
+  ([`dd207ed`](https://github.com/anaticulae/qvlink/commit/dd207edbd797d5154d9707d3bde967c3097be5d4))
 
-* return None if process does not exists (9e0bb9443888)
+- **setup**: Cleanup setup file
+  ([`01cf5ad`](https://github.com/anaticulae/qvlink/commit/01cf5ad1d8218b8a63930bf2550fadbe104be286))
 
-### Fix
 
-* do not log that path does not exists (9b4986a6bb25)
+## v2.9.3 (2021-07-09)
 
-## v1.0.4
+### Chores
 
-## v1.0.3
+- **requirements**: Upgrade requirements.txt
+  ([`16ee058`](https://github.com/anaticulae/qvlink/commit/16ee0586b375bd90679ed12ae6fdcb7df489640e))
 
-## v1.0.2
+### Features
 
-## v1.0.1
+- **state**: Add option to automatically detect if document is done
+  ([`6345aef`](https://github.com/anaticulae/qvlink/commit/6345aefb047cc2ba0c673bd2fe1481bb7ab3b591))
 
-## v1.0.0
 
-### Feature
+## v2.9.2 (2021-06-22)
 
-* add count of findings to publish step (f5b4e423c298)
-* extend public API (7ff3fc3ea470)
-* clarify code and drop support for simple status (f9ea27a233be)
-* divide dumping and writing process of job information (e027dd0af474)
+### Bug Fixes
+
+- **state**: Determine state for raw jobinfo loader
+  ([`e9588eb`](https://github.com/anaticulae/qvlink/commit/e9588eb61207bb809ff6580692009039c0ce932f))
+
+
+## v2.9.1 (2021-06-22)
+
+### Features
+
+- **state**: Add optional done selector
+  ([`ddff7fb`](https://github.com/anaticulae/qvlink/commit/ddff7fb6457f7ccd93d153117b7092e342978363))
+
+
+## v2.9.0 (2021-06-22)
+
+### Bug Fixes
+
+- **job**: Add missing renaming
+  ([`fb70697`](https://github.com/anaticulae/qvlink/commit/fb70697743d6f044a2a166412e90515cb4cab269))
+
+### Chores
+
+- **requirements**: Move rawmaker to dev requirements
+  ([`6bcac1e`](https://github.com/anaticulae/qvlink/commit/6bcac1ed0e7115522f038d68d8752014748bb725))
+
+- **requirements**: Require newest iamraw package
+  ([`ccabd19`](https://github.com/anaticulae/qvlink/commit/ccabd19ecc6200f5792c3ba412c76729745b063c))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b2d683e`](https://github.com/anaticulae/qvlink/commit/b2d683e591495999cfe79a32e50b69bb0554680a))
+
+### Features
+
+- **job**: Add Jobs-List datatype
+  ([`7d435ee`](https://github.com/anaticulae/qvlink/commit/7d435ee72cb7566c2e01a109e8e0a4c888a0657c))
+
+- **job**: Add option to convert to json
+  ([`dbf46d3`](https://github.com/anaticulae/qvlink/commit/dbf46d33d09ffc4b09d095d0f5d309205acee9ab))
+
+- **job**: Add parameter to remove password
+  ([`24796fc`](https://github.com/anaticulae/qvlink/commit/24796fc0e9aaaae88cd3af1108aa75ba6c183d47))
+
+- **state**: Add method to load load pdfinfo from documentid
+  ([`bccc849`](https://github.com/anaticulae/qvlink/commit/bccc8492768577d6e31050f6f3cb836a0d81de51))
+
+- **state**: Add method to load raw job information
+  ([`d14144c`](https://github.com/anaticulae/qvlink/commit/d14144c2092ec06b405e2633c51cbf768076f0cc))
+
+- **state**: Add optional done flag
+  ([`ac46e96`](https://github.com/anaticulae/qvlink/commit/ac46e966f724f081189e11bc2b0a34afd0fc4538))
+
+### Refactoring
+
+- **control**: Improve code style
+  ([`9fa0878`](https://github.com/anaticulae/qvlink/commit/9fa087856a76c3a719ba44f6192cc197fc9a22eb))
+
+- **rename**: Improve naming
+  ([`14360bf`](https://github.com/anaticulae/qvlink/commit/14360bf8adf5c4b5876111f1f7205d2ffdba6533))
+
+- **rename**: Rename method to pdfinfo path
+  ([`4318d8f`](https://github.com/anaticulae/qvlink/commit/4318d8f0fd0d7f02bf46bae2a94d7d9156d60c02))
+
+### Testing
+
+- **style**: Format code
+  ([`32a3a9f`](https://github.com/anaticulae/qvlink/commit/32a3a9fa8b8c48b066fbd199e9e90dff5434c19b))
+
+
+## v2.8.0 (2021-06-11)
+
+### Chores
+
+- **test**: Keep dev build fast
+  ([`e72e53a`](https://github.com/anaticulae/qvlink/commit/e72e53ad2d85defa9a0aed39c83507bdf4de33f4))
+
+### Features
+
+- **control**: Update done flag while publishing document
+  ([`59554d3`](https://github.com/anaticulae/qvlink/commit/59554d3eed84275e19071aaf08a84142592fb79d))
+
+- **job**: Add method to write job info
+  ([`496ad67`](https://github.com/anaticulae/qvlink/commit/496ad67c5e39fae5f2da0d71495af94419bd8439))
+
+- **job**: Clarify job file name
+  ([`0ef65f6`](https://github.com/anaticulae/qvlink/commit/0ef65f629d4c36c37c11eab7d87f3be370bd3ad1))
+
+- **pdfinfo**: Change from json to yaml
+  ([`2bf8036`](https://github.com/anaticulae/qvlink/commit/2bf8036cc6d75b43f3124d470718e2a11a235bde))
+
+- **state**: Add method to update bookkeeping
+  ([`73ff16e`](https://github.com/anaticulae/qvlink/commit/73ff16ec446088c6577e700f69a6874f08a0a842))
+
+### Testing
+
+- **fixture**: Add fixture to create document with findings
+  ([`9654dfb`](https://github.com/anaticulae/qvlink/commit/9654dfb425208ab900693b68ca3249dc93b07587))
+
+- **refactor**: Improve test style
+  ([`ddf3b9d`](https://github.com/anaticulae/qvlink/commit/ddf3b9d262fc9defd6f1c42baffa77d4737da812))
+
+- **refactor**: Introduce completed fixture
+  ([`548617c`](https://github.com/anaticulae/qvlink/commit/548617cc465c171a9a9d5c03691f72e11ac63a80))
+
+- **refactor**: Simplify code
+  ([`816570e`](https://github.com/anaticulae/qvlink/commit/816570eef185eb79f9358d74e143ab235bdb6cf9))
+
+- **refactor**: Simplify test code
+  ([`8502dfb`](https://github.com/anaticulae/qvlink/commit/8502dfbdb6670eabda425d8c4c5af1cd9c9f8933))
+
+- **state**: Add test to verify bookkeeping
+  ([`88e139d`](https://github.com/anaticulae/qvlink/commit/88e139d817b8240643036e36d727db31ae554e45))
+
+
+## v2.7.0 (2021-06-05)
+
+### Code Style
+
+- **docs**: Format docs
+  ([`ffae7af`](https://github.com/anaticulae/qvlink/commit/ffae7afdc8c000993b4e69e9b965b74307ac86ff))
+
+### Features
+
+- **state**: Add method to check if document is private
+  ([`f844eb8`](https://github.com/anaticulae/qvlink/commit/f844eb8971b1f79c4d17fb8a72b8b2987750aea8))
+
+
+## v2.6.0 (2021-06-04)
+
+### Chores
+
+- **requirements**: Add crypto package
+  ([`eec2e15`](https://github.com/anaticulae/qvlink/commit/eec2e15efaab7cf7ef04860d6ac734a96f4614ce))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4983b05`](https://github.com/anaticulae/qvlink/commit/4983b05a3d36e5c4f3bbb019084e2f1fe287b949))
+
+### Code Style
+
+- **format**: Use improved yapf formatter
+  ([`be92a8c`](https://github.com/anaticulae/qvlink/commit/be92a8c93a6a45f8ce03c0a2331913b4244df355))
+
+### Features
+
+- **control**: Encrypt private user data
+  ([`7594a7c`](https://github.com/anaticulae/qvlink/commit/7594a7c4dbfcf0fc5f6b5a9758a110091b7a22f0))
+
+
+## v2.5.1 (2021-05-15)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`607b17b`](https://github.com/anaticulae/qvlink/commit/607b17b86b407515bee669a45e1d23179180b106))
+
+### Features
+
+- **control**: Add argument to skip coping files
+  ([`8b50e6a`](https://github.com/anaticulae/qvlink/commit/8b50e6a2232127ff0eedba44a5731017d665442f))
+
+
+## v2.5.0 (2021-03-26)
+
+### Chores
+
+- **requirements**: Add abel package
+  ([`6caa75d`](https://github.com/anaticulae/qvlink/commit/6caa75d46b788c751b9e737ca5133fbfd7a4ac74))
+
+- **requirements**: Upgrade requirements.txt
+  ([`2bc4a1f`](https://github.com/anaticulae/qvlink/commit/2bc4a1f4d90fd9b19011be982c0a119ba29a8a8a))
+
+### Features
+
+- **control**: Run abel to gather document information
+  ([`de92491`](https://github.com/anaticulae/qvlink/commit/de92491198f54b26bdda1a5185b8e5fba8c4c1a9))
+
+
+## v2.4.1 (2021-02-08)
 
 ### Documentation
 
-* update module description (dce0c4e6a984)
+- **workspace**: Make interface more explicit
+  ([`63644ac`](https://github.com/anaticulae/qvlink/commit/63644ac8db13c15031889ab2faef970589f377e9))
 
-## v0.4.19
+### Features
 
-## v0.4.18
+- **job**: Add default file name
+  ([`1b14fa7`](https://github.com/anaticulae/qvlink/commit/1b14fa77d5629701b59ead5d4860597fefe99ad0))
 
-## v0.4.17
 
-## v0.4.16
+## v2.4.0 (2021-02-08)
 
-## v0.4.15
+### Features
 
-## v0.4.14
+- **job**: Add method to load debug information
+  ([`52f9381`](https://github.com/anaticulae/qvlink/commit/52f93815cc3a1cdcb7e4344c8d3250e903710d81))
 
-## v0.4.13
 
-### Documentation
+## v2.3.2 (2021-02-08)
 
-* add copyright header (b314d345f3d3)
+### Chores
 
-## v0.4.12
+- **requirements**: Upgrade requirements.txt
+  ([`4d71930`](https://github.com/anaticulae/qvlink/commit/4d71930778947ae2983440e00c0670ff06b9091a))
 
-## v0.4.11
-
-## v0.4.10
-
-### Feature
-
-* log non existing todo (c650b2ce9360)
-
-## v0.4.9
-
-## v0.4.8
-
-## v0.4.7
-
-## v0.4.6
-
-## v0.4.5
-
-## v0.4.4
-
-## v0.4.3
-
-### Fix
-
-* fix path to write `deleted` mark (52eebcb9d8af)
-
-## v0.4.2
-
-### Feature
-
-* add method to skip removed extracted documents (bcd84017d0e7)
-
-### Fix
-
-* convert old style datatype to new FindingStatus (1ec9e8812c52)
+- **requirements**: Yaml is already defined by rawmaker(iamraw)
+  ([`6c5ab0a`](https://github.com/anaticulae/qvlink/commit/6c5ab0ae9e4dc5e9353903584200f7eb3c5d55f0))
 
 ### Documentation
 
-* fix interface documentation (2d5f0238c7fa)
+- **copyright**: Happy New Year!
+  ([`65fe069`](https://github.com/anaticulae/qvlink/commit/65fe069a584c937a3f6fa6057af4cedb8d13c447))
 
-## v0.4.1
+### Features
 
-### Feature
+- **workspace**: Add flag to not fail on existing workspace folder
+  ([`e4cece9`](https://github.com/anaticulae/qvlink/commit/e4cece95702cbe9eed29d7e654b6715799f802f3))
 
-* add method `delete` to set deleting folder flag (d109666b81bb)
-* add data field password and hashlink (ca2db4455bde)
 
-## v0.4.0
+## v2.3.1 (2020-12-30)
 
-### Feature
+### Features
 
-* change result field from int to complex user progress datatype (621ca8155cf2)
+- **job**: Add option to return raw job representation
+  ([`a701881`](https://github.com/anaticulae/qvlink/commit/a7018810ba90578c7908a37873344adf9626012f))
 
-## v0.3.16
+- **state**: Add method to convert ProcessState to State
+  ([`3b44a3d`](https://github.com/anaticulae/qvlink/commit/3b44a3d6f8ed27cf0f0ce615ededb16894ed4f94))
 
-## v0.3.15
+### Testing
 
-## v0.3.14
+- **state**: Add test to create invalid state
+  ([`0a6f0cc`](https://github.com/anaticulae/qvlink/commit/0a6f0ccd19da49214dcc22fc1ca2697cac23473a))
 
-## v0.3.13
 
-## v0.3.12
+## v2.3.0 (2020-12-30)
 
-## v0.3.11
+### Features
 
-## v0.3.10
+- **job**: Add state parameter
+  ([`fdf0706`](https://github.com/anaticulae/qvlink/commit/fdf0706a16a4036711f812faea9ad4939eed6a5e))
 
-## v0.3.9
+- **state**: Move enum State from viewo project
+  ([`7de64cf`](https://github.com/anaticulae/qvlink/commit/7de64cf579b92a38b0d75cee546e31cf2224d28f))
 
-## v0.3.8
 
-## v0.3.7
+## v2.2.2 (2020-12-30)
 
-## v0.3.6
+### Bug Fixes
 
-## v0.3.5
+- **state**: Skip non existing documents
+  ([`f1fad7b`](https://github.com/anaticulae/qvlink/commit/f1fad7bfd33817b4315a4b35a8b947c4e653f24c))
 
-## v0.3.4
 
-## v0.3.3
+## v2.2.1 (2020-12-29)
 
-### Fix
+### Bug Fixes
 
-* add missing recursive flag (a2d910701439)
+- **state**: Return invalid progress if file does not exists
+  ([`cbe265a`](https://github.com/anaticulae/qvlink/commit/cbe265a52f20ed04c2fc4620da0cb6f6ce955aa5))
 
-## v0.3.2
 
-### Feature
+## v2.2.0 (2020-12-29)
 
-* print assertion validation to ease debugging (d0f68f39b62d)
+### Features
 
-## v0.3.1
+- **state**: Add Error state to current
+  ([`72a12fe`](https://github.com/anaticulae/qvlink/commit/72a12fe78d0e27a7e43ea40ec37fe477202dde2e))
 
-### Fix
+- **state**: Add method to check fail state and add fail state
+  ([`25345a4`](https://github.com/anaticulae/qvlink/commit/25345a460167dd3e56fc7be721ce62ebb827f396))
 
-* remove outdated resources from setup (b1e76198398a)
 
-## v0.3.0
+## v2.1.1 (2020-12-29)
 
-### Feature
+### Features
 
-* add methods to determine more paths (8ac183c7a458)
-* support publish invalid pdf result (2f605eb8486b)
-* add state machine to manage document live cycle (c7f3fb6937fc)
-* override environment variables instead of creating all (3ba396c75ab9)
+- **state**: Add deleted method
+  ([`a533502`](https://github.com/anaticulae/qvlink/commit/a53350277f50c5d6a9f27b5b5d4f08cbbee98a25))
 
-### Documentation
+- **state**: Add inprogressed method
+  ([`bba413b`](https://github.com/anaticulae/qvlink/commit/bba413b888c34c88be76d1fa6b46fa6cf0161be3))
 
-* add general doc structure (3f14c42ebd2a)
+### Refactoring
 
-## v0.2.3
+- **state**: Simplify code
+  ([`b9ae264`](https://github.com/anaticulae/qvlink/commit/b9ae2642894c66f10e26a457ff789553fb9fee94))
 
-### Feature
 
-* add support for file str path as file source (42867d25199e)
+## v2.1.0 (2020-12-29)
 
-## v0.2.2
+### Code Style
 
-### Feature
+- **format**: Format code
+  ([`8f4cd99`](https://github.com/anaticulae/qvlink/commit/8f4cd99e862d10c15e2b43ec57809c935ae9c71c))
 
-* add parameter to define where todo folder is located (92cb1b60f47e)
+- **state**: Improve code style
+  ([`a53e996`](https://github.com/anaticulae/qvlink/commit/a53e996472c83b932f8ce62b24de883e338a396c))
 
-## v0.2.1
+### Features
 
-## v0.2.0
+- **progress**: Add method to update progress and determine progress
+  ([`8084a09`](https://github.com/anaticulae/qvlink/commit/8084a098edb257d0157a8bf35e054755d612cf22))
 
-### Feature
+- **progress**: Add progress step update method
+  ([`30fc658`](https://github.com/anaticulae/qvlink/commit/30fc6581f040d9487e743c4f1eb86bea4c0e5fd1))
 
-* extend job date with hour and second (3ebf4524a9c6)
+### Refactoring
 
-## v0.1.13
+- **progress**: Simplify code
+  ([`24a1e83`](https://github.com/anaticulae/qvlink/commit/24a1e837ee4d7397c1fb028407d9a7c9e5f0322b))
 
-### Documentation
+### Testing
 
-* Happy New Year! (3f84a46a975e)
+- **state**: Add test to verify delete document
+  ([`b8f920e`](https://github.com/anaticulae/qvlink/commit/b8f920e565eed516079493f7d91ba5d608cb6fe9))
 
-## v0.1.12
+- **state**: Add test to verify progress state update
+  ([`5798de4`](https://github.com/anaticulae/qvlink/commit/5798de4a5245f53988d8115a09f284fbbdbe8b40))
 
-## v0.1.11
 
-## v0.1.10
-
-## v0.1.9
-
-## v0.1.8
-
-## v0.1.7
-
-## v0.1.6
-
-### Fix
-
-* fix spelling error (63fb2276b407)
+## v2.0.5 (2020-12-28)
 
 ### Documentation
 
-* extend basic readme (82c7924b89ef)
+- **fix**: Fix spelling error
+  ([`2f8d0b1`](https://github.com/anaticulae/qvlink/commit/2f8d0b1caeabea10b96044d2688f8dcc54542ef8))
 
-## v0.1.5
+### Features
 
-## v0.1.4
+- **test**: Add todopath to bypass configo for testing purpose
+  ([`7a1ff92`](https://github.com/anaticulae/qvlink/commit/7a1ff925b628a41c78480a4205de1c868333194b))
 
-## v0.1.3
 
-### Fix
+## v2.0.4 (2020-12-19)
 
-* disable wrong pylint warnings (bbe933ee7530)
+### Chores
 
-## v0.1.2
+- **requirements**: Do not release so often
+  ([`df6d5bf`](https://github.com/anaticulae/qvlink/commit/df6d5bfa2e9b3fc88f849073e1b9f3345446d7df))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`7635967`](https://github.com/anaticulae/qvlink/commit/763596778fa92586f739f66423bc2480255bf649))
 
-* add method to count jobs which are ready (50d610e0d6bc)
 
-## v0.1.1
+## v2.0.3 (2020-12-09)
 
-### Feature
+### Chores
 
-* add create_todo and todo_count from viewo (f3700e8461aa)
+- **requirements**: Upgrade requirements.txt
+  ([`9600fb0`](https://github.com/anaticulae/qvlink/commit/9600fb0c4959e6e975d5c523f4b3e3130899404f))
 
-## v0.1.0
 
-### Feature
+## v2.0.2 (2020-12-04)
 
-* move job loader and scanner from viewo (b237ff130a65)
+### Chores
 
-## v0.0.0 Initial release
+- **requirements**: Upgrade requirements.txt
+  ([`9235510`](https://github.com/anaticulae/qvlink/commit/92355108e6ed1088205ba3f3d2149ff7aadd0dee))
+
+
+## v2.0.1 (2020-11-20)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a7a66ae`](https://github.com/anaticulae/qvlink/commit/a7a66aefa85b472c285b325b0f976a69c58c7efd))
+
+### Refactoring
+
+- **date**: Replace with utila code
+  ([`9caf4b6`](https://github.com/anaticulae/qvlink/commit/9caf4b6c662626b19a632a48dfb43b8f01023646))
+
+
+## v2.0.0 (2020-11-09)
+
+### Chores
+
+- **requirements**: Add missing dev/test requirements
+  ([`4699d47`](https://github.com/anaticulae/qvlink/commit/4699d47e7ba06004f45a3bff7c1ca0b2280562d0))
+
+- **requirements**: Add test resource provider
+  ([`23c7b22`](https://github.com/anaticulae/qvlink/commit/23c7b2272d59d82ac4eaab86b0ecf857dbc87bb0))
+
+### Code Style
+
+- **tests**: Organize imports
+  ([`aed586e`](https://github.com/anaticulae/qvlink/commit/aed586e28ddbdaf52b9043cdc29546d4120f8494))
+
+### Features
+
+- **job**: Add job owner
+  ([`493262a`](https://github.com/anaticulae/qvlink/commit/493262aaa1ef4f738a17ff3c793bd299dc1d495d))
+
+- **job**: Add post init hook to verify data type
+  ([`0eee941`](https://github.com/anaticulae/qvlink/commit/0eee941cb80db58c264230628a8c82cf0de36c5a))
+
+- **job**: Use str to describe job index
+  ([`c74677c`](https://github.com/anaticulae/qvlink/commit/c74677c92c1f1f28f5da22729bd41edb5841e250))
+
+- **workspace**: Add multiple owner
+  ([`2ffd6fe`](https://github.com/anaticulae/qvlink/commit/2ffd6fe1cd71605cbd4ef853e0c876e3ea6386e4))
+
+- **workspace**: Add owner parameter to filter loading
+  ([`1f828c4`](https://github.com/anaticulae/qvlink/commit/1f828c48b8cdf181a6da20ad024742aeffb863e6))
+
+- **workspace**: Add owner parameter to todo creator
+  ([`b31e29d`](https://github.com/anaticulae/qvlink/commit/b31e29d81de67741585de32f86fffd8ba7378026))
+
+### Refactoring
+
+- **rename**: Rename job index to job name
+  ([`073b938`](https://github.com/anaticulae/qvlink/commit/073b938b5aadb07decf4c39f04af77dedcdb3743))
+
+- **test**: Move fixture to conftest, organize imports
+  ([`a71fd40`](https://github.com/anaticulae/qvlink/commit/a71fd405f04ab9597b5d5eb003e0c417b6d0b0e2))
+
+- **test**: Move fixtures to central place
+  ([`7d35616`](https://github.com/anaticulae/qvlink/commit/7d35616b1dfaf321bc37097b06e51a8ab1b37139))
+
+- **test**: Move patch code to patch-module
+  ([`51d767d`](https://github.com/anaticulae/qvlink/commit/51d767d08d2c35d935fd75908f6a6aa8c9dc5e24))
+
+- **workspace**: Reduce code complexity
+  ([`fa6d335`](https://github.com/anaticulae/qvlink/commit/fa6d3353f796d2c62a56aad89b21793bd50e3200))
+
+### Testing
+
+- **data**: Replace test data
+  ([`a657780`](https://github.com/anaticulae/qvlink/commit/a657780c9bcffe91fc2b60b513f2c724f7922c7a))
+
+- **fix**: Replace outdated data type
+  ([`36e5522`](https://github.com/anaticulae/qvlink/commit/36e55225a914c5517331720e840c46e80b075a5a))
+
+- **job**: Add test to delete job
+  ([`1e5ca35`](https://github.com/anaticulae/qvlink/commit/1e5ca3524887e061e5a1ac48552536f4d43311ba))
+
+- **owner**: Add test to check owner of job definition
+  ([`2aa3ef2`](https://github.com/anaticulae/qvlink/commit/2aa3ef262cece8de74ed9b10d923d7d97ecc57bb))
+
+- **workspace**: Add tests to collect jobs by owner
+  ([`5c3377c`](https://github.com/anaticulae/qvlink/commit/5c3377ca6c2d61d7205a61627811b01c897e6046))
+
+
+## v1.4.1 (2020-11-03)
+
+### Bug Fixes
+
+- **control**: Fix level compare
+  ([`fb0d9bb`](https://github.com/anaticulae/qvlink/commit/fb0d9bb37e6c82bc8f43e39c536d67cc4d96d540))
+
+
+## v1.4.0 (2020-11-03)
+
+### Features
+
+- **logging**: Adjust logging policy
+  ([`20bb96e`](https://github.com/anaticulae/qvlink/commit/20bb96e7601c129dbf12083fca2a8580bf532b5b))
+
+- **state**: Add option to control copying of optimized findings
+  ([`4189902`](https://github.com/anaticulae/qvlink/commit/41899024d43a7f2f1a4fd277a2ea3be6e61c1b86))
+
+- **state**: Enable sink and source as equal folder
+  ([`331eacf`](https://github.com/anaticulae/qvlink/commit/331eacf3c4412465128600f67bdf9065a31519c1))
+
+
+## v1.3.2 (2020-11-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2300498`](https://github.com/anaticulae/qvlink/commit/230049855eeb6e3413cbbedd5380d86712f84744))
+
+
+## v1.3.1 (2020-11-01)
+
+### Bug Fixes
+
+- **control**: Replace loader cause grouped loader expect optimized format
+  ([`2722dea`](https://github.com/anaticulae/qvlink/commit/2722deaa889f1b5fc6696fff664e9a2a8a5230ed))
+
+
+## v1.3.0 (2020-10-31)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`310cba5`](https://github.com/anaticulae/qvlink/commit/310cba54795c3e7632b2b63d9b6b966dd4a183be))
+
+### Features
+
+- **publish**: Publish optimized findings separately
+  ([`90f4e12`](https://github.com/anaticulae/qvlink/commit/90f4e121ec3d38d301cbb38be0f368a584181e9c))
+
+- **state**: Add link to optimized finding path
+  ([`e9b597a`](https://github.com/anaticulae/qvlink/commit/e9b597ae6fac4909db1a79d85050dc503f9fd0a4))
+
+
+## v1.2.3 (2020-10-28)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`587900f`](https://github.com/anaticulae/qvlink/commit/587900fc6f90370e86281c9089b6659793cdf820))
+
+
+## v1.2.2 (2020-10-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5cda78c`](https://github.com/anaticulae/qvlink/commit/5cda78c3991ec5b549e20c313de1cfb4a8bec300))
+
+
+## v1.2.1 (2020-10-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7465270`](https://github.com/anaticulae/qvlink/commit/74652705fd60abe244f8582ca4a019ea9c5f7a63))
+
+
+## v1.2.0 (2020-09-27)
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`e16a5f6`](https://github.com/anaticulae/qvlink/commit/e16a5f64fd8a9dcb45a2635dd87e537d72b4c301))
+
+### Features
+
+- **control**: Handle more cases of to delete a document
+  ([`1d8348c`](https://github.com/anaticulae/qvlink/commit/1d8348c6eeb681989c9c31e76221f9c7d911171c))
+
+- **state**: Add done flag to select result view type
+  ([`bb74701`](https://github.com/anaticulae/qvlink/commit/bb74701de166eb5b144ca3f5398b39f8520db488))
+
+- **state**: Add method document to access document resource folder by id
+  ([`129c814`](https://github.com/anaticulae/qvlink/commit/129c8140269b81a7d21c0108bcddfa7e6f184cd5))
+
+- **workspace**: Add constant to define width of random job id
+  ([`e3d0f15`](https://github.com/anaticulae/qvlink/commit/e3d0f1537549f314ca4645d4d89db4d841f2555a))
+
+### Refactoring
+
+- **rename**: Rename done to avoid naming conflicts
+  ([`71f1283`](https://github.com/anaticulae/qvlink/commit/71f128398fa84501d4780caff5ac7fad4688d4b2))
+
+- **rename**: Rename parameter to avoid naming conflicts
+  ([`bb61056`](https://github.com/anaticulae/qvlink/commit/bb6105622278611eab8ccc2fd1e1fc483e617f82))
+
+
+## v1.1.1 (2020-09-26)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`25e401f`](https://github.com/anaticulae/qvlink/commit/25e401f96882931400549e46d9e2c7977d560c54))
+
+
+## v1.1.0 (2020-09-17)
+
+### Bug Fixes
+
+- **state**: Do not log that path does not exists
+  ([`9b4986a`](https://github.com/anaticulae/qvlink/commit/9b4986a6bb252cdb2a44f85004ff475b4cf3f18d))
+
+### Features
+
+- **state**: Return None if process does not exists
+  ([`9e0bb94`](https://github.com/anaticulae/qvlink/commit/9e0bb944388836336f2bcb39966b779e4227dd24))
+
+
+## v1.0.4 (2020-09-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0749a0f`](https://github.com/anaticulae/qvlink/commit/0749a0f2949578fd2aabc2ce4b9f5970f39c1425))
+
+
+## v1.0.3 (2020-09-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`de65315`](https://github.com/anaticulae/qvlink/commit/de65315c9ffd9e7d0b77bc1176186107f145cf92))
+
+
+## v1.0.2 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`cd2b399`](https://github.com/anaticulae/qvlink/commit/cd2b3991bdd2c4359518ef6d3754465b405a80a7))
+
+
+## v1.0.1 (2020-08-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7dd7e37`](https://github.com/anaticulae/qvlink/commit/7dd7e37c96954165014a70404feef26fe065ae26))
+
+
+## v1.0.0 (2020-08-17)
+
+### Documentation
+
+- **job**: Update module description
+  ([`dce0c4e`](https://github.com/anaticulae/qvlink/commit/dce0c4e6a984362d2aeacda778faeac4e706f69c))
+
+### Features
+
+- **API**: Extend public API
+  ([`7ff3fc3`](https://github.com/anaticulae/qvlink/commit/7ff3fc3ea470010aeddf833e33f02f2336848294))
+
+- **control**: Add count of findings to publish step
+  ([`f5b4e42`](https://github.com/anaticulae/qvlink/commit/f5b4e423c298d0c4f96e0d6a5cde711a3fc45acf))
+
+- **job**: Clarify code and drop support for simple status
+  ([`f9ea27a`](https://github.com/anaticulae/qvlink/commit/f9ea27a233bef44a9470a1da8422fad1d48a7d0a))
+
+- **job**: Divide dumping and writing process of job information
+  ([`e027dd0`](https://github.com/anaticulae/qvlink/commit/e027dd0af4742a0403ad823b0e8c6c9928ddb68b))
+
+
+## v0.4.19 (2020-08-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6d4dd43`](https://github.com/anaticulae/qvlink/commit/6d4dd433d2e46d83c34f7175a80e8a3f7259e83f))
+
+
+## v0.4.18 (2020-07-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`54e780d`](https://github.com/anaticulae/qvlink/commit/54e780d0dea6f27f16b6519e6ee2f31a064ad5eb))
+
+
+## v0.4.17 (2020-07-27)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0dcc1d9`](https://github.com/anaticulae/qvlink/commit/0dcc1d9bedd01144aa5fb02d582e76e740af89f3))
+
+
+## v0.4.16 (2020-07-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d3d145d`](https://github.com/anaticulae/qvlink/commit/d3d145d025d9194be40febd7cd74ae5c9243c0b4))
+
+
+## v0.4.15 (2020-07-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9c4c923`](https://github.com/anaticulae/qvlink/commit/9c4c9232c93bfdf41bd9419ee29a89360a3b6222))
+
+
+## v0.4.14 (2020-07-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bf1136f`](https://github.com/anaticulae/qvlink/commit/bf1136f6a5960f6723a4df87b26c6bdf6d60120f))
+
+
+## v0.4.13 (2020-06-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`66c4590`](https://github.com/anaticulae/qvlink/commit/66c4590795203839025bc10fdff1084bfb5cd2d2))
+
+### Documentation
+
+- **requirements**: Add copyright header
+  ([`b314d34`](https://github.com/anaticulae/qvlink/commit/b314d345f3d3a71457b88ce87639ba8ce279fda2))
+
+
+## v0.4.12 (2020-06-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dfd1b18`](https://github.com/anaticulae/qvlink/commit/dfd1b18fd9ba3e27179e25f661b962cc38e0d069))
+
+
+## v0.4.11 (2020-06-21)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dd04bf6`](https://github.com/anaticulae/qvlink/commit/dd04bf6e17a9947b8ec527b1f5b96a8494104c68))
+
+
+## v0.4.10 (2020-06-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7aa4f37`](https://github.com/anaticulae/qvlink/commit/7aa4f37f8faa56539d938abd7f8fd876d985eb5f))
+
+### Features
+
+- **log**: Log non existing todo
+  ([`c650b2c`](https://github.com/anaticulae/qvlink/commit/c650b2ce93607256cb0269796e6b9dc8e5ce7777))
+
+
+## v0.4.9 (2020-06-12)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`805f78a`](https://github.com/anaticulae/qvlink/commit/805f78ab321484d87fcbb4dc9bca2b50ad061468))
+
+
+## v0.4.8 (2020-06-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`592b903`](https://github.com/anaticulae/qvlink/commit/592b90306921c1746191e5fae1c7d625a0dc4c2b))
+
+
+## v0.4.7 (2020-06-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`409f65c`](https://github.com/anaticulae/qvlink/commit/409f65cdabb6885ed669cd87eb9de741a59a952c))
+
+
+## v0.4.6 (2020-05-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`509f1d2`](https://github.com/anaticulae/qvlink/commit/509f1d29bfbdca5713d731acd49cb5ffdafb2cda))
+
+
+## v0.4.5 (2020-05-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5d846f1`](https://github.com/anaticulae/qvlink/commit/5d846f1d2d71e14e9b00fb977468f8844f8d2e83))
+
+
+## v0.4.4 (2020-05-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`030158f`](https://github.com/anaticulae/qvlink/commit/030158fc09dd9685d744c3d9ba02dcef56aad9bd))
+
+
+## v0.4.3 (2020-05-02)
+
+### Bug Fixes
+
+- **deleted**: Fix path to write `deleted` mark
+  ([`52eebcb`](https://github.com/anaticulae/qvlink/commit/52eebcb9d8af8e8c27bf2508598d88815c63a097))
+
+
+## v0.4.2 (2020-05-02)
+
+### Bug Fixes
+
+- **job**: Convert old style datatype to new FindingStatus
+  ([`1ec9e88`](https://github.com/anaticulae/qvlink/commit/1ec9e8812c5246df5694c4a9f2968ae233ccd724))
+
+### Documentation
+
+- **control**: Fix interface documentation
+  ([`2d5f023`](https://github.com/anaticulae/qvlink/commit/2d5f0238c7fa7731258c5675a8957348156ef355))
+
+### Features
+
+- **workspace**: Add method to skip removed extracted documents
+  ([`bcd8401`](https://github.com/anaticulae/qvlink/commit/bcd84017d0e7bf4e87b38dde277b2820870c585d))
+
+
+## v0.4.1 (2020-05-02)
+
+### Features
+
+- **control**: Add method `delete` to set deleting folder flag
+  ([`d109666`](https://github.com/anaticulae/qvlink/commit/d109666b81bb3650b2779025d705986ae9e1c34b))
+
+- **job**: Add data field password and hashlink
+  ([`ca2db44`](https://github.com/anaticulae/qvlink/commit/ca2db4455bdebbc49d34957a6c70dc6d0d84d74a))
+
+
+## v0.4.0 (2020-05-02)
+
+### Features
+
+- **job**: Change result field from int to complex user progress datatype
+  ([`621ca81`](https://github.com/anaticulae/qvlink/commit/621ca8155cf26ff893942d2f1c4ca01cfb1e38e8))
+
+### Testing
+
+- **docs**: Add missing copyright header
+  ([`d39893b`](https://github.com/anaticulae/qvlink/commit/d39893b0d11c21c96bced8131f079d4263103518))
+
+
+## v0.3.16 (2020-04-30)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`573040c`](https://github.com/anaticulae/qvlink/commit/573040c8f5feb7c8b7d5109a30b36bc6e12888b6))
+
+
+## v0.3.15 (2020-04-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`55387b3`](https://github.com/anaticulae/qvlink/commit/55387b36ce505c46b37d9f44fa1854ef6729b543))
+
+
+## v0.3.14 (2020-04-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`38fe425`](https://github.com/anaticulae/qvlink/commit/38fe4258e1e23983e0dde9125930ba3f54e30ad9))
+
+
+## v0.3.13 (2020-04-13)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3547625`](https://github.com/anaticulae/qvlink/commit/354762504f993f26c127fc7f77ab7f29a1555263))
+
+
+## v0.3.12 (2020-04-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`781b96f`](https://github.com/anaticulae/qvlink/commit/781b96f86c5a00f8b4e9c17e507cb26de8a89b2c))
+
+
+## v0.3.11 (2020-04-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`3401e8b`](https://github.com/anaticulae/qvlink/commit/3401e8bcce829abd8944044fd05636ad85e965f7))
+
+
+## v0.3.10 (2020-03-27)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1e99e7e`](https://github.com/anaticulae/qvlink/commit/1e99e7e9c0f96d64bd1c7d9b2064835505236e12))
+
+
+## v0.3.9 (2020-03-05)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8b6fdb4`](https://github.com/anaticulae/qvlink/commit/8b6fdb485c171c51450efeed30cc445267e85cdf))
+
+
+## v0.3.8 (2020-02-22)
+
+### Chores
+
+- **project**: Activate zero warning and use new config name
+  ([`2dfa7c0`](https://github.com/anaticulae/qvlink/commit/2dfa7c0be9984540d55e98d67dd2852cadc556cb))
+
+- **requirements**: Upgrade requirements.txt
+  ([`18e762e`](https://github.com/anaticulae/qvlink/commit/18e762ef58463484faa702c8de6099bd026bb371))
+
+
+## v0.3.7 (2020-02-15)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`89ac487`](https://github.com/anaticulae/qvlink/commit/89ac4877b389e5d8a61501c3519e660c934eb48b))
+
+
+## v0.3.6 (2020-01-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`895f117`](https://github.com/anaticulae/qvlink/commit/895f117e806dddba7ddaaa2c7be9eb95ac37943e))
+
+
+## v0.3.5 (2020-01-15)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1d2e5d0`](https://github.com/anaticulae/qvlink/commit/1d2e5d042a7c044a2b6ae8d20842c1024f8eebed))
+
+
+## v0.3.4 (2020-01-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6a59d01`](https://github.com/anaticulae/qvlink/commit/6a59d01011ccc956aa4f6f1a28193342a6c44d72))
+
+
+## v0.3.3 (2020-01-09)
+
+### Bug Fixes
+
+- **control**: Add missing recursive flag
+  ([`a2d9107`](https://github.com/anaticulae/qvlink/commit/a2d9107014394c406113bcdc9f32e6051def6a14))
+
+
+## v0.3.2 (2020-01-09)
+
+### Features
+
+- **control**: Print assertion validation to ease debugging
+  ([`d0f68f3`](https://github.com/anaticulae/qvlink/commit/d0f68f39b62dad9ddc20e07170b554248c23aa08))
+
+
+## v0.3.1 (2020-01-08)
+
+### Bug Fixes
+
+- **setup**: Remove outdated resources from setup
+  ([`b1e7619`](https://github.com/anaticulae/qvlink/commit/b1e76198398a0498865b9fde003472c9e4619760))
+
+
+## v0.3.0 (2020-01-08)
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`b0b0ef9`](https://github.com/anaticulae/qvlink/commit/b0b0ef9dcd5093b9a6993201a2902461a6071aab))
+
+- **job**: Fix white space error
+  ([`a2c9c0a`](https://github.com/anaticulae/qvlink/commit/a2c9c0ab474567e7e50f2600d314c1a482d41e95))
+
+### Documentation
+
+- **general**: Add general doc structure
+  ([`3f14c42`](https://github.com/anaticulae/qvlink/commit/3f14c42ebd2af077ce0922b4e992e77601b95698))
+
+### Features
+
+- **control**: Support publish invalid pdf result
+  ([`2f605eb`](https://github.com/anaticulae/qvlink/commit/2f605eb8486be6a941f588db0a4a7dbc51d5f6dd))
+
+- **document**: Add state machine to manage document live cycle
+  ([`c7f3fb6`](https://github.com/anaticulae/qvlink/commit/c7f3fb6937fcb771568d004073a66bfe481d6fb6))
+
+- **state**: Add methods to determine more paths
+  ([`8ac183c`](https://github.com/anaticulae/qvlink/commit/8ac183c7a4580e94a8b743c3539e4990fd8c6d7c))
+
+- **test**: Override environment variables instead of creating all
+  ([`3ba396c`](https://github.com/anaticulae/qvlink/commit/3ba396c75ab9b2b60efb63c3b0c5aff785a75e49))
+
+### Refactoring
+
+- **API**: Refactor public API
+  ([`8e5fa2c`](https://github.com/anaticulae/qvlink/commit/8e5fa2c43dbe17c4847b3b933eaaa162b3615b71))
+
+- **control**: Simplify code to increase code coverage
+  ([`0b18a59`](https://github.com/anaticulae/qvlink/commit/0b18a59b142ccaaf635f62221431619383543d82))
+
+
+## v0.2.3 (2020-01-08)
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`e587c5b`](https://github.com/anaticulae/qvlink/commit/e587c5b6afc04e785eb9ead3232b18570ff87225))
+
+### Features
+
+- **workspace**: Add support for file str path as file source
+  ([`42867d2`](https://github.com/anaticulae/qvlink/commit/42867d25199e7e479d91c874560c1d27c868dc94))
+
+### Refactoring
+
+- **workspace**: Rename variables
+  ([`e4f705a`](https://github.com/anaticulae/qvlink/commit/e4f705aebe8f533e80da6d3ffc8412918a929091))
+
+
+## v0.2.2 (2020-01-03)
+
+### Chores
+
+- **test**: Make test multi processor able
+  ([`84c8283`](https://github.com/anaticulae/qvlink/commit/84c82832f1e698309d3b96c40cb81e2a986f34b4))
+
+### Features
+
+- **workspace**: Add parameter to define where todo folder is located
+  ([`92cb1b6`](https://github.com/anaticulae/qvlink/commit/92cb1b60f47ed9c47a538d06f047b1f617c34814))
+
+
+## v0.2.1 (2020-01-03)
+
+
+## v0.2.0 (2020-01-03)
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`bec7234`](https://github.com/anaticulae/qvlink/commit/bec72345d3d7c317fb8726ee62e44fb828fcdea0))
+
+- **linter**: Fix linter findings
+  ([`ad601f1`](https://github.com/anaticulae/qvlink/commit/ad601f1c18e1b54a8fd7ef35f9979710b69cf4c6))
+
+### Features
+
+- **job**: Extend job date with hour and second
+  ([`3ebf452`](https://github.com/anaticulae/qvlink/commit/3ebf4524a9c632c199728af18515b264c2d95ffd))
+
+
+## v0.1.13 (2020-01-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`5209386`](https://github.com/anaticulae/qvlink/commit/520938690dcd46eb3d2804634643359947ad2190))
+
+### Documentation
+
+- **copyright**: Happy New Year!
+  ([`3f84a46`](https://github.com/anaticulae/qvlink/commit/3f84a46a975eec0e79c178aa28495658ff314c64))
+
+
+## v0.1.12 (2019-12-17)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`54dc9e4`](https://github.com/anaticulae/qvlink/commit/54dc9e40af024a1b6ca114d2e1e796f188be85cb))
+
+
+## v0.1.11 (2019-09-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0c0f762`](https://github.com/anaticulae/qvlink/commit/0c0f762e1d03eab7f86032cf80e17d6a4746aec5))
+
+
+## v0.1.10 (2019-09-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`c770054`](https://github.com/anaticulae/qvlink/commit/c770054184d3b9241d3ac3ef4f860816089944c2))
+
+
+## v0.1.9 (2019-08-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`983aa36`](https://github.com/anaticulae/qvlink/commit/983aa36d974297b0536e0f361fb14ec201b1aa10))
+
+
+## v0.1.8 (2019-08-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9582d2e`](https://github.com/anaticulae/qvlink/commit/9582d2ea535183dae0f6349e90e719ee1964ce3d))
+
+
+## v0.1.7 (2019-07-20)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`c278a08`](https://github.com/anaticulae/qvlink/commit/c278a0874d35bcd2fdc672885f768b87c57dc078))
+
+
+## v0.1.6 (2019-07-19)
+
+### Bug Fixes
+
+- **header**: Fix spelling error
+  ([`63fb227`](https://github.com/anaticulae/qvlink/commit/63fb2276b40759119c28b4c2fd352cef1c438566))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d46bfb2`](https://github.com/anaticulae/qvlink/commit/d46bfb282936eb5ad2dece05e967cdce01f3f2bb))
+
+### Documentation
+
+- **readme**: Extend basic readme
+  ([`82c7924`](https://github.com/anaticulae/qvlink/commit/82c7924b89ef866cf45ffc7639191f101798d679))
+
+
+## v0.1.5 (2019-06-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`971ba62`](https://github.com/anaticulae/qvlink/commit/971ba62993d8466a97ce5f9a25ef60812011862a))
+
+
+## v0.1.4 (2019-05-06)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4724fb4`](https://github.com/anaticulae/qvlink/commit/4724fb42df247cd7a93febe210aeb961cf1ddacd))
+
+
+## v0.1.3 (2019-05-05)
+
+### Bug Fixes
+
+- **lint**: Disable wrong pylint warnings
+  ([`bbe933e`](https://github.com/anaticulae/qvlink/commit/bbe933ee7530e01b8f12449aa5505fb1e5aa0ad5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e97299d`](https://github.com/anaticulae/qvlink/commit/e97299d0095695db548456060c4260fd51c3928c))
+
+- **setup**: Clean up setup configuration, remove unused code
+  ([`f781e08`](https://github.com/anaticulae/qvlink/commit/f781e08c7a4518d1d29e1736c41c71f38b5fe846))
+
+- **workspace**: Use baw --ide to automatically generate a workspace
+  ([`d24b88c`](https://github.com/anaticulae/qvlink/commit/d24b88c5396886efc08285128b762e4cc57188ec))
+
+
+## v0.1.2 (2019-04-24)
+
+### Features
+
+- **job**: Add method to count jobs which are ready
+  ([`50d610e`](https://github.com/anaticulae/qvlink/commit/50d610e0d6bc8aeedc0aff16da95eaf7aa5b82be))
+
+
+## v0.1.1 (2019-04-24)
+
+### Features
+
+- **job**: Add create_todo and todo_count from viewo
+  ([`f3700e8`](https://github.com/anaticulae/qvlink/commit/f3700e8461aaf4713d32d04e20bf2ddae7c204fd))
+
+
+## v0.1.0 (2019-04-24)
+
+### Chores
+
+- **requirements**: Extend requirements
+  ([`377dc7c`](https://github.com/anaticulae/qvlink/commit/377dc7ce121044aa6e38afdd6ac7fbfefa37f54e))
+
+### Features
+
+- **jobs**: Move job loader and scanner from viewo
+  ([`b237ff1`](https://github.com/anaticulae/qvlink/commit/b237ff130a656677a6f7704af24c2e96e15feae4))
+
+
+## v0.0.0 (2019-04-24)
+
+- Initial Release
