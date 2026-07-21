@@ -99,7 +99,7 @@ import protoerror
 import serializeraw
 import utilo
 
-import link.job
+import qvlink.job
 
 
 class ProcessState(enum.Enum):
@@ -182,7 +182,7 @@ def current(documentid: str) -> ProcessState:  # pylint:disable=too-many-return-
     new = all([
         os.path.exists(todo(documentid)),  # valid todo document folder
         os.path.exists(os.path.join(todo(documentid), documentid)),  # pdf file
-        os.path.exists(os.path.join(todo(documentid), link.job.JOBFILE_NAME)),
+        os.path.exists(os.path.join(todo(documentid), qvlink.job.JOBFILE_NAME)),
         (not os.path.exists(ready(documentid)) or equal_path),
         not os.path.exists(pdfinfopath),
         not inprogressed(documentid),
@@ -250,7 +250,7 @@ def pdfinfo_path(documentid: str) -> str:
     source = todo(documentid)
     if os.path.exists(done_(documentid)):
         source = ready(documentid)
-    result = os.path.join(source, link.PDFINFO_NAME)
+    result = os.path.join(source, qvlink.PDFINFO_NAME)
     return result
 
 
@@ -328,7 +328,7 @@ def private(documentid: str, done: bool = False) -> bool:
     """
     if done is None:
         done = done_(documentid)
-    return owner(documentid, done=done) != link.PUBLIC_OWNER
+    return owner(documentid, done=done) != qvlink.PUBLIC_OWNER
 
 
 def progress(documentid: str) -> int:
@@ -376,10 +376,10 @@ def notsupported(documentid: str) -> bool:
     return False
 
 
-def load_jobinfo(documentid: str, done: bool = True) -> link.job.JobInfo:
+def load_jobinfo(documentid: str, done: bool = True) -> qvlink.job.JobInfo:
     source = ready(documentid) if done else todo(documentid)
-    path = os.path.join(source, link.JOBFILE_NAME)
-    loaded = link.load_job(path)
+    path = os.path.join(source, qvlink.JOBFILE_NAME)
+    loaded = qvlink.load_job(path)
     return loaded
 
 
@@ -394,12 +394,12 @@ def load_jobinfo_raw(documentid: str, done: bool = True) -> dict:
         done = os.path.exists(done_(documentid))
     info = load_jobinfo(documentid, done=done)
     info.state = rawstate(documentid)
-    raw = link.dump_job(
+    raw = qvlink.dump_job(
         info,
         convert=False,
         password=False,
     )
-    pdf = link.pdfinfo(documentid)
+    pdf = qvlink.pdfinfo(documentid)
     if pdf:
         raw['pages'] = pdf.pages
     return raw
@@ -448,7 +448,7 @@ def update_progress_step(documentid: str, value: int, maxvalue: int):
 
 
 def update_bookkeeping(documentid: str, done: bool = True) -> bool:
-    path = link.optimized(
+    path = qvlink.optimized(
         documentid,
         done=done,
     )
@@ -463,13 +463,13 @@ def update_bookkeeping(documentid: str, done: bool = True) -> bool:
             closed += 1
         else:
             excluded += 1
-    job = link.load_jobinfo(
+    job = qvlink.load_jobinfo(
         documentid,
         done=done,
     )
-    job.result = link.FindingStatus(opened, closed, excluded)
+    job.result = qvlink.FindingStatus(opened, closed, excluded)
     # update current job status
-    link.save_job(
+    qvlink.save_job(
         job,
         done=done,
     )

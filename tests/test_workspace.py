@@ -14,7 +14,7 @@ import configos
 import hoverpower
 import utilo
 
-import link
+import qvlink
 import tests
 
 
@@ -35,10 +35,10 @@ def test_free_todo(tmpdir, monkeypatch):
         context.setattr(configos, 'todo', todo)
 
         # Create folder name, so the next call is already created
-        os.makedirs(os.path.join(tmpdir, link.find_free_todo()))
+        os.makedirs(os.path.join(tmpdir, qvlink.find_free_todo()))
 
         # test is already there, give me the next one
-        assert link.find_free_todo() == 'ts'
+        assert qvlink.find_free_todo() == 'ts'
 
 
 def test_create_todo(tmpdir, monkeypatch):
@@ -49,12 +49,12 @@ def test_create_todo(tmpdir, monkeypatch):
             def save(self, _):  # pylint:disable=W0613
                 pass
 
-        created = link.create_todo(SaveMock(), 'testfile.pdf')
+        created = qvlink.create_todo(SaveMock(), 'testfile.pdf')
     assert os.path.exists(created), created
 
 
 def test_create_todo_pathandname(testdir):
-    created = link.create_todo(
+    created = qvlink.create_todo(
         hoverpower.DOCU007_PDF,
         'testfile.pdf',
         testdir.tmpdir,
@@ -91,7 +91,7 @@ def test_sortable_date():
         '31.11.2019 12:12',
     ]
 
-    result = sorted(result, key=link.sortable_date, reverse=True)
+    result = sorted(result, key=qvlink.sortable_date, reverse=True)
     assert result == expected
 
 
@@ -107,25 +107,25 @@ def test_load_documents(common, monkeypatch):
     new = 2
     with tests.patch.patch_todo(common, monkeypatch):
         load_documents = functools.partial(
-            link.load_documents,
+            qvlink.load_documents,
             common=configos.share(),
             owner=None,
         )
         documents = load_documents(state=None)
         assert len(documents) == 4
-        done = load_documents(state=link.State.DONE)
+        done = load_documents(state=qvlink.State.DONE)
         assert len(done) == 2
         # no documents in processing
-        running = load_documents(state=link.State.RUNNING)
+        running = load_documents(state=qvlink.State.RUNNING)
         assert not running
         # 2 new documents wait for processing
-        waiting = load_documents(state=link.State.WAITING)
+        waiting = load_documents(state=qvlink.State.WAITING)
         assert len(waiting) == new
         documentid = waiting[0].get('name')
         # start first document
-        link.start_progress(document=documentid)
-        waiting = load_documents(state=link.State.WAITING)
+        qvlink.start_progress(document=documentid)
+        waiting = load_documents(state=qvlink.State.WAITING)
         # one document is started
         assert len(waiting) == new - 1
-        running = load_documents(state=link.State.RUNNING)
+        running = load_documents(state=qvlink.State.RUNNING)
         assert len(running) == 1

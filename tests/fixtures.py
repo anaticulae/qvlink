@@ -16,7 +16,7 @@ import protoerror
 import pytest
 import utilo
 
-import link
+import qvlink
 import tests.patch
 
 DOCUMENT = 'example'
@@ -31,7 +31,7 @@ def example(testdir) -> str:
     ready = os.path.join(testdir.tmpdir, 'ready')
     os.makedirs(ready, exist_ok=True)
     # create todo
-    link.create_todo(
+    qvlink.create_todo(
         hoverpower.DOCU007_PDF,
         filename='minimal.pdf',
         todopath=todo,
@@ -51,7 +51,7 @@ def completed(example, monkeypatch) -> str:  # pylint:disable=W0621
 
 @pytest.fixture
 def withfindings(completed):  # pylint:disable=W0621
-    optimized = link.optimized(DOCUMENT, done=True)
+    optimized = qvlink.optimized(DOCUMENT, done=True)
     os.makedirs(optimized)
     findings = [
         iamraw.Finding(
@@ -82,14 +82,14 @@ def withfindings(completed):  # pylint:disable=W0621
 @contextlib.contextmanager
 def complete(example, monkeypatch):  # pylint:disable=W0621
     with tests.patch.patch_todo(example, monkeypatch):
-        link.start_progress(DOCUMENT)
-        link.verify(DOCUMENT)
-        link.start_analysis(DOCUMENT)
-        link.finish_fastview(DOCUMENT)
-        link.finish_resultview(DOCUMENT)
-        link.publish(DOCUMENT)
-        state = link.current(DOCUMENT)
-        assert state == link.ProcessState.PUBLISHED
+        qvlink.start_progress(DOCUMENT)
+        qvlink.verify(DOCUMENT)
+        qvlink.start_analysis(DOCUMENT)
+        qvlink.finish_fastview(DOCUMENT)
+        qvlink.finish_resultview(DOCUMENT)
+        qvlink.publish(DOCUMENT)
+        state = qvlink.current(DOCUMENT)
+        assert state == qvlink.ProcessState.PUBLISHED
         yield
 
 
@@ -103,7 +103,7 @@ def broken(testdir) -> str:
     source = os.path.join(testdir.tmpdir, 'broken.pdf')
     utilo.file_create(source, '')
 
-    link.create_todo(
+    qvlink.create_todo(
         source,
         filename='broken.pdf',
         todopath=todo,
@@ -139,16 +139,16 @@ def common(tmpdir):
     for item in '1234 4321 5555'.split():
         folder = todo.join(item)
         folder.mkdir()
-        output = folder.join(link.JOBFILE_NAME)
+        output = folder.join(qvlink.JOBFILE_NAME)
         title, date = next(thesis)
-        result = link.JobInfo(
+        result = qvlink.JobInfo(
             title=title,
             date=date,
             name=item,
             result=None,
-            owner=link.PUBLIC_OWNER,
+            owner=qvlink.PUBLIC_OWNER,
         )
-        dumped = link.dump_job(result)
+        dumped = qvlink.dump_job(result)
         utilo.file_create(output, dumped)
         utilo.file_create_binary(folder.join(item), b'pdf content')
     todo.join('broken').mkdir()
@@ -156,15 +156,15 @@ def common(tmpdir):
     for item in '5555 3333'.split():
         folder = ready.join(item)
         folder.mkdir()
-        output = folder.join(link.JOBFILE_NAME)
+        output = folder.join(qvlink.JOBFILE_NAME)
         title, date = next(thesis)
-        result = link.JobInfo(
+        result = qvlink.JobInfo(
             title=title,
             date=date,
             name=item,
-            result=link.FindingStatus(10, 20, 30),
+            result=qvlink.FindingStatus(10, 20, 30),
         )
-        dumped = link.dump_job(result)
+        dumped = qvlink.dump_job(result)
         utilo.file_create(output, dumped)
         # complete job
         utilo.file_create(folder.join('done'))

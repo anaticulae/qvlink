@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import link
+import qvlink
 import tests.patch
 
 
 def test_optimize_findings(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        link.write_optimized_findings(document='5555')
+        qvlink.write_optimized_findings(document='5555')

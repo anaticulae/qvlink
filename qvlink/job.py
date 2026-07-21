@@ -24,7 +24,7 @@ import os
 import configos
 import utilo
 
-import link
+import qvlink
 
 JOBFILE_NAME = 'jobinfo.yaml'
 
@@ -138,7 +138,7 @@ def load_job(path: str) -> JobInfo:
 
 def save_job(info: JobInfo, done: bool = True):
     documentid = info.name
-    outpath = link.ready(documentid) if done else link.todo(documentid)
+    outpath = qvlink.ready(documentid) if done else qvlink.todo(documentid)
     outpath = os.path.join(outpath, JOBFILE_NAME)
     utilo.debug(f'save jobinfo: {outpath} {done}')
     dumped = dump_job(info)
@@ -194,8 +194,8 @@ def validate_ready(path: str):
 
 
 def job_title(documentid: str) -> str:
-    done = utilo.exists(link.done(documentid))
-    info = link.load_jobinfo(
+    done = utilo.exists(qvlink.done(documentid))
+    info = qvlink.load_jobinfo(
         documentid=documentid,
         done=done,
     )

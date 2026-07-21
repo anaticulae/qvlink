@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "link"
+name = "qvlink"
 version = "2.15.5"
 description = ""
 requires-python = ">=3.12"
@@ -45,8 +45,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/anaticulae/link"
-Repository = "https://github.com/anaticulae/link"
+Homepage = "https://github.com/anaticulae/qvlink"
+Repository = "https://github.com/anaticulae/qvlink"
 
 [tool.semantic_release]
 version_toml = [
@@ -82,7 +82,7 @@ where = [
     ".",
 ]
 include = [
-    "link",
+    "qvlink",
 ]
 exclude = [
     "tests*",

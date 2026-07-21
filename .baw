@@ -8,7 +8,7 @@
 # =============================================================================
 
 [project]
-short = link
+short = qvlink
 name = Connect viewo and queuemo
 
 [release]

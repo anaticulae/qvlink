@@ -11,7 +11,7 @@ import os
 
 import utilo
 
-import link
+import qvlink
 
 
 def load_debug(path: str) -> dict:
@@ -66,7 +66,7 @@ def write_debug(
         sort(bool): run `todo` in sorted order
         requirements(bool): write debug as pip compatible style
     """
-    ready = link.ready(document)
+    ready = qvlink.ready(document)
     if todo is None:
         todo = RUNNABLE
     if sort:
@@ -86,7 +86,7 @@ def publish_statistics(document: str, debug: bool = True):
     if not debug:
         utilo.debug('skip publish statistics')
         return
-    ready = link.ready(document)
+    ready = qvlink.ready(document)
     cmd = f'qcon -i {ready} --publish'
     completed = utilo.run(
         cmd,

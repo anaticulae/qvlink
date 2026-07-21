@@ -7,35 +7,35 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import link
+import qvlink
 import tests.fixtures
 import tests.patch
 
 
 def test_dump_and_load():
     """Dump and load project an example configuration"""
-    config = link.JobInfo(
+    config = qvlink.JobInfo(
         title='Name',
         date='Date',
-        result=link.FindingStatus(10, 20, 30),
+        result=qvlink.FindingStatus(10, 20, 30),
         name='AFC1337ACD',
     )
-    dumped = link.dump_job(config)
-    loaded = link.load_job(dumped)
+    dumped = qvlink.dump_job(config)
+    loaded = qvlink.load_job(dumped)
     assert loaded == config
 
 
 def test_common_folder(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        jobs = link.collect_jobs(common)
+        jobs = qvlink.collect_jobs(common)
     assert len(jobs[0] + jobs[1]) == 5, str(jobs)
 
 
 def test_common_folder_owner_public(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        jobs_todo, _ = link.collect_jobs(
+        jobs_todo, _ = qvlink.collect_jobs(
             common,
-            owner=link.PUBLIC_OWNER,
+            owner=qvlink.PUBLIC_OWNER,
             skip_removed=True,  # increase test coverage
         )
     assert len(jobs_todo) == 3
@@ -43,17 +43,17 @@ def test_common_folder_owner_public(common, monkeypatch):
 
 def test_delete_job(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        jobs_todo, _ = link.collect_jobs(
+        jobs_todo, _ = qvlink.collect_jobs(
             common,
-            owner=link.PUBLIC_OWNER,
+            owner=qvlink.PUBLIC_OWNER,
             skip_removed=True,
         )
         assert len(jobs_todo) == 3
         # delete first todo job(set removed flag)
-        link.delete(jobs_todo[0].name)
-        jobs_todo, _ = link.collect_jobs(
+        qvlink.delete(jobs_todo[0].name)
+        jobs_todo, _ = qvlink.collect_jobs(
             common,
-            owner=link.PUBLIC_OWNER,
+            owner=qvlink.PUBLIC_OWNER,
             skip_removed=True,
         )
         assert len(jobs_todo) == 2
@@ -61,15 +61,15 @@ def test_delete_job(common, monkeypatch):
 
 def test_todo_count(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        assert link.count_todo() == 3
+        assert qvlink.count_todo() == 3
     with tests.patch.patch_todo(common, monkeypatch):
-        assert link.count_ready() == 2
+        assert qvlink.count_ready() == 2
 
 
 def test_access_owner(common, monkeypatch):
     with tests.patch.patch_todo(common, monkeypatch):
-        assert link.owner('1234', done=False) == link.PUBLIC_OWNER
-        assert link.owner('3333') is None
+        assert qvlink.owner('1234', done=False) == qvlink.PUBLIC_OWNER
+        assert qvlink.owner('3333') is None
 
 
 DEBUG = """\
@@ -81,12 +81,12 @@ rawmaker 2.0.0
 
 
 def test_load_debug():
-    loaded = link.load_debug(DEBUG)
+    loaded = qvlink.load_debug(DEBUG)
     assert loaded['rawmaker'] == '2.0.0'
     assert loaded['queuemo'] == '1.1.1'
 
 
 def test_job_name(example, monkeypatch):
     with tests.patch.patch_todo(example, monkeypatch):
-        title = link.job_title(tests.fixtures.DOCUMENT)
+        title = qvlink.job_title(tests.fixtures.DOCUMENT)
     assert title == 'minimal'

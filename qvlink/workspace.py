@@ -12,7 +12,7 @@ import os
 import configos
 import utilo
 
-import link
+import qvlink
 
 
 def collect_jobs(
@@ -61,7 +61,7 @@ def collect_job_folder(
 ):
     result = []
     for item in os.listdir(folder):
-        current = os.path.join(folder, item, link.JOBFILE_NAME)
+        current = os.path.join(folder, item, qvlink.JOBFILE_NAME)
         if not os.path.exists(current):
             utilo.error(f'job does not exists: {current}')
             continue
@@ -71,7 +71,7 @@ def collect_job_folder(
             if os.path.exists(removed):
                 utilo.info(f'skip removed: {removed}')
                 continue
-        result.append(link.load_job(current))
+        result.append(qvlink.load_job(current))
     return result
 
 
@@ -88,9 +88,9 @@ def find_free_todo(todopath: str = None) -> str:
     """
     if todopath is None:
         todopath = configos.todo()
-    name = utilo.tmpname(width=link.DOCUMENT_ID_LENGTH)
+    name = utilo.tmpname(width=qvlink.DOCUMENT_ID_LENGTH)
     while os.path.exists(os.path.join(todopath, name)):  # pylint:disable=W0149
-        name = utilo.tmpname(width=link.DOCUMENT_ID_LENGTH)
+        name = utilo.tmpname(width=qvlink.DOCUMENT_ID_LENGTH)
     return name
 
 
@@ -124,7 +124,7 @@ def create_todo(
     path = os.path.join(todopath, todoname)
     os.makedirs(path, exist_ok=exist_ok)
     filepath = os.path.join(path, todoname)
-    infopath = os.path.join(path, link.JOBFILE_NAME)
+    infopath = os.path.join(path, qvlink.JOBFILE_NAME)
     # Copy provied file to todo location
     try:
         file.save(filepath)
@@ -134,8 +134,8 @@ def create_todo(
     # filename = secure_filename(file.filename)
     # Create job information
     date = utilo.timedate()
-    job = link.JobInfo(title=filename, date=date, name=todoname, owner=owner)
-    dumped = link.dump_job(job)
+    job = qvlink.JobInfo(title=filename, date=date, name=todoname, owner=owner)
+    dumped = qvlink.dump_job(job)
     utilo.file_create(infopath, dumped)
     return path
 
@@ -154,27 +154,27 @@ def sortable_date(date: str) -> str:
     return date
 
 
-def load_documents(common, owner: str, state: link.State = None) -> list:
-    todo, ready = link.collect_jobs(
+def load_documents(common, owner: str, state: qvlink.State = None) -> list:
+    todo, ready = qvlink.collect_jobs(
         common,
         skip_removed=True,
         owner=owner,
     )
     dones = {item.name for item in ready}
-    if state in (link.State.RUNNING, link.State.WAITING):
+    if state in (qvlink.State.RUNNING, qvlink.State.WAITING):
         ready.clear()
-    result = [link.load_jobinfo_raw(item.name, done=None) for item in ready]
+    result = [qvlink.load_jobinfo_raw(item.name, done=None) for item in ready]
     for item in result:
         item['done'] = True
-    if state == link.State.DONE:
+    if state == qvlink.State.DONE:
         # do not load jobs which are not done
         todo.clear()
     for item in todo:
         if item.name in dones:
             continue
-        current = link.load_jobinfo_raw(item.name, done=None)
+        current = qvlink.load_jobinfo_raw(item.name, done=None)
         if state is not None:
-            item_state = link.State(current['state'])
+            item_state = qvlink.State(current['state'])
             if item_state != state:
                 continue
         result.append(current)

@@ -13,7 +13,7 @@ import configos
 import resinf
 import utilo
 
-import link
+import qvlink
 from tests.fixtures import broken  # pylint:disable=W0611
 from tests.fixtures import common  # pylint:disable=W0611
 from tests.fixtures import completed  # pylint:disable=W0611
@@ -24,11 +24,11 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 if 'SHARED_READY' not in os.environ:
     utilo.debug('SET SHARED_READY')
-    DIR = utilo.tmpdir(link.ROOT)
+    DIR = utilo.tmpdir(qvlink.ROOT)
     configos.export(
         utilo.join(DIR, 'common'),
         utilo.join(DIR, 'todo'),
         utilo.join(DIR, 'ready'),
     )
 
-resinf.setup(link.ROOT)
+resinf.setup(qvlink.ROOT)

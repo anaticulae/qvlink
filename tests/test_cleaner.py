@@ -9,14 +9,14 @@
 
 import utilotest
 
-import link
+import qvlink
 import tests.patch
 
 
 def test_remove_outdated(common, monkeypatch, capsys):
     """Ensure that `broken` is cleaned by remover."""
     with tests.patch.patch_todo(common, monkeypatch):
-        link.remove_outdated()
+        qvlink.remove_outdated()
     stderr = utilotest.stdout(capsys)
     # broken is compleated by `remove_outdated`
     assert 'complete/fail: broken' in stderr
