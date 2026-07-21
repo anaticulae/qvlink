@@ -19,24 +19,30 @@ docker-doctest: docker-build
 		$(IMAGE)\
 		"baw test docs"
 
-docker-fasttest: docker-build
+docker-fasttest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
 		-v /tmp/qvlink:/tmp/qvlink\
+		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
+		-e HOVERPOWER_SECRET\
 		$(IMAGE)\
 		"baw test fast"
 
-docker-longtest: docker-build
+docker-longtest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
 		-v /tmp/qvlink:/tmp/qvlink\
+		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
+		-e HOVERPOWER_SECRET\
 		$(IMAGE)\
 		"baw test long"
 
-docker-alltest: docker-build
+docker-alltest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
 		-v /tmp/qvlink:/tmp/qvlink\
+		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
+		-e HOVERPOWER_SECRET\
 		$(IMAGE)\
 		"baw test all"
 
