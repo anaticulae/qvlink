@@ -7,6 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
+import configos
+import utilo
+
+import link
 from tests.fixtures import broken  # pylint:disable=W0611
 from tests.fixtures import common  # pylint:disable=W0611
 from tests.fixtures import completed  # pylint:disable=W0611
@@ -14,3 +20,12 @@ from tests.fixtures import example  # pylint:disable=W0611
 from tests.fixtures import withfindings  # pylint:disable=W0611
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
+
+if 'SHARED_READY' not in os.environ:
+    utilo.debug('SET SHARED_READY')
+    DIR = utilo.tmpdir(link.ROOT)
+    configos.export(
+        utilo.join(DIR, 'common'),
+        utilo.join(DIR, 'todo'),
+        utilo.join(DIR, 'ready'),
+    )
