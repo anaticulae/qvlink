@@ -15,6 +15,7 @@ import iamraw
 import protoerror
 import pytest
 import utilo
+import utilotest
 
 import link
 import tests.patch
@@ -24,6 +25,8 @@ DOCUMENT = 'example'
 
 @pytest.fixture
 def example(testdir) -> str:
+    if not utilo.exists(hoverpower.DOCU007_PDF):
+        pytest.skip(f'Download: {hoverpower.DOCU007_PDF}')
     todo = os.path.join(testdir.tmpdir, 'todo')
     os.makedirs(todo, exist_ok=True)
     ready = os.path.join(testdir.tmpdir, 'ready')

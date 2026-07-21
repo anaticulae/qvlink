@@ -10,6 +10,7 @@
 import os
 
 import configos
+import resinf
 import utilo
 
 import link
@@ -29,3 +30,5 @@ if 'SHARED_READY' not in os.environ:
         utilo.join(DIR, 'todo'),
         utilo.join(DIR, 'ready'),
     )
+
+resinf.setup(link.ROOT)
