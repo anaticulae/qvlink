@@ -13,10 +13,8 @@ import configos
 import protoerror
 import serializeraw
 import utilo
-import utilo.logger
 
 import qvlink
-import qvlink.job
 import qvlink.state
 
 PROGRESS_START = 0
