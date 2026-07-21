@@ -15,7 +15,6 @@ import iamraw
 import protoerror
 import pytest
 import utilo
-import utilotest
 
 import link
 import tests.patch
