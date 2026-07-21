@@ -37,7 +37,7 @@ def verify(document: str):
     workspace = os.path.join(todo, document)
     pdf = os.path.join(workspace, document)
 
-    result = utilo.run(f'pdfinfo -i {pdf} -o {workspace} --format=yaml')
+    result = utilo.run(f'pdflog -i {pdf} -o {workspace} --format=yaml')
     assert result.returncode == utilo.SUCCESS, (result.stderr + result.stdout)
 
     # TODO: ENABLE abel LATER
