@@ -1,0 +1,67 @@
+---
+name: Tests
+on:
+  push:
+    branches: ['*']
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: build docker container
+        run: make docker-build
+  doctest:
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - name: run doctest
+        run: |
+          make docker-doctest
+        env:
+          HOVERPOWER_SECRET: ${{ secrets.HOVERPOWER_SECRET }}
+  fasttest:
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+        with:
+        # required by test which requires commits
+          fetch-depth: 15
+      - name: run fasttest
+        run: |
+          make docker-fasttest
+        env:
+          HOVERPOWER_SECRET: ${{ secrets.HOVERPOWER_SECRET }}
+  longtest:
+    runs-on: ubuntu-24.04
+    needs: fasttest
+    steps:
+      - uses: actions/checkout@v7
+      - name: run longtest
+        run: |
+          make docker-longtest
+        env:
+          HOVERPOWER_SECRET: ${{ secrets.HOVERPOWER_SECRET }}
+  alltest:
+    runs-on: ubuntu-24.04
+    needs: longtest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+        # required by test which requires commits
+          fetch-depth: 15
+      - name: run alltest
+        run: |
+          make docker-alltest
+        env:
+          HOVERPOWER_SECRET: ${{ secrets.HOVERPOWER_SECRET }}
+  linter:
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - name: run linter
+        run: make docker-lint
